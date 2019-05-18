@@ -18,7 +18,7 @@ html {
 }
 
 .XXW-form-label {
-    width: 45px;
+    width: 56px;
 }
 
 .XXW-patchca {
@@ -29,6 +29,16 @@ html {
     text-align: center;
 }
 
+.XXW-login button {
+    width: 200px;
+}
+
+.XXW-input-inline {
+    width: calc(100% - 96px) !important;
+    height: 38px;
+    line-height: 38px;
+}
+
 .XXW-input-inline input {
     width: 98%;
 }
@@ -37,6 +47,35 @@ html {
     height: 36px;
     width: 100%;
     cursor: pointer;
+}
+
+.XXW-forget {
+    float: right;
+    line-height: 38px;
+}
+
+.XXW-forget a, .XXW-ThirdParty-login-r a {
+    color: #029789 !important;
+}
+
+.XXW-ThirdParty-login {
+    height: 38px;
+}
+
+.XXW-ThirdParty-login-a {
+    float: left;
+}
+
+.XXW-ThirdParty-login-r {
+    line-height: 38px;
+}
+
+.XXW-ThirdParty-login-a i {
+    font-size: 26px;
+}
+
+.XXW-ThirdParty-login-r {
+    float: right;
 }
 
 @media screen and (max-width: 450px) {

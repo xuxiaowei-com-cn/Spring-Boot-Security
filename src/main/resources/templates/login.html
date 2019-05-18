@@ -60,11 +60,28 @@
                     <span>记住我</span>
                     <i class="layui-icon layui-icon-ok"></i>
                 </div>
+                <div class="XXW-forget">
+                    <a th:href="@{/forget}">忘记密码?</a>
+                </div>
             </div>
         </div>
 
         <div class="layui-form-item XXW-form-item XXW-login">
             <button class="layui-btn" lay-submit lay-filter="login">登录</button>
+        </div>
+
+        <div class="layui-form-item XXW-form-item XXW-ThirdParty-login">
+            <label class="layui-form-label XXW-form-label">社交登入</label>
+            <div class="layui-input-inline XXW-input-inline">
+                <div class="XXW-ThirdParty-login-a">
+                    <a href=""><i class="layui-icon layui-icon-login-qq"></i></a>
+                    <a href=""><i class="layui-icon layui-icon-login-wechat"></i></a>
+                    <a href=""><i class="layui-icon layui-icon-login-weibo"></i></a>
+                </div>
+                <div class="XXW-ThirdParty-login-r">
+                    <a th:href="@{/reg}">注册账户&nbsp;&nbsp;</a>
+                </div>
+            </div>
         </div>
 
     </div>
