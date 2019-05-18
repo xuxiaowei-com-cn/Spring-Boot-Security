@@ -1,0 +1,30 @@
+@charset "UTF-8";
+
+.XXW-container {
+    margin-top: 60px;
+}
+
+.XXW-form {
+    margin: 0 auto;
+    width: 310px;
+}
+
+.XXW-form-item {
+    width: 310px;
+}
+
+.XXW-form-label {
+    width: 45px;
+}
+
+.XXW-login{
+    text-align: center;
+}
+
+@media screen and (max-width: 450px){
+
+    .XXW-input-inline {
+        margin: 0 20px 10px 80px !important;
+    }
+
+}
