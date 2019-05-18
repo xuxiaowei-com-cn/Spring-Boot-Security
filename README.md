@@ -2,6 +2,12 @@
 Spring Boot 整合 Security。
 内涵 Spring Boot 整合 MyBatis Plus，详情请查看 [Spring-Boot-MyBatis-Plus](https://github.com/XXWXHK/Spring-Boot-MyBatis-Plus)
 
+# 使用技术
+
+## RSA 非对称性加密
+
+- 用于用户注册、登录、重置密码时，密码加密传输
+
 # 依赖
 
 ## Spring Boot 依赖（创建项目时选择）
