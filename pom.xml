@@ -33,6 +33,13 @@
         <!-- MyBatis Plus Boot Starter End -->
 
 
+        <!-- GitHub 图片验证码 Patchca 依赖 -->
+        <!-- 以下依赖可继承 -->
+        <!-- https://mvnrepository.com/artifact/com.github.bingoohuang/patchca -->
+        <!-- 2014年9月18日 -->
+        <patchca.version>0.0.1</patchca.version>
+
+        
     </properties>
 
     <dependencies>
@@ -57,6 +64,14 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-velocity</artifactId>
             <version>${spring-boot-starter-velocity.version}</version>
+        </dependency>
+
+
+        <!-- GitHub 图片验证码 Patchca -->
+        <dependency>
+            <groupId>com.github.bingoohuang</groupId>
+            <artifactId>patchca</artifactId>
+            <version>${patchca.version}</version>
         </dependency>
 
 

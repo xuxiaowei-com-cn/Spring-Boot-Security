@@ -39,3 +39,8 @@ Spring Boot 整合 Security。
     - MyBatis Plus Generator            MyBatis Plus 代码生成器 依赖。
     
     - Spring Boot Starter Velocity      Velocity 模板引擎，MyBatis Plus 代码生成器 默认模板引擎。
+    
+
+- 图片验证码
+    
+    - patchca                           GitHub 图片验证码
