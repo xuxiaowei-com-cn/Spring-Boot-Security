@@ -65,7 +65,8 @@ public class WebSecurityPasswordEncoderConfig implements PasswordEncoder {
         } catch (GeneralSecurityException e) {
 
             log.debug("使用 RSA 解码密码失败！");
-            e.printStackTrace();
+
+            // <code>e.printStackTrace();</code>
 
             return false;
         }
