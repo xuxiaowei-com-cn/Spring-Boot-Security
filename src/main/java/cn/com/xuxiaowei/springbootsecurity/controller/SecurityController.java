@@ -33,4 +33,13 @@ public class SecurityController {
         return "reg";
     }
 
+    /**
+     * 忘记密码页面
+     */
+    @RequestMapping("/forget")
+    public String forget(HttpServletRequest request, HttpServletResponse response, Model model) {
+
+        return "forget";
+    }
+
 }
