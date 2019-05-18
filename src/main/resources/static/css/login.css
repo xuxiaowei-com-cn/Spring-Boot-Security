@@ -8,39 +8,70 @@ html {
     margin-top: 60px;
 }
 
+.XXW-header {
+    text-align: center;
+    padding: 10px;
+}
+
+.XXW-header h2 {
+    font-size: 30px;
+    margin-block-end: 10px;
+}
+
+.XXW-header p {
+    color: #999;
+}
+
 .XXW-form {
     margin: 0 auto;
-    width: 310px;
+    width: 290px;
+}
+
+.XXW-input-inline {
+    width: 100% !important;
+}
+
+.XXW-user-login-icon {
+    position: absolute;
+    left: 1px;
+    top: 1px;
+    width: 38px;
+    line-height: 36px;
+    text-align: center;
+    color: #d2d2d2;
 }
 
 .XXW-form-item {
-    width: 310px;
+    height: 38px;
+    position: relative;
 }
 
-.XXW-form-label {
-    width: 56px;
+.XXW-form-item input {
+    padding-left: 38px;
+}
+
+.XXW-ThirdParty-login a i {
+    font-size: 26px;
+}
+
+.XXW-ThirdParty-login-label {
+    display: inline-block;
+    vertical-align: middle;
+    margin-top: -13px;
+}
+
+
+#reg {
+    float: right;
+    line-height: 38px;
 }
 
 .XXW-patchca {
-    padding: 0 5px;
+    padding-left: 5px;
 }
 
 .XXW-login {
     text-align: center;
-}
-
-.XXW-login button {
-    width: 200px;
-}
-
-.XXW-input-inline {
-    width: calc(100% - 96px) !important;
-    height: 38px;
-    line-height: 38px;
-}
-
-.XXW-input-inline input {
-    width: 98%;
 }
 
 .XXW-patchca-img {
@@ -54,34 +85,7 @@ html {
     line-height: 38px;
 }
 
-.XXW-forget a, .XXW-ThirdParty-login-r a {
+.XXW-forget a, #reg {
     color: #029789 !important;
 }
 
-.XXW-ThirdParty-login {
-    height: 38px;
-}
-
-.XXW-ThirdParty-login-a {
-    float: left;
-}
-
-.XXW-ThirdParty-login-r {
-    line-height: 38px;
-}
-
-.XXW-ThirdParty-login-a i {
-    font-size: 26px;
-}
-
-.XXW-ThirdParty-login-r {
-    float: right;
-}
-
-@media screen and (max-width: 450px) {
-
-    .XXW-input-inline {
-        margin: 0 15px 10px 80px !important;
-    }
-
-}

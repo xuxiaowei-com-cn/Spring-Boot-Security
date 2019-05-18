@@ -20,71 +20,60 @@
 
     <div class="layui-form XXW-form">
 
+        <div class="XXW-header">
+            <h2>徐晓伟工作室</h2>
+            <p>徐晓伟工作室 Security Demo</p>
+        </div>
+
         <div class="layui-form-item XXW-form-item">
-            <label class="layui-form-label XXW-form-label">用户名</label>
-            <div class="layui-input-inline XXW-input-inline">
-                <input type="text" name="username" required lay-verify="username" placeholder="请输入用户名"
-                       autocomplete="off"
-                       class="layui-input">
+            <label class="layui-icon layui-icon-username XXW-user-login-icon" for="username"></label>
+            <input type="text" name="username" required lay-verify="username" placeholder="请输入用户名"
+                   class="layui-input" id="username">
+        </div>
+
+        <div class="layui-form-item XXW-form-item">
+            <label class="layui-icon layui-icon-password XXW-user-login-icon" for="password"></label>
+            <input type="password" name="password" required lay-verify="password" placeholder="请输入密码"
+                   class="layui-input" id="password">
+        </div>
+
+        <div class="layui-form-item XXW-form-item">
+            <div class="layui-col-xs7">
+                <label class="layui-icon layui-icon-vercode XXW-user-login-icon" for="patchca"></label>
+                <input type="patchca" name="patchca" required lay-verify="patchca" placeholder="请输入验证码"
+                       class="layui-input" id="patchca">
+            </div>
+            <div class="layui-col-xs5 XXW-patchca">
+                <img class="XXW-patchca-img" src="" th:src="@{/patchca}" alt="验证码">
             </div>
         </div>
 
         <div class="layui-form-item XXW-form-item">
-            <label class="layui-form-label XXW-form-label">密码</label>
-            <div class="layui-input-inline XXW-input-inline">
-                <input type="password" name="password" required lay-verify="password" placeholder="请输入密码"
-                       autocomplete="off"
-                       class="layui-input">
+            <input type="checkbox" name="remember-me" title="记住我" lay-skin="primary">
+            <!-- 不使用动态加载 -->
+            <div class="layui-unselect layui-form-checkbox" lay-skin="primary">
+                <span>记住我</span>
+                <i class="layui-icon layui-icon-ok"></i>
             </div>
-        </div>
-
-        <div class="layui-form-item XXW-form-item">
-            <label class="layui-form-label XXW-form-label">验证码</label>
-            <div class="layui-input-inline XXW-input-inline">
-                <div class="layui-col-xs7">
-                    <input type="patchca" name="patchca" required lay-verify="patchca" placeholder="请输入验证码"
-                           autocomplete="off" class="layui-input">
-                </div>
-                <div class="layui-col-xs5 XXW-patchca">
-                    <img class="XXW-patchca-img" src="" th:src="@{/patchca}" alt="验证码">
-                </div>
-            </div>
-        </div>
-
-        <div class="layui-form-item XXW-form-item">
-            <label class="layui-form-label XXW-form-label"></label>
-            <div class="layui-input-inline XXW-input-inline">
-                <input type="checkbox" name="remember-me" title="记住我" lay-skin="primary">
-                <!-- 不使用动态加载 -->
-                <div class="layui-unselect layui-form-checkbox" lay-skin="primary">
-                    <span>记住我</span>
-                    <i class="layui-icon layui-icon-ok"></i>
-                </div>
-                <div class="XXW-forget">
-                    <a th:href="@{/forget}">忘记密码?</a>
-                </div>
+            <div class="XXW-forget">
+                <a th:href="@{/forget}">忘记密码?</a>
             </div>
         </div>
 
         <div class="layui-form-item XXW-form-item XXW-login">
-            <button class="layui-btn" lay-submit lay-filter="login">登录</button>
+            <button class="layui-btn layui-btn-fluid" lay-submit lay-filter="login">登录</button>
         </div>
 
-        <div class="layui-form-item XXW-form-item XXW-ThirdParty-login">
-            <label class="layui-form-label XXW-form-label">社交登入</label>
-            <div class="layui-input-inline XXW-input-inline">
-                <div class="XXW-ThirdParty-login-a">
-                    <a href=""><i class="layui-icon layui-icon-login-qq"></i></a>
-                    <a href=""><i class="layui-icon layui-icon-login-wechat"></i></a>
-                    <a href=""><i class="layui-icon layui-icon-login-weibo"></i></a>
-                </div>
-                <div class="XXW-ThirdParty-login-r">
-                    <a th:href="@{/reg}">注册账户&nbsp;&nbsp;</a>
-                </div>
-            </div>
+        <div class="layui-form-item XXW-form-item XXW-ThirdParty-login" style="line-height: 38px;">
+            <label class="XXW-ThirdParty-login-label">社交登入</label>
+            <a th:href="@{/}"><i class="layui-icon layui-icon-login-qq"></i></a>
+            <a th:href="@{/}"><i class="layui-icon layui-icon-login-wechat"></i></a>
+            <a th:href="@{/}"><i class="layui-icon layui-icon-login-weibo"></i></a>
+            <a th:href="@{/reg}" id="reg">注册账户&nbsp;&nbsp;</a>
         </div>
-
     </div>
+
+</div>
 
 </div>
 
