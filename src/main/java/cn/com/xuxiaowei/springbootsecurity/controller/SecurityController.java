@@ -24,5 +24,13 @@ public class SecurityController {
         return "login";
     }
 
+    /**
+     * 注册页面
+     */
+    @RequestMapping("/reg")
+    public String reg(HttpServletRequest request, HttpServletResponse response, Model model) {
+
+        return "reg";
+    }
 
 }
