@@ -89,6 +89,12 @@
             <!-- 防止单独运行类（非运行Spring Boot）时使用MySQL驱动（MyBatis Plus自动生成实体类相关）出错 -->
             <!--<scope>runtime</scope>-->
         </dependency>
+        <!-- - Lombok -->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <optional>true</optional>
+        </dependency>
         <!-- - Spring Boot 测试依赖，任何项目都包含 -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
