@@ -1,5 +1,6 @@
 # Spring-Boot-Security
 Spring Boot 整合 Security。
+内涵 Spring Boot 整合 MyBatis Plus，详情请查看 [Spring-Boot-MyBatis-Plus](https://github.com/XXWXHK/Spring-Boot-MyBatis-Plus)
 
 # 依赖
 
