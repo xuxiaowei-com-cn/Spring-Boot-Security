@@ -10,7 +10,8 @@ Spring Boot 整合 Security。
     - 2.1.5.RELEASE
 
 - Core
-    - Lombok                注解（Getter/Setter）。
+    - Lombok                    注解（Getter/Setter）。
+    - Configuration Processor   为您的自定义配置键生成元数据（注解处理器）。
     
 - Web
     - Web                       使用Tomcat和Spring MVC进行全栈Web开发
