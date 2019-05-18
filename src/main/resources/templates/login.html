@@ -23,7 +23,7 @@
         <div class="layui-form-item XXW-form-item">
             <label class="layui-form-label XXW-form-label">用户名</label>
             <div class="layui-input-inline XXW-input-inline">
-                <input type="text" name="username" required lay-verify="nickname" placeholder="请输入用户名"
+                <input type="text" name="username" required lay-verify="username" placeholder="请输入用户名"
                        autocomplete="off"
                        class="layui-input">
             </div>
@@ -39,9 +39,27 @@
         </div>
 
         <div class="layui-form-item XXW-form-item">
+            <label class="layui-form-label XXW-form-label">验证码</label>
+            <div class="layui-input-inline XXW-input-inline">
+                <div class="layui-col-xs7">
+                    <input type="patchca" name="patchca" required lay-verify="patchca" placeholder="请输入验证码"
+                           autocomplete="off" class="layui-input">
+                </div>
+                <div class="layui-col-xs5 XXW-patchca">
+                    <img class="XXW-patchca-img" src="" th:src="@{/patchca}" alt="验证码">
+                </div>
+            </div>
+        </div>
+
+        <div class="layui-form-item XXW-form-item">
             <label class="layui-form-label XXW-form-label"></label>
             <div class="layui-input-inline XXW-input-inline">
                 <input type="checkbox" name="remember-me" title="记住我" lay-skin="primary">
+                <!-- 不使用动态加载 -->
+                <div class="layui-unselect layui-form-checkbox" lay-skin="primary">
+                    <span>记住我</span>
+                    <i class="layui-icon layui-icon-ok"></i>
+                </div>
             </div>
         </div>
 
@@ -63,6 +81,7 @@
         verify: "/js/verify"
     }).use(['layer', 'form', "verify"], function () {
         var $ = layui.$,
+            $body = $('body'),
             layer = layui.layer,
             form = layui.form;
 
@@ -96,6 +115,13 @@
                 }
             })
 
+        });
+
+        /**
+         * 更换图形验证码
+         */
+        $body.on('click', '.XXW-patchca-img', function () {
+            this.src = '/patchca?t=' + new Date().getTime()
         });
 
     });
