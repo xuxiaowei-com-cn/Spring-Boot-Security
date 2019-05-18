@@ -12,9 +12,9 @@ layui.define(['form'], function (exports) {
         /**
          * 用户昵称 验证
          */
-        nickname: function (value) {
+        username: function (value) {
             if (value == null || value === "") {
-                return "昵称不能为空！";
+                return "用户名不能为空！";
             }
         },
 
@@ -24,6 +24,15 @@ layui.define(['form'], function (exports) {
         password: function (value) {
             if (value == null || value === "") {
                 return "密码不能为空！";
+            }
+        },
+
+        /**
+         * 验证码 验证
+         */
+        patchca: function (value) {
+            if (value == null || value === "") {
+                return "验证码不能为空！";
             }
         }
 
