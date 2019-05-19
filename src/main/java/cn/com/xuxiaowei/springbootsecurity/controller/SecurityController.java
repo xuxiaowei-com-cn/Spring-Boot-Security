@@ -42,4 +42,13 @@ public class SecurityController {
         return "forget";
     }
 
+    /**
+     * 短信登录页面
+     */
+    @RequestMapping("/sms")
+    public String sms(HttpServletRequest request, HttpServletResponse response, Model model) {
+
+        return "sms";
+    }
+
 }
