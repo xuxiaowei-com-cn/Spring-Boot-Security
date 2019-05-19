@@ -40,6 +40,11 @@ public class SecuritySettings {
     public String failureForwardUrl;
 
     /**
+     * 登录时图片验证码验证失败 URL
+     */
+    public String failurePatchcaUrl;
+
+    /**
      * 注销成功后跳转的URL
      */
     public String logoutSuccessUrl;
