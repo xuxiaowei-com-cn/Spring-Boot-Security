@@ -63,6 +63,24 @@ public class SecurityRestController {
     }
 
     /**
+     * 图片验证码验证失败
+     */
+    @RequestMapping("/fail/patchca.do")
+    public Map<String, Object> failPatchca(HttpServletRequest request, HttpServletResponse response) {
+
+        Map<String, Object> map = new HashMap<>(4);
+        Map<String, Object> data = new HashMap<>(4);
+        map.put("data", data);
+
+        map.put("code", 1);
+        map.put("msg", "图片验证码验证失败！");
+
+        map.put("changePatchca", 1);
+
+        return map;
+    }
+
+    /**
      * 退出登录成功
      */
     @RequestMapping("/logout/success.do")

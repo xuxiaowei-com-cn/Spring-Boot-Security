@@ -133,7 +133,13 @@
                             location.href = redirectUrl;
                         })
                     } else if (code === 1) {
-                        layer.msg(msg, {icon: 0})
+                        layer.msg(msg, {icon: 0}, function () {
+                            var changePatchca = res.changePatchca;
+                            // 图片验证码验证失败
+                            if (changePatchca === 1) {
+                                $(".XXW-patchca-img").click();
+                            }
+                        })
                     }
 
                 },
