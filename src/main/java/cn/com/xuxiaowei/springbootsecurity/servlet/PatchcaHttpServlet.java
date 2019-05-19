@@ -5,6 +5,7 @@ import com.github.bingoohuang.patchca.filter.predefined.*;
 import com.github.bingoohuang.patchca.font.RandomFontFactory;
 import com.github.bingoohuang.patchca.utils.encoder.EncoderHelper;
 import com.github.bingoohuang.patchca.word.RandomWordFactory;
+import lombok.extern.slf4j.Slf4j;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -22,6 +23,7 @@ import java.util.Random;
  *
  * @author xuxiaowei
  */
+@Slf4j
 public class PatchcaHttpServlet extends HttpServlet {
 
     /**
@@ -104,6 +106,10 @@ public class PatchcaHttpServlet extends HttpServlet {
         String patchca = getPatchca(req, resp);
 
         session.setAttribute("patchca", patchca);
+
+        log.debug("");
+        log.debug("图片验证码为：" + patchca);
+        log.debug("");
 
     }
 
