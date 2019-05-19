@@ -35,6 +35,7 @@ public class WebSecurityConfigurerAdapterConfig extends WebSecurityConfigurerAda
         // 指定支持基于表单的身份验证。
         http.formLogin()
                 // 定制登录页面的访问 URL
+                // 优先级 低于 <code>http.exceptionHandling().authenticationEntryPoint();</code>
                 .loginPage(securitySettings.loginPage)
                 // 定制登录请求的访问 URL
                 .loginProcessingUrl(securitySettings.loginProcessingUrl)
@@ -45,6 +46,10 @@ public class WebSecurityConfigurerAdapterConfig extends WebSecurityConfigurerAda
                 .defaultSuccessUrl(securitySettings.defaultSuccessUrl, true)
                 .permitAll()
         ;
+
+        // 优先级 高于 <code>http.formLogin().loginPage()</code>
+        // 使用此配置的目的是，记录需要授权登录前的 URL 等操作，定制自己的行为
+        http.exceptionHandling().authenticationEntryPoint(new LoginUrlAuthenticationEntryPointConfig(securitySettings.loginPage));
 
         // 使用 logout 方法定制注销行为
         http.logout()
