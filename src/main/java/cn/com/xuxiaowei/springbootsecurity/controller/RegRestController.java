@@ -142,7 +142,7 @@ public class RegRestController {
         // 密码使用 MD5 加密后，储存在数据库中
         password = Md5Utils.getMD5(password);
 
-        user = new User().setUsername(username).setPassword(password);
+        user = new User().setUsername("手机用户" + username).setPhone(username).setPassword(password);
 
         boolean save = userService.save(user);
 
