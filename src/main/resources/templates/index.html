@@ -18,21 +18,59 @@
 </head>
 <body>
 
-<div class="layui-container XXW-t-a-c">
+<div class="layui-container XXW-container">
 
-    <h3>主页</h3>
+    <div class="layui-form XXW-form">
 
-    <h4 sec:authorize="!isAuthenticated()">你还未登录！</h4>
+        <div class="XXW-header XXW-t-a-c">
+            <h2><a href="https://xuxiaowei.com.cn" class="XXW-a">徐晓伟工作室</a></h2>
+            <p>徐晓伟工作室 Security Demo</p>
+        </div>
 
-    <h4 sec:authorize="isAuthenticated()">你已登录</h4>
+        <div class="layui-card" sec:authorize="!isAuthenticated()">
+            <div class="layui-card-header">未登录</div>
+        </div>
 
-    <div sec:authorize="!isAuthenticated()">
-        <a th:href="@{/login}" class="XXW-a">登录</a>
-        <a th:href="@{/login}" class="XXW-a">注册</a>
-    </div>
+        <div class="layui-card" sec:authorize="isAuthenticated()">
+            <div class="layui-card-header">已登录</div>
+            <div class="layui-card-body">
 
-    <div sec:authorize="isAuthenticated()" class="active" data-type="logout">
-        退出登录
+                <div class="layui-card-header">手机号</div>
+                <div class="layui-card-body">[[${username}]]</div>
+
+                <hr>
+
+                <div class="layui-card-header">登录IP</div>
+                <div class="layui-card-body" th:text="${remoteAddress}"></div>
+
+                <hr>
+
+                <div class="layui-card-header">权限</div>
+                <div class="layui-card-body">
+                    <div th:each="authorities:${authoritiesArray}">
+                        <div th:text="${authorities}"></div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="layui-form-item XXW-form-item" sec:authorize="!isAuthenticated()">
+            <a th:href="@{/login}" class="XXW-a">
+                <button class="layui-btn layui-btn-fluid">登录</button>
+            </a>
+        </div>
+
+        <div class="layui-form-item XXW-form-item" sec:authorize="!isAuthenticated()">
+            <a th:href="@{/reg}" class="XXW-a">
+                <button class="layui-btn layui-btn-fluid">注册</button>
+            </a>
+        </div>
+
+        <div class="layui-form-item XXW-form-item" sec:authorize="isAuthenticated()">
+            <button class="layui-btn layui-btn-fluid XXW-active" data-type="logout">退出登录</button>
+        </div>
+
     </div>
 
 </div>
@@ -86,7 +124,7 @@
             }
         };
 
-        $(".active").on("click", function () {
+        $(".XXW-active").on("click", function () {
             var othis = $(this), type = othis.data("type");
             active[type] ? active[type].call(this, othis) : "";
         });
