@@ -65,7 +65,7 @@ html {
 }
 
 
-#reg {
+#reg, #login {
     float: right;
     line-height: 38px;
 }
@@ -89,7 +89,7 @@ html {
     line-height: 38px;
 }
 
-.XXW-forget a, #reg, #sms {
+.XXW-forget a, #reg, #sms, #login, .XXW-header h2 a {
     color: #029789 !important;
 }
 
