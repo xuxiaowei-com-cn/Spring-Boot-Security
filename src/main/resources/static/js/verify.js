@@ -2,7 +2,8 @@
 
 layui.define(['form'], function (exports) {
 
-    var form = layui.form;
+    var $ = layui.$,
+        form = layui.form;
 
     var verify = {};
 
@@ -24,6 +25,19 @@ layui.define(['form'], function (exports) {
         password: function (value) {
             if (value == null || value === "") {
                 return "密码不能为空！";
+            }
+        },
+
+        /**
+         * 确认密码 验证
+         */
+        repassPassword: function (value) {
+            if (value == null || value === "") {
+                return "确认密码不能为空！";
+            }
+            var password = $("#password").val();
+            if (password !== value) {
+                return "确认密码与密码不一致！";
             }
         },
 
