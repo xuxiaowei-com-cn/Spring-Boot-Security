@@ -1,5 +1,6 @@
 package cn.com.xuxiaowei.springbootsecurity.config;
 
+import cn.com.xuxiaowei.springbootsecurity.filter.login.BeforeLoginPatchcaHttpFilter;
 import cn.com.xuxiaowei.springbootsecurity.service.IUserService;
 import cn.com.xuxiaowei.springbootsecurity.service.impl.UserDetailsServiceImpl;
 import cn.com.xuxiaowei.springbootsecurity.setting.SecuritySettings;
@@ -11,6 +12,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 /**
  * Spring Security 安全控制 配置
@@ -29,8 +31,21 @@ public class WebSecurityConfigurerAdapterConfig extends WebSecurityConfigurerAda
         this.userService = userService;
     }
 
+    /**
+     * 授权登录（用户名密码登录）前 验证图片验证码 注册为 bean
+     *
+     * @return 可使用 Autowired 的 授权登录（用户名密码登录）前 验证图片验证码
+     */
+    @Bean
+    BeforeLoginPatchcaHttpFilter beforeLoginPatchcaHttpFilter() {
+        return new BeforeLoginPatchcaHttpFilter();
+    }
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
+
+        // 授权登录（用户名密码登录）前 验证图片验证码
+        http.addFilterBefore(beforeLoginPatchcaHttpFilter(), UsernamePasswordAuthenticationFilter.class);
 
         // 指定支持基于表单的身份验证。
         http.formLogin()
