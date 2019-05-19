@@ -38,6 +38,7 @@ public class IndexController {
         WebAuthenticationDetails webAuthenticationDetails = (WebAuthenticationDetails) details;
 
         // 如果使用了 Nginx 代理，需要在 application.yml 配置
+        // Nginx 配置详情请查看 cn.com.xuxiaowei.springbootsecurity.controller.README.md
         String remoteAddress = webAuthenticationDetails.getRemoteAddress();
 
         Object principal = authentication.getPrincipal();
