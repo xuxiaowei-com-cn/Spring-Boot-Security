@@ -20,6 +20,8 @@ Spring Boot 整合 Security。
 
 ### 短信验证码 登录
 
+- 设置保持登录 2 天
+
 # 依赖
 
 ## Spring Boot 依赖（创建项目时选择）
