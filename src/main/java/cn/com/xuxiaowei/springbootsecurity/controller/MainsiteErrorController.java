@@ -1,5 +1,6 @@
 package cn.com.xuxiaowei.springbootsecurity.controller;
 
+import org.springframework.boot.web.server.WebServerFactoryCustomizer;
 import org.springframework.boot.web.servlet.error.ErrorController;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
@@ -13,6 +14,13 @@ import java.io.IOException;
  * 主站点错误 Controller
  * <p>
  * 增加 {@link Controller} 注解即可使用
+ * <p>
+ * {@link WebServerFactoryCustomizer <>} 与 {@link ErrorController} 各有各的特点，根据自己的需要选择
+ * <p>
+ * 简单配置：使用 {@link ErrorController}
+ * 复杂配置：使用 {@link WebServerFactoryCustomizer<>}
+ * <p>
+ * 优先级：{@link WebServerFactoryCustomizer<>} 大于 {@link ErrorController}
  *
  * @author xuxiaowei
  */
