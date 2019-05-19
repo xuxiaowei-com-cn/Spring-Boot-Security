@@ -17,6 +17,65 @@
 </head>
 <body>
 
+<div class="layui-container XXW-container">
+
+    <div class="layui-form XXW-form">
+
+        <div class="XXW-header">
+            <h2><a href="https://xuxiaowei.com.cn">徐晓伟工作室</a></h2>
+            <p>徐晓伟工作室 Security Demo</p>
+        </div>
+
+        <div class="layui-form-item XXW-form-item">
+            <label class="layui-icon layui-icon-username XXW-user-login-icon" for="username"></label>
+            <input type="text" name="username" required lay-verify="username" placeholder="请输入用户名"
+                   class="layui-input" id="username">
+        </div>
+
+        <div class="layui-form-item XXW-form-item">
+            <label class="layui-icon layui-icon-password XXW-user-login-icon" for="password"></label>
+            <input type="password" name="password" required lay-verify="password" placeholder="请输入密码"
+                   class="layui-input" id="password">
+        </div>
+
+        <div class="layui-form-item XXW-form-item">
+            <label class="layui-icon layui-icon-password XXW-user-login-icon" for="repassPassword"></label>
+            <input type="password" name="repassPassword" required lay-verify="repassPassword" placeholder="请输入确认密码"
+                   class="layui-input" id="repassPassword">
+        </div>
+
+        <div class="layui-form-item XXW-form-item">
+            <div class="layui-col-xs7">
+                <label class="layui-icon layui-icon-vercode XXW-user-login-icon" for="patchca"></label>
+                <input type="text" name="patchca" required lay-verify="patchca" placeholder="请输入验证码"
+                       class="layui-input" id="patchca">
+            </div>
+            <div class="layui-col-xs5 XXW-patchca">
+                <img class="XXW-patchca-img" src="" th:src="@{/patchca}" alt="验证码">
+            </div>
+        </div>
+
+        <div class="layui-form-item XXW-form-item XXW-login">
+            <button class="layui-btn layui-btn-fluid" lay-submit lay-filter="reg">注册</button>
+        </div>
+
+        <div class="layui-form-item XXW-form-item XXW-ThirdParty-login">
+            <label class="XXW-ThirdParty-login-label">社交登入</label>
+            <a th:href="@{/}"><i class="layui-icon layui-icon-login-qq"></i></a>
+            <a th:href="@{/}"><i class="layui-icon layui-icon-login-wechat"></i></a>
+            <a th:href="@{/}"><i class="layui-icon layui-icon-login-weibo"></i></a>
+            <a th:href="@{/login}" id="login">登录&nbsp;&nbsp;</a>
+        </div>
+
+        <div class="layui-form-item XXW-form-item XXW-other-login">
+            <label class="XXW-other-login-label">其他登录</label>
+            <a th:href="@{/sms}" id="sms">短信登录</a>
+        </div>
+
+    </div>
+
+</div>
+
 </body>
 
 <script type="text/javascript" th:src="@{/layui/layui.js}"></script>
@@ -36,34 +95,35 @@
         var crypt = new JSEncrypt();
         crypt.setPublicKey(RsaPublicKey);
 
-        // // 登录
-        // form.on('submit(login)', function (data) {
-        //
-        //     var field = data.field;
-        //
-        //     field.password = crypt.encrypt(field.password);
-        //
-        //     /* 跨站请求伪造 */
-        //     var header = $("meta[name='_csrf_header']").attr("content");
-        //     var token = $("meta[name='_csrf']").attr("content");
-        //
-        //     $.ajax({
-        //         url: "/login.do",
-        //         type: "post",
-        //         beforeSend: function (xhr) {
-        //             /* 跨站请求伪造 */
-        //             xhr.setRequestHeader(header, token);
-        //         },
-        //         data: field,
-        //         success: function (res) {
-        //             console.log("success", res)
-        //         },
-        //         error: function (res) {
-        //             console.log("error", res)
-        //         }
-        //     })
-        //
-        // });
+        // 注册
+        form.on('submit(reg)', function (data) {
+
+            var field = data.field;
+
+            field.password = crypt.encrypt(field.password);
+            field.repassPassword = crypt.encrypt(field.repassPassword);
+
+            /* 跨站请求伪造 */
+            var header = $("meta[name='_csrf_header']").attr("content");
+            var token = $("meta[name='_csrf']").attr("content");
+
+            $.ajax({
+                url: "/reg.do",
+                type: "post",
+                beforeSend: function (xhr) {
+                    /* 跨站请求伪造 */
+                    xhr.setRequestHeader(header, token);
+                },
+                data: field,
+                success: function (res) {
+                    console.log("success", res)
+                },
+                error: function (res) {
+                    console.log("error", res)
+                }
+            })
+
+        });
 
     });
 </script>
