@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSON;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -12,6 +13,8 @@ import java.util.Map;
 
 /**
  * 短信登录成功 拦截器
+ * <p>
+ * 短信登录，保持 Cookie Session 有效期为 2 天
  * <p>
  * 短信验证码登录成功后，自动重定向到主页页面
  * 由于 短信验证码登录 时，前端需要接收登录结果的数据，所以将 短信验证码登录 状态放入 Session 中
@@ -34,6 +37,12 @@ public class SmsLoginSuccessHandlerInterceptor implements HandlerInterceptor {
         String smsFilter = "smsFilter";
 
         if (smsFilter.equals(loginFilter)) {
+
+            // 2 天
+            int second = 60 * 60 * 24 * 2;
+
+            // 保持登录 2 天
+            setCookie(request, response, second);
 
             Map<String, Object> map = new HashMap<>(4);
             Map<String, Object> data = new HashMap<>(4);
@@ -68,6 +77,28 @@ public class SmsLoginSuccessHandlerInterceptor implements HandlerInterceptor {
     @Override
     public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws Exception {
 
+    }
+
+    /**
+     * 设置 短信验证码登录成功 后的 Cookie Session 时间
+     *
+     * @param second 秒
+     */
+    private void setCookie(HttpServletRequest request, HttpServletResponse response, int second) {
+
+        String jSessionId = "JSESSIONID";
+
+        Cookie[] cookies = request.getCookies();
+
+        if (cookies != null) {
+            for (Cookie c : cookies) {
+                String name = c.getName();
+                if (jSessionId.equals(name)) {
+                    c.setMaxAge(second);
+                    response.addCookie(c);
+                }
+            }
+        }
     }
 
 }
