@@ -69,13 +69,13 @@ public class SmsRestController {
             session.setAttribute("smsPhone", phone);
 
             // 手机号放入 Session 的时间（name 中包含手机号）
-            session.setAttribute("smsPhone" + phone, LocalDateTime.now());
+            session.setAttribute("smsCodeTime", LocalDateTime.now());
 
             // 6 位随机数，在 100000 和 999999 之间
-            int in100000to999999 = (int) ((Math.random() * 9 + 1) * 100000);
+            String in100000to999999 = (int) ((Math.random() * 9 + 1) * 100000) + "";
 
             // 将验证码放入 Session
-            session.setAttribute("smsPhoneCode", in100000to999999);
+            session.setAttribute("smsCode", in100000to999999);
 
             log.debug("");
             log.debug("发送短信验证码成功");
