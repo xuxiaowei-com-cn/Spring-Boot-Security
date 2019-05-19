@@ -20,7 +20,24 @@ import java.util.Map;
  */
 @Slf4j
 @RestController
+@RequestMapping("/sms")
 public class SmsRestController {
+
+    /**
+     * 短信登录
+     */
+    @RequestMapping("/login.do")
+    public Map<String, Object> login(HttpServletRequest request, HttpServletResponse response) {
+
+        Map<String, Object> map = new HashMap<>(4);
+        Map<String, Object> data = new HashMap<>(4);
+        map.put("data", data);
+
+        map.put("code", 0);
+        map.put("msg", "短信登录成功");
+
+        return map;
+    }
 
     /**
      * 发送短信验证码
@@ -30,8 +47,8 @@ public class SmsRestController {
      * @param phone   发送短信验证码的手机号
      * @param patchca 发送短信验证码之前需要验证的图片验证码
      */
-    @RequestMapping(value = "/send/sms.do", method = RequestMethod.POST)
-    public Map<String, Object> fail(HttpServletRequest request, HttpServletResponse response,
+    @RequestMapping(value = "/send.do", method = RequestMethod.POST)
+    public Map<String, Object> send(HttpServletRequest request, HttpServletResponse response,
                                     String phone, String patchca) {
 
         Map<String, Object> map = new HashMap<>(4);
