@@ -21,10 +21,7 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * 短信验证码登录 认证处理过滤器
@@ -123,7 +120,10 @@ public class SmsAbstractAuthenticationProcessingFilter extends AbstractAuthentic
 
         if (userInfo == null) {
 
-            userInfo = new User().setUsername(username);
+            // 随机密码
+            String password = UUID.randomUUID().toString();
+
+            userInfo = new User().setUsername("用户" + username).setPhone(username).setPassword(password);
 
             boolean save = userService.save(userInfo);
 
