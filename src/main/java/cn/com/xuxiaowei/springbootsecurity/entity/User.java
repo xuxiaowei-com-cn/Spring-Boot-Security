@@ -17,7 +17,7 @@ import java.time.LocalDateTime;
  * </p>
  *
  * @author 徐晓伟
- * @since 2019-05-18
+ * @since 2019-05-20
  */
 @Data
 @EqualsAndHashCode(callSuper = false)
@@ -43,6 +43,12 @@ public class User implements Serializable {
      */
     @TableField("nickname")
     private String nickname;
+
+    /**
+     * 手机号
+     */
+    @TableField("phone")
+    private String phone;
 
     /**
      * 密码
@@ -87,6 +93,8 @@ public class User implements Serializable {
     public static final String USERNAME = "username";
 
     public static final String NICKNAME = "nickname";
+
+    public static final String PHONE = "phone";
 
     public static final String PASSWORD = "password";
 
