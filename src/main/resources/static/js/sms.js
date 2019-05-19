@@ -141,6 +141,7 @@ layui.define(["layer"], function (exports) {
                         },
                         error: function (res) {
                             console.log("error", res);
+                            layer.msg("发送短信验证码时发生错误，请稍后再试！", {icon: 0})
                         }
 
                     });
