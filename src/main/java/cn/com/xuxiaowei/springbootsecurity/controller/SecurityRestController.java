@@ -75,7 +75,7 @@ public class SecurityRestController {
         map.put("data", data);
 
         map.put("code", 1);
-        data.put("msg", "用户名或密码不正确！");
+        map.put("msg", "用户名或密码不正确！");
 
         return map;
     }
