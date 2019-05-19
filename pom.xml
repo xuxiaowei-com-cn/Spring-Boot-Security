@@ -50,6 +50,12 @@
         <patchca.version>0.0.1</patchca.version>
 
 
+        <!-- QQ 组件 -->
+        <!-- Maven下载页面：https://mvnrepository.com/artifact/net.gplatform/Sdk4J -->
+        <!-- 官方下载页面：http://wiki.open.qq.com/wiki/website/SDK%E4%B8%8B%E8%BD%BD -->
+        <!-- 2014年9月20日 -->
+        <Sdk4J.version>2.0</Sdk4J.version>
+
     </properties>
 
     <dependencies>
@@ -98,6 +104,14 @@
             <groupId>com.github.bingoohuang</groupId>
             <artifactId>patchca</artifactId>
             <version>${patchca.version}</version>
+        </dependency>
+
+
+        <!-- QQ 组件 -->
+        <dependency>
+            <groupId>net.gplatform</groupId>
+            <artifactId>Sdk4J</artifactId>
+            <version>${Sdk4J.version}</version>
         </dependency>
 
 
