@@ -1,11 +1,13 @@
 package cn.com.xuxiaowei.springbootsecurity.controller;
 
+import cn.com.xuxiaowei.springbootsecurity.config.LoginUrlAuthenticationEntryPointConfig;
 import cn.com.xuxiaowei.springbootsecurity.entity.User;
 import cn.com.xuxiaowei.springbootsecurity.service.IUserService;
 import cn.com.xuxiaowei.springbootsecurity.util.md5.Md5Utils;
 import cn.com.xuxiaowei.springbootsecurity.util.rsa.RsaUtils;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.web.util.UrlUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -36,6 +38,8 @@ public class SecurityRestController {
 
     /**
      * 登录成功
+     * <p>
+     * redirectUrl：设置该Session值的类{@link LoginUrlAuthenticationEntryPointConfig}
      */
     @RequestMapping("/success.do")
     public Map<String, Object> success(HttpServletRequest request, HttpServletResponse response) {
@@ -43,6 +47,16 @@ public class SecurityRestController {
         Map<String, Object> map = new HashMap<>(4);
         Map<String, Object> data = new HashMap<>(4);
         map.put("data", data);
+
+        // 需要登录后重定向的地址
+        String redirectUrl = (String) request.getSession().getAttribute("redirectUrl");
+
+        // 判断是否为链接
+        if (UrlUtils.isAbsoluteUrl(redirectUrl)) {
+            data.put("redirectUrl", redirectUrl);
+        } else {
+            data.put("redirectUrl", "/");
+        }
 
         map.put("code", 0);
         map.put("msg", "登录成功");

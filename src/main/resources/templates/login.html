@@ -125,10 +125,12 @@
 
                     var code = res.code;
                     var msg = res.msg;
+                    var data = res.data;
+                    var redirectUrl = data.redirectUrl;
 
                     if (code === 0) {
                         layer.msg(msg, {icon: 1}, function () {
-
+                            location.href = redirectUrl;
                         })
                     } else if (code === 1) {
                         layer.msg(msg, {icon: 0})
