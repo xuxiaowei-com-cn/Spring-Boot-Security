@@ -34,10 +34,9 @@ public class LoginUrlAuthenticationEntryPointConfig extends LoginUrlAuthenticati
     @Override
     protected String buildRedirectUrlToLoginPage(HttpServletRequest request, HttpServletResponse response, AuthenticationException authException) {
 
-        // 获取你在 WebSecurityConfigurerAdapter 继承类中配置的 登录页面 URL
-        String loginForm = determineUrlToUseForThisRequest(request, response, authException);
-
         // 需要授权登录页面的 URL
+        // 也可使用 <code>request.getRequestURI();</code>，这样 URL 会变得简短
+        // 在 多个域名 的项目中，需要使用 <code>request.getRequestURL();</code>，因为 <code>request.getRequestURI();</code> 不含域名
         StringBuffer requestURL = request.getRequestURL();
 
         // 需要授权登录页面的 参数
@@ -47,8 +46,10 @@ public class LoginUrlAuthenticationEntryPointConfig extends LoginUrlAuthenticati
             requestURL.append("?").append(queryString);
         }
 
+        // 原始 需要重定向的 URL
         String buildRedirectUrlToLoginPage = super.buildRedirectUrlToLoginPage(request, response, authException);
 
+        // 组合新的 URL
         buildRedirectUrlToLoginPage += "?redirectUrl=" + requestURL;
 
         return buildRedirectUrlToLoginPage;
