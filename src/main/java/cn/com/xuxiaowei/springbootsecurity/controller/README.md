@@ -8,6 +8,26 @@
 
 - 忘记密码页面
 
+# IndexController
+
+- 主页 Controller
+
+    - 获取 Security 中用户名
+    
+    - 获取 Security 中用户名权限
+    
+    - 获取 用户名 IP
+    
+        - 如果使用了 Nginx 反向代理，需要正确配置 Nginx 和 配置 application.yml
+        
+            - Nginx 配置：
+                
+                - 参见 spring-boot-security\src\main\java\cn\com\xuxiaowei\springbootsecurity\controller\README-Nginx.md
+
+            - Spring Boot application.yml 配置：
+            
+                - 参见 spring-boot-security\src\main\resources\README-SpringBoot.md
+
 # MainsiteErrorController
 
 - 主站点错误 Controller
