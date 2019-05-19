@@ -119,7 +119,7 @@ public class RegRestController {
         }
 
         // 验证完信息之后，检查用户是否已存在
-        User user = userService.getUsername(username);
+        User user = userService.getPhone(username);
 
         if (user != null) {
             map.put("msg", "注册失败，用户已存在，请登录！");

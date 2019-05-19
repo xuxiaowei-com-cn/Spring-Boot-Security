@@ -40,7 +40,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         ArrayList<GrantedAuthority> authorities = new ArrayList<>();
 
         // 查询用户（仅有一条数据，多数据报错）
-        User user = userService.getUsername(username);
+        User user = userService.getPhone(username);
 
         if (user != null) {
 

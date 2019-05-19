@@ -119,7 +119,7 @@ public class SmsAbstractAuthenticationProcessingFilter extends AbstractAuthentic
             return null;
         }
 
-        User userInfo = userService.getUsername(username);
+        User userInfo = userService.getPhone(username);
 
         if (userInfo == null) {
 
