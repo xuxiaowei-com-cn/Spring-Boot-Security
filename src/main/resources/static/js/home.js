@@ -6,7 +6,7 @@ layui.define(['layer'], function (exports) {
         layer = layui.layer,
         $body = $('body');
 
-    var login = {};
+    var home = {};
 
     /**
      * 更换图形验证码
@@ -16,5 +16,5 @@ layui.define(['layer'], function (exports) {
     });
 
     //对外暴露的接口
-    exports('login', login);
+    exports('home', home);
 });
