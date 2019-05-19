@@ -50,6 +50,10 @@ html {
     padding-left: 38px;
 }
 
+.XXW-ThirdParty-login {
+    line-height: 38px;
+}
+
 .XXW-ThirdParty-login a i {
     font-size: 26px;
 }
@@ -75,7 +79,7 @@ html {
 }
 
 .XXW-patchca-img {
-    height: 36px;
+    height: 38px;
     width: 100%;
     cursor: pointer;
 }
@@ -85,7 +89,7 @@ html {
     line-height: 38px;
 }
 
-.XXW-forget a, #reg {
+.XXW-forget a, #reg, #sms {
     color: #029789 !important;
 }
 

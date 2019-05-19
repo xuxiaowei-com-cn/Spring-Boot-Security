@@ -2,7 +2,7 @@
 <html lang="zh" xmlns:th="https://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Login</title>
+    <title>登录</title>
 
     <meta name="_csrf" th:content="${_csrf.token}"/>
     <meta name="_csrf_header" th:content="${_csrf.headerName}"/>
@@ -64,13 +64,19 @@
             <button class="layui-btn layui-btn-fluid" lay-submit lay-filter="login">登录</button>
         </div>
 
-        <div class="layui-form-item XXW-form-item XXW-ThirdParty-login" style="line-height: 38px;">
+        <div class="layui-form-item XXW-form-item XXW-ThirdParty-login">
             <label class="XXW-ThirdParty-login-label">社交登入</label>
             <a th:href="@{/}"><i class="layui-icon layui-icon-login-qq"></i></a>
             <a th:href="@{/}"><i class="layui-icon layui-icon-login-wechat"></i></a>
             <a th:href="@{/}"><i class="layui-icon layui-icon-login-weibo"></i></a>
             <a th:href="@{/reg}" id="reg">注册账户&nbsp;&nbsp;</a>
         </div>
+
+        <div class="layui-form-item XXW-form-item XXW-other-login">
+            <label class="XXW-other-login-label">其他登录</label>
+            <a th:href="@{/sms}" id="sms">短信登录</a>
+        </div>
+
     </div>
 
 </div>
@@ -84,10 +90,10 @@
 
 <script th:inline="javascript" type="text/javascript">
     layui.extend({
-        verify: "/js/verify"
-    }).use(['layer', 'form', "verify"], function () {
+        verify: "/js/verify",
+        login: "/js/login"
+    }).use(['layer', 'form', "verify", "login"], function () {
         var $ = layui.$,
-            $body = $('body'),
             layer = layui.layer,
             form = layui.form;
 
@@ -121,13 +127,6 @@
                 }
             })
 
-        });
-
-        /**
-         * 更换图形验证码
-         */
-        $body.on('click', '.XXW-patchca-img', function () {
-            this.src = '/patchca?t=' + new Date().getTime()
         });
 
     });
