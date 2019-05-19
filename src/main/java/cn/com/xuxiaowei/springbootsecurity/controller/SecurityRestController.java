@@ -35,6 +35,22 @@ public class SecurityRestController {
     }
 
     /**
+     * 登录成功
+     */
+    @RequestMapping("/success.do")
+    public Map<String, Object> success(HttpServletRequest request, HttpServletResponse response) {
+
+        Map<String, Object> map = new HashMap<>(4);
+        Map<String, Object> data = new HashMap<>(4);
+        map.put("data", data);
+
+        map.put("code", 0);
+        map.put("msg", "登录成功");
+
+        return map;
+    }
+
+    /**
      * 登录失败
      */
     @RequestMapping("/fail.do")
@@ -44,6 +60,7 @@ public class SecurityRestController {
         Map<String, Object> data = new HashMap<>(4);
         map.put("data", data);
 
+        map.put("code", 1);
         data.put("msg", "用户名或密码不正确！");
 
         return map;
