@@ -59,6 +59,7 @@ public class SmsRestController {
 
         if (StringUtils.isEmpty(patchcaSession)) {
             map.put("msg", "发送短信验证码受到攻击！");
+            data.put("patchca", "Session 中不存在图片验证码！");
             return map;
         }
 
