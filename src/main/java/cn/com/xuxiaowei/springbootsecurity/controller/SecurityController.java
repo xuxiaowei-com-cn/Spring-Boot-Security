@@ -33,31 +33,4 @@ public class SecurityController {
         return "login";
     }
 
-    /**
-     * 注册页面
-     */
-    @RequestMapping("/reg")
-    public String reg(HttpServletRequest request, HttpServletResponse response, Model model) {
-
-        return "reg";
-    }
-
-    /**
-     * 忘记密码页面
-     */
-    @RequestMapping("/forget")
-    public String forget(HttpServletRequest request, HttpServletResponse response, Model model) {
-
-        return "forget";
-    }
-
-    /**
-     * 短信登录页面
-     */
-    @RequestMapping("/sms")
-    public String sms(HttpServletRequest request, HttpServletResponse response, Model model) {
-
-        return "sms";
-    }
-
 }
