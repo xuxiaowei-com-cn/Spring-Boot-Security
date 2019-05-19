@@ -51,3 +51,5 @@
 - 自定义错误页面（404、500等）等配置
 
 - WebServerFactoryCustomizer <> 优先级高于 ErrorController（两者二选一）
+
+- WebServerFactoryCustomizer <> 只能请求转发，ErrorController 可设置请求转发与重定向
