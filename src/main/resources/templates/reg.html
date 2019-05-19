@@ -142,10 +142,23 @@
                 },
                 data: field,
                 success: function (res) {
-                    console.log("success", res)
+                    // console.log("success", res);
+
+                    var code = res.code;
+                    var msg = res.msg;
+
+                    if (code === 0) {
+                        layer.msg(msg, {icon: 1}, function () {
+                            location.href = "/login";
+                        })
+                    } else if (code === 1) {
+                        layer.msg(msg, {icon: 0})
+                    }
+
                 },
                 error: function (res) {
-                    console.log("error", res)
+                    console.log("error", res);
+                    layer.msg("注册时发生错误，请稍后再试！", {icon: 0})
                 }
             })
 
