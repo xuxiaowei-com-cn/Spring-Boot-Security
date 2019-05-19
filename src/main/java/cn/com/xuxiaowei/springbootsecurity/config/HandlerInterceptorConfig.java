@@ -37,6 +37,10 @@ public class HandlerInterceptorConfig implements WebMvcConfigurer {
         jsEncryptAdd.add("/login");
         jsEncryptAdd.add("/login/");
 
+        // 注册页面 URL
+        jsEncryptAdd.add("/reg");
+        jsEncryptAdd.add("/reg/");
+
         registry.addInterceptor(new JsEncryptHandlerInterceptor())
                 .addPathPatterns(jsEncryptAdd)
                 .excludePathPatterns(jsEncryptExclude);
