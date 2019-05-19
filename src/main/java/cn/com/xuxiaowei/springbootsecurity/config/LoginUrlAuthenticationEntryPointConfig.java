@@ -50,6 +50,7 @@ public class LoginUrlAuthenticationEntryPointConfig extends LoginUrlAuthenticati
         String buildRedirectUrlToLoginPage = super.buildRedirectUrlToLoginPage(request, response, authException);
 
         // 组合新的 URL
+        // 可以使用随机数作为 name，重定向地址作为 value，放入 Session 中，再将 随机数放入到 参数中
         buildRedirectUrlToLoginPage += "?redirectUrl=" + requestURL;
 
         return buildRedirectUrlToLoginPage;
