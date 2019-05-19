@@ -17,6 +17,11 @@
     <properties>
         <java.version>1.8</java.version>
 
+        <!-- Thymeleaf Extras Spring Security 5 -->
+        <!-- 在页面中使用 Thymeleaf 进行权限控制 -->
+        <!-- https://mvnrepository.com/artifact/org.thymeleaf.extras/thymeleaf-extras-springsecurity5 -->
+        <!-- 2018年10月29日 -->
+        <thymeleaf-extras-springsecurity5.version>3.0.4.RELEASE</thymeleaf-extras-springsecurity5.version>
 
         <!-- MyBatis Plus Boot Starter Start -->
         <!-- https://mvnrepository.com/artifact/com.baomidou/mybatis-plus-boot-starter -->
@@ -39,10 +44,17 @@
         <!-- 2014年9月18日 -->
         <patchca.version>0.0.1</patchca.version>
 
-        
+
     </properties>
 
     <dependencies>
+
+        <!-- - Thymeleaf Extras Spring Security 5 -->
+        <dependency>
+            <groupId>org.thymeleaf.extras</groupId>
+            <artifactId>thymeleaf-extras-springsecurity5</artifactId>
+            <version>${thymeleaf-extras-springsecurity5.version}</version>
+        </dependency>
 
 
         <!-- - MyBatis Plus Boot Starter -->

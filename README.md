@@ -35,6 +35,8 @@ Spring Boot 整合 Security。
     
 ## 其他依赖（创建项目时不可选）
 
+- Thymeleaf Extras Spring Security 5    在页面中使用 Thymeleaf 进行权限控制
+
 - MyBatis Plus
 
     - MyBatis Plus Boot Starter         Spring Boot 整合 MyBatis Plus 必须依赖。
