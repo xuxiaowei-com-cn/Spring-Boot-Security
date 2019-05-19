@@ -43,6 +43,8 @@ Spring Boot 整合 Security。
     
 ## 其他依赖（创建项目时不可选）
 
+- Fastjson                              阿里巴巴 JSON
+
 - Thymeleaf Extras Spring Security 5    在页面中使用 Thymeleaf 进行权限控制
 
 - MyBatis Plus

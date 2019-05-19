@@ -17,6 +17,11 @@
     <properties>
         <java.version>1.8</java.version>
 
+        <!-- Fastjson -->
+        <!-- https://mvnrepository.com/artifact/com.alibaba/fastjson -->
+        <!-- 2019年5月3日 -->
+        <fastjson.version>1.2.58</fastjson.version>
+
         <!-- Thymeleaf Extras Spring Security 5 -->
         <!-- 在页面中使用 Thymeleaf 进行权限控制 -->
         <!-- https://mvnrepository.com/artifact/org.thymeleaf.extras/thymeleaf-extras-springsecurity5 -->
@@ -48,6 +53,15 @@
     </properties>
 
     <dependencies>
+
+
+        <!-- Fastjson -->
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+            <version>${fastjson.version}</version>
+        </dependency>
+
 
         <!-- - Thymeleaf Extras Spring Security 5 -->
         <dependency>
