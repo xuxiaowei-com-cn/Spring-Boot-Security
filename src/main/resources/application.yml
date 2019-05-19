@@ -59,7 +59,7 @@ security:
   # 定制登录失败后转向的 URL
   failure-forward-url: /fail.do
   # 注销成功后跳转的URL
-  logout-success-url: /
+  logout-success-url: /logout/success.do
   # remember-me
   remember-me-parameter: remember-me
   key: NsadFDGs-KRya+
