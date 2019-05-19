@@ -28,7 +28,7 @@
 
         <div class="layui-form-item XXW-form-item">
             <label class="layui-icon layui-icon-username XXW-user-login-icon" for="username"></label>
-            <input type="text" name="username" required lay-verify="username" placeholder="请输入用户名"
+            <input type="text" name="username" required lay-verify="username" placeholder="请输入手机号"
                    class="layui-input" id="username">
         </div>
 
@@ -51,7 +51,7 @@
                        class="layui-input" id="patchca">
             </div>
             <div class="layui-col-xs5 XXW-patchca">
-                <img class="XXW-patchca-img" src="" th:src="@{/patchca}" alt="验证码">
+                <img class="XXW-patchca-img" src="" th:src="@{/patchca}" alt="图片验证码">
             </div>
         </div>
 
@@ -97,16 +97,33 @@
 <script th:inline="javascript" type="text/javascript">
     layui.extend({
         verify: "/js/verify",
-        login: "/js/login"
-    }).use(['layer', 'form', "verify", "login"], function () {
+        login: "/js/login",
+        sms: "/js/sms"
+    }).use(['layer', 'form', "verify", "login", "sms"], function () {
         var $ = layui.$,
             layer = layui.layer,
-            form = layui.form;
+            form = layui.form,
+            sms = layui.sms;
 
         var RsaPublicKey = [[${RsaPublicKey}]];
 
         var crypt = new JSEncrypt();
         crypt.setPublicKey(RsaPublicKey);
+
+        /* 跨站请求伪造 */
+        var header = $("meta[name='_csrf_header']").attr("content");
+        var token = $("meta[name='_csrf']").attr("content");
+
+        // 发送验证码
+        sms.sendSmsCode({
+            getPatchcaImg: ".XXW-patchca-img",
+            getSmsCode: "#getSmsCode",
+            phone: "#username",
+            patchca: "#patchca",
+            sendSmsUrl: "/send/sms.do",
+            header: header,
+            token: token
+        });
 
         // 注册
         form.on('submit(reg)', function (data) {
@@ -115,10 +132,6 @@
 
             field.password = crypt.encrypt(field.password);
             field.repassPassword = crypt.encrypt(field.repassPassword);
-
-            /* 跨站请求伪造 */
-            var header = $("meta[name='_csrf_header']").attr("content");
-            var token = $("meta[name='_csrf']").attr("content");
 
             $.ajax({
                 url: "/reg.do",
