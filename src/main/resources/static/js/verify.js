@@ -114,11 +114,20 @@ layui.define(['form'], function (exports) {
         },
 
         /**
-         * 验证码 验证
+         * 图片验证码 验证
          */
         patchca: function (value) {
             if (value == null || value === "") {
-                return "验证码不能为空！";
+                return "图片验证码不能为空！";
+            }
+        },
+
+        /**
+         * 短信验证码 验证
+         */
+        smsCode: function (value) {
+            if (value == null || value === "") {
+                return "短信验证码不能为空！";
             }
         }
 
