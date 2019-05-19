@@ -1,6 +1,7 @@
 package cn.com.xuxiaowei.springbootsecurity.config;
 
 import cn.com.xuxiaowei.springbootsecurity.handlerinterceptor.JsEncryptHandlerInterceptor;
+import cn.com.xuxiaowei.springbootsecurity.handlerinterceptor.SmsLoginSuccessHandlerInterceptor;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
@@ -20,6 +21,26 @@ public class HandlerInterceptorConfig implements WebMvcConfigurer {
     public void addInterceptors(InterceptorRegistry registry) {
 
         jsEncryptHandlerInterceptor(registry);
+
+        smsLoginSuccessHandlerInterceptor(registry);
+
+    }
+
+    /**
+     * 短信登录成功 拦截器
+     */
+    private void smsLoginSuccessHandlerInterceptor(InterceptorRegistry registry) {
+
+        // 拦截URL
+        List<String> smsLoginAdd = new ArrayList<>();
+        // 排除拦截URL
+        List<String> smsLoginExclude = new ArrayList<>();
+
+        smsLoginAdd.add("/");
+
+        registry.addInterceptor(new SmsLoginSuccessHandlerInterceptor())
+                .addPathPatterns(smsLoginAdd)
+                .excludePathPatterns(smsLoginExclude);
 
     }
 
