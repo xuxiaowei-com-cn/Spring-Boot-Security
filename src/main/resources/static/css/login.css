@@ -64,9 +64,7 @@ html {
     margin-top: -13px;
 }
 
-
 #reg, #login {
-    float: right;
     line-height: 38px;
 }
 
@@ -85,7 +83,6 @@ html {
 }
 
 .XXW-forget {
-    float: right;
     line-height: 38px;
 }
 
