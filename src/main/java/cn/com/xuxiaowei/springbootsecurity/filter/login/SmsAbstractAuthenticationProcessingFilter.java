@@ -123,7 +123,7 @@ public class SmsAbstractAuthenticationProcessingFilter extends AbstractAuthentic
             // 随机密码
             String password = UUID.randomUUID().toString();
 
-            userInfo = new User().setUsername("用户" + username).setPhone(username).setPassword(password);
+            userInfo = new User().setUsername("手机用户" + username).setPhone(username).setPassword(password);
 
             boolean save = userService.save(userInfo);
 
