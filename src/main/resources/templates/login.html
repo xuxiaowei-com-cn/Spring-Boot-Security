@@ -23,7 +23,7 @@
     <div class="layui-form XXW-form">
 
         <div class="XXW-header">
-            <h2><a href="https://xuxiaowei.com.cn">徐晓伟工作室</a></h2>
+            <h2><a href="https://xuxiaowei.com.cn" class="XXW-a">徐晓伟工作室</a></h2>
             <p>徐晓伟工作室 Security Demo</p>
         </div>
 
@@ -58,7 +58,7 @@
                 <i class="layui-icon layui-icon-ok"></i>
             </div>
             <div class="XXW-forget">
-                <a th:href="@{/forget}">忘记密码?</a>
+                <a class="XXW-a" th:href="@{/forget}">忘记密码?</a>
             </div>
         </div>
 
@@ -71,12 +71,12 @@
             <a th:href="@{/}"><i class="layui-icon layui-icon-login-qq"></i></a>
             <a th:href="@{/}"><i class="layui-icon layui-icon-login-wechat"></i></a>
             <a th:href="@{/}"><i class="layui-icon layui-icon-login-weibo"></i></a>
-            <a th:href="@{/reg}" id="reg">注册账户&nbsp;&nbsp;</a>
+            <a th:href="@{/reg}" class="XXW-a" id="reg">注册账户&nbsp;&nbsp;</a>
         </div>
 
         <div class="layui-form-item XXW-form-item XXW-other-login">
             <label class="XXW-other-login-label">其他登录</label>
-            <a th:href="@{/sms}" id="sms">短信登录</a>
+            <a th:href="@{/sms}" class="XXW-a" id="sms">短信登录</a>
         </div>
 
     </div>
