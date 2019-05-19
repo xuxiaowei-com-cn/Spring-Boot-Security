@@ -33,17 +33,35 @@ public class IndexController {
         // 认证信息
         Authentication authentication = context.getAuthentication();
 
+        // 细节
         Object details = authentication.getDetails();
 
+        // 证书
+        Object credentials = authentication.getCredentials();
+
+        // IP
         String remoteAddress = null;
 
-        // 短信登录为 null
-        if (details != null) {
+        // 用户名与密码登录时，IP 在 details（细节）中
+        if (details instanceof WebAuthenticationDetails) {
+
             WebAuthenticationDetails webAuthenticationDetails = (WebAuthenticationDetails) details;
 
             // 如果使用了 Nginx 代理，需要在 application.yml 配置
             // Nginx 配置详情请查看 cn.com.xuxiaowei.springbootsecurity.controller.README.md
             remoteAddress = webAuthenticationDetails.getRemoteAddress();
+
+        } else if (credentials instanceof WebAuthenticationDetails) {
+
+            // 短信登录时，details（细节）为空
+            // 短信登录时，将 WebAuthenticationDetails 放入到 credentials（证书） 中
+
+            WebAuthenticationDetails webAuthenticationDetails = (WebAuthenticationDetails) credentials;
+
+            // 如果使用了 Nginx 代理，需要在 application.yml 配置
+            // Nginx 配置详情请查看 cn.com.xuxiaowei.springbootsecurity.controller.README.md
+            remoteAddress = webAuthenticationDetails.getRemoteAddress();
+
         }
 
         Object principal = authentication.getPrincipal();
