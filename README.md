@@ -29,7 +29,6 @@ Spring Boot 整合 Security。
 - Template
 	- Thymeleaf                 Thymeleaf模板引擎（页面）
     
-    
 - Security
     - Security                  通过spring-security保护您的应用程序
     
@@ -44,7 +43,6 @@ Spring Boot 整合 Security。
     
     - Spring Boot Starter Velocity      Velocity 模板引擎，MyBatis Plus 代码生成器 默认模板引擎。
     
-
 - 图片验证码
     
     - patchca                           GitHub 图片验证码
