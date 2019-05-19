@@ -14,8 +14,8 @@ import org.springframework.http.HttpStatus;
  * <p>
  * {@link WebServerFactoryCustomizer<>} 与 {@link ErrorController} 各有各的特点，根据自己的需要选择
  * <p>
- * 不保留原始URL：使用 {@link ErrorController}
- * 保留原始URL：使用 {@link WebServerFactoryCustomizer<>}
+ * 自定义请求转发、重定向：使用 {@link ErrorController}
+ * 只能请求转发：使用 {@link WebServerFactoryCustomizer<>}
  * <p>
  * 优先级：{@link WebServerFactoryCustomizer<>} 大于 {@link ErrorController}
  *
