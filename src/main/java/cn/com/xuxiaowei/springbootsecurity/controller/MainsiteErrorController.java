@@ -17,8 +17,8 @@ import java.io.IOException;
  * <p>
  * {@link WebServerFactoryCustomizer <>} 与 {@link ErrorController} 各有各的特点，根据自己的需要选择
  * <p>
- * 简单配置：使用 {@link ErrorController}
- * 复杂配置：使用 {@link WebServerFactoryCustomizer<>}
+ * 不保留原始URL：使用 {@link ErrorController}
+ * 保留原始URL：使用 {@link WebServerFactoryCustomizer<>}
  * <p>
  * 优先级：{@link WebServerFactoryCustomizer<>} 大于 {@link ErrorController}
  *
