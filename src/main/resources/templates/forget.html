@@ -1,10 +1,71 @@
 <!DOCTYPE html>
-<html lang="zh">
+<html lang="zh" xmlns:th="https://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Forget</title>
+    <title>找回密码</title>
+
+    <!-- 跨站请求伪造 -->
+    <meta name="_csrf" th:content="${_csrf.token}"/>
+    <meta name="_csrf_header" th:content="${_csrf.headerName}"/>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <link rel="stylesheet" th:href="@{/layui/css/layui.css}">
+
+    <link rel="stylesheet" th:href="@{/css/login.css}">
+
 </head>
 <body>
 
 </body>
+
+<script type="text/javascript" th:src="@{/layui/layui.js}"></script>
+<script type="text/javascript" th:src="@{/js/jsencrypt/jsencrypt.min.js}"></script>
+
+<script th:inline="javascript" type="text/javascript">
+    layui.extend({
+        verify: "/js/verify",
+        login: "/js/login"
+    }).use(['layer', 'form', "verify", "login"], function () {
+        var $ = layui.$,
+            layer = layui.layer,
+            form = layui.form;
+
+        var RsaPublicKey = [[${RsaPublicKey}]];
+
+        var crypt = new JSEncrypt();
+        crypt.setPublicKey(RsaPublicKey);
+
+        // // 登录
+        // form.on('submit(login)', function (data) {
+        //
+        //     var field = data.field;
+        //
+        //     field.password = crypt.encrypt(field.password);
+        //
+        //     /* 跨站请求伪造 */
+        //     var header = $("meta[name='_csrf_header']").attr("content");
+        //     var token = $("meta[name='_csrf']").attr("content");
+        //
+        //     $.ajax({
+        //         url: "/login.do",
+        //         type: "post",
+        //         beforeSend: function (xhr) {
+        //             /* 跨站请求伪造 */
+        //             xhr.setRequestHeader(header, token);
+        //         },
+        //         data: field,
+        //         success: function (res) {
+        //             console.log("success", res)
+        //         },
+        //         error: function (res) {
+        //             console.log("error", res)
+        //         }
+        //     })
+        //
+        // });
+
+    });
+</script>
+
 </html>
