@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>登录</title>
 
+    <!-- 跨站请求伪造 -->
     <meta name="_csrf" th:content="${_csrf.token}"/>
     <meta name="_csrf_header" th:content="${_csrf.headerName}"/>
 
@@ -40,7 +41,7 @@
         <div class="layui-form-item XXW-form-item">
             <div class="layui-col-xs7">
                 <label class="layui-icon layui-icon-vercode XXW-user-login-icon" for="patchca"></label>
-                <input type="patchca" name="patchca" required lay-verify="patchca" placeholder="请输入验证码"
+                <input type="text" name="patchca" required lay-verify="patchca" placeholder="请输入验证码"
                        class="layui-input" id="patchca">
             </div>
             <div class="layui-col-xs5 XXW-patchca">
@@ -81,8 +82,6 @@
 
 </div>
 
-</div>
-
 </body>
 
 <script type="text/javascript" th:src="@{/layui/layui.js}"></script>
@@ -109,6 +108,7 @@
 
             field.password = crypt.encrypt(field.password);
 
+            /* 跨站请求伪造 */
             var header = $("meta[name='_csrf_header']").attr("content");
             var token = $("meta[name='_csrf']").attr("content");
 
@@ -116,6 +116,7 @@
                 url: "/login.do",
                 type: "post",
                 beforeSend: function (xhr) {
+                    /* 跨站请求伪造 */
                     xhr.setRequestHeader(header, token);
                 },
                 data: field,
