@@ -64,10 +64,6 @@ html {
     margin-top: -13px;
 }
 
-#reg, #login {
-    line-height: 38px;
-}
-
 .XXW-patchca {
     padding-left: 5px;
 }
@@ -80,10 +76,6 @@ html {
     height: 38px;
     width: 100%;
     cursor: pointer;
-}
-
-.XXW-forget {
-    line-height: 38px;
 }
 
 .XXW-form-item input::-webkit-input-placeholder {
