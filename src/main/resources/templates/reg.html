@@ -55,6 +55,19 @@
             </div>
         </div>
 
+        <div class="layui-form-item XXW-form-item">
+            <div class="layui-col-xs7">
+                <label class="layui-icon layui-icon-vercode XXW-user-login-icon" for="smsCode"></label>
+                <input type="text" name="smsCode" required lay-verify="smsCode" placeholder="请输入短信验证码"
+                       class="layui-input" id="smsCode">
+            </div>
+            <div class="layui-col-xs5 XXW-patchca">
+                <button type="button" class="layui-btn layui-btn-primary layui-btn-fluid" id="getSmsCode">
+                    获取验证码
+                </button>
+            </div>
+        </div>
+
         <div class="layui-form-item XXW-form-item XXW-login">
             <button class="layui-btn layui-btn-fluid" lay-submit lay-filter="reg">注册</button>
         </div>
