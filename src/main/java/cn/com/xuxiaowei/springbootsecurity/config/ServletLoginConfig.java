@@ -1,6 +1,7 @@
 package cn.com.xuxiaowei.springbootsecurity.config;
 
 import cn.com.xuxiaowei.springbootsecurity.servlet.login.QqHttpServlet;
+import cn.com.xuxiaowei.springbootsecurity.servlet.login.WeChatWebPageHttpServlet;
 import org.springframework.boot.web.servlet.ServletRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -19,6 +20,14 @@ public class ServletLoginConfig {
     @Bean
     ServletRegistrationBean qqHttpServlet() {
         return new ServletRegistrationBean<>(new QqHttpServlet(), "/qq");
+    }
+
+    /**
+     * 第三方登录（微信网页（微信内部））URL
+     */
+    @Bean
+    ServletRegistrationBean weChatWebPageHttpServlet() {
+        return new ServletRegistrationBean<>(new WeChatWebPageHttpServlet(), "/wechat/webpage");
     }
 
 }
