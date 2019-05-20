@@ -69,6 +69,8 @@ security:
   token-validity-seconds: 1209600
   # 短信登录 Cookie 有效时间
   sms-token-validity-seconds: 172800
+  # QQ 登录 Cookie 有效时间
+  qq-token-validity-seconds: 172800
   # QQ 登录 URL
   qq-url: /app/qq
 #

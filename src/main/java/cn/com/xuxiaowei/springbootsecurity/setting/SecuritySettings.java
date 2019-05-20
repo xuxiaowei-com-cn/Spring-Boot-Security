@@ -74,6 +74,13 @@ public class SecuritySettings {
     public int smsTokenValiditySeconds;
 
     /**
+     * QQ 登录 Cookie 有效时间
+     *
+     * 60 * 60 * 24 * 2 为 ‭172800‬ 秒，即 2 天
+     */
+    public int qqTokenValiditySeconds;
+
+    /**
      * QQ 登录 URL
      */
     public String qqUrl;
