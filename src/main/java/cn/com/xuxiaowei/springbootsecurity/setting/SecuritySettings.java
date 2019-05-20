@@ -81,8 +81,13 @@ public class SecuritySettings {
     public int qqTokenValiditySeconds;
 
     /**
-     * QQ 登录 URL
+     * QQ 授权 URL
      */
     public String qqUrl;
+
+    /**
+     * 微信内部 授权 URL
+     */
+    public String weChatWebPageUrl;
 
 }
