@@ -3,6 +3,7 @@ package cn.com.xuxiaowei.springbootsecurity.service.impl;
 import cn.com.xuxiaowei.springbootsecurity.entity.WeChat;
 import cn.com.xuxiaowei.springbootsecurity.mapper.WeChatMapper;
 import cn.com.xuxiaowei.springbootsecurity.service.IWeChatService;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
 
@@ -16,5 +17,21 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class WeChatServiceImpl extends ServiceImpl<WeChatMapper, WeChat> implements IWeChatService {
+
+    /**
+     * 根据 openId，查询 WeChat
+     *
+     * @param openId openId，openId 具有唯一性
+     * @return 返回 根据 openId 查询的 WeChat（仅有一条数据，多数据报错）
+     */
+    @Override
+    public WeChat getOpenId(String openId) {
+
+        QueryWrapper<WeChat> queryWrapper = new QueryWrapper<>();
+
+        queryWrapper.eq(WeChat.OPENID, openId);
+
+        return super.getOne(queryWrapper);
+    }
 
 }

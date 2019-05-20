@@ -13,4 +13,12 @@ import com.baomidou.mybatisplus.extension.service.IService;
  */
 public interface IWeChatService extends IService<WeChat> {
 
+    /**
+     * 根据 openId，查询 WeChat
+     *
+     * @param openId openId，openId 具有唯一性
+     * @return 返回 根据 openId 查询的 WeChat（仅有一条数据，多数据报错）
+     */
+    WeChat getOpenId(String openId);
+
 }
