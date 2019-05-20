@@ -57,6 +57,18 @@ public class Qq implements Serializable {
     private Boolean yellowYearVip;
 
     /**
+     * Access Token
+     */
+    @TableField("access_token")
+    private String accessToken;
+
+    /**
+     * Access Token 过期时间
+     */
+    @TableField("access_token_expired_date")
+    private LocalDateTime accessTokenExpiredDate;
+
+    /**
      * 创建时间，自动生成，无需填写并禁止修改。
      */
     @TableField("create_date")
@@ -101,6 +113,10 @@ public class Qq implements Serializable {
     public static final String LEVEL = "level";
 
     public static final String YELLOW_YEAR_VIP = "yellow_year_vip";
+
+    public static final String ACCESS_TOKEN = "access_token";
+
+    public static final String ACCESS_TOKEN_EXPIRED_DATE = "access_token_expired_date";
 
     public static final String CREATE_DATE = "create_date";
 

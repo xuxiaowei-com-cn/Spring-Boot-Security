@@ -14,6 +14,8 @@
         <result column="vip" property="vip" />
         <result column="level" property="level" />
         <result column="yellow_year_vip" property="yellowYearVip" />
+        <result column="access_token" property="accessToken" />
+        <result column="access_token_expired_date" property="accessTokenExpiredDate" />
         <result column="create_date" property="createDate" />
         <result column="update_date" property="updateDate" />
         <result column="deleted" property="deleted" />
