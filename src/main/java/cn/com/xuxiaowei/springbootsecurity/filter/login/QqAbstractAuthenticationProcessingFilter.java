@@ -75,6 +75,9 @@ public class QqAbstractAuthenticationProcessingFilter extends AbstractAuthentica
         // 接收 状态码
         String state = request.getParameter("state");
 
+        // code
+        String code = request.getParameter("code");
+
         if (StringUtils.isEmpty(qqConnectState)) {
             map.put("msg", "QQ登录受到攻击！");
             data.put("details", "Session 中不存在 QQ 登录的状态码！");
@@ -86,6 +89,14 @@ public class QqAbstractAuthenticationProcessingFilter extends AbstractAuthentica
         if (StringUtils.isEmpty(state)) {
             map.put("msg", "QQ登录受到攻击！");
             data.put("details", "未收到 QQ 登录的状态码！");
+            log.debug(map.toString());
+            ResponseUtils.response(response, map);
+            return null;
+        }
+
+        if (!state.equals(code)) {
+            map.put("msg", "QQ登录受到攻击！");
+            data.put("details", "未收到 QQ 登录的 code！");
             log.debug(map.toString());
             ResponseUtils.response(response, map);
             return null;
