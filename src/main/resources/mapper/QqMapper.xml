@@ -6,6 +6,7 @@
     <resultMap id="BaseResultMap" type="cn.com.xuxiaowei.springbootsecurity.entity.Qq">
         <id column="qq_id" property="qqId" />
         <result column="open_id" property="openId" />
+        <result column="union_id" property="unionId" />
         <result column="nickname" property="nickname" />
         <result column="figureurl30" property="figureurl30" />
         <result column="figureurl50" property="figureurl50" />
