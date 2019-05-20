@@ -37,6 +37,11 @@ import java.util.Map;
 
 /**
  * 第三方登录（QQ）认证处理过滤器
+ * <p>
+ * 关于保存 AccessToken 的说明：
+ * 保存 AccessToken 和 ExpireIn（过期时间）
+ * 使用 AccessToken、OpenID、app_ID 获取 User 信息参见：
+ * cn.com.xuxiaowei.springbootsecurity.SpringBootSecurityApplicationTests 中的 getQQInfoByAccessTokenAndOpenID() 方法
  *
  * @author xuxiaowei
  */
