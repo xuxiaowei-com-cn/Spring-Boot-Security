@@ -21,23 +21,25 @@ public class CookieUtils {
 
         String jSessionId = "JSESSIONID";
 
-        setCookieTime(request, response, jSessionId, second);
+        setCookieTime(request, response, jSessionId, "/", second);
     }
 
     /**
      * 设置 Cookie 有效时间
      *
      * @param cookieName Cookie 名称
+     * @param url        Cookie 路径
      * @param second     Cookie 有效时间（秒）
      */
     public static void setCookieTime(HttpServletRequest request, HttpServletResponse response,
-                                     String cookieName, int second) {
+                                     String cookieName, String url, int second) {
         Cookie[] cookies = request.getCookies();
         if (cookies != null) {
             for (Cookie c : cookies) {
                 String name = c.getName();
                 if (cookieName.equals(name)) {
                     c.setMaxAge(second);
+                    c.setPath(url);
                     response.addCookie(c);
                 }
             }
