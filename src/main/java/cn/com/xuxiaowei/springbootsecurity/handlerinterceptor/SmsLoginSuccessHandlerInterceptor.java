@@ -1,10 +1,12 @@
 package cn.com.xuxiaowei.springbootsecurity.handlerinterceptor;
 
-import com.alibaba.fastjson.JSON;
+import cn.com.xuxiaowei.springbootsecurity.setting.SecuritySettings;
+import cn.com.xuxiaowei.springbootsecurity.util.cookie.CookieUtils;
+import cn.com.xuxiaowei.springbootsecurity.util.response.ResponseUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -25,6 +27,9 @@ import java.util.Map;
  */
 public class SmsLoginSuccessHandlerInterceptor implements HandlerInterceptor {
 
+    @Autowired
+    private SecuritySettings securitySettings;
+
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
 
@@ -38,11 +43,8 @@ public class SmsLoginSuccessHandlerInterceptor implements HandlerInterceptor {
 
         if (smsFilter.equals(loginFilter)) {
 
-            // 2 天
-            int second = 60 * 60 * 24 * 2;
-
             // 保持登录 2 天
-            setCookie(request, response, second);
+            CookieUtils.setSessionCookieTime(request, response, securitySettings.smsTokenValiditySeconds);
 
             Map<String, Object> map = new HashMap<>(4);
             Map<String, Object> data = new HashMap<>(4);
@@ -51,13 +53,8 @@ public class SmsLoginSuccessHandlerInterceptor implements HandlerInterceptor {
             map.put("code", 0);
             map.put("msg", "短信登录成功");
 
-            Object o = JSON.toJSON(map);
-
-            response.setContentType("text/json;charset=UTF-8");
-
-            response.getWriter().println(o);
-            response.setStatus(HttpServletResponse.SC_OK);
-            response.flushBuffer();
+            // 响应数据
+            ResponseUtils.response(response, map);
 
             session.setAttribute("loginFilter", null);
 
@@ -77,28 +74,6 @@ public class SmsLoginSuccessHandlerInterceptor implements HandlerInterceptor {
     @Override
     public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws Exception {
 
-    }
-
-    /**
-     * 设置 短信验证码登录成功 后的 Cookie Session 时间
-     *
-     * @param second 秒
-     */
-    private void setCookie(HttpServletRequest request, HttpServletResponse response, int second) {
-
-        String jSessionId = "JSESSIONID";
-
-        Cookie[] cookies = request.getCookies();
-
-        if (cookies != null) {
-            for (Cookie c : cookies) {
-                String name = c.getName();
-                if (jSessionId.equals(name)) {
-                    c.setMaxAge(second);
-                    response.addCookie(c);
-                }
-            }
-        }
     }
 
 }
