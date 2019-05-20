@@ -1,6 +1,8 @@
 package cn.com.xuxiaowei.springbootsecurity.config;
 
+import cn.com.xuxiaowei.springbootsecurity.authentication.QqAuthenticationManager;
 import cn.com.xuxiaowei.springbootsecurity.filter.login.BeforeLoginPatchcaHttpFilter;
+import cn.com.xuxiaowei.springbootsecurity.filter.login.QqAbstractAuthenticationProcessingFilter;
 import cn.com.xuxiaowei.springbootsecurity.service.IUserService;
 import cn.com.xuxiaowei.springbootsecurity.service.impl.UserDetailsServiceImpl;
 import cn.com.xuxiaowei.springbootsecurity.setting.SecuritySettings;
@@ -41,11 +43,27 @@ public class WebSecurityConfigurerAdapterConfig extends WebSecurityConfigurerAda
         return new BeforeLoginPatchcaHttpFilter();
     }
 
+    /**
+     * 第三方登录（QQ）登录 注册为 Bean
+     *
+     * @return 使用 Autowired 的 Filter
+     */
+    @Bean
+    QqAbstractAuthenticationProcessingFilter qqAbstractAuthenticationProcessingFilter() {
+        QqAbstractAuthenticationProcessingFilter qqFilter = new QqAbstractAuthenticationProcessingFilter(securitySettings.qqUrl);
+        qqFilter.setAuthenticationManager(new QqAuthenticationManager());
+        return qqFilter;
+    }
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
 
         // 授权登录（用户名密码登录）前 验证图片验证码
         http.addFilterBefore(beforeLoginPatchcaHttpFilter(), UsernamePasswordAuthenticationFilter.class);
+
+        // 第三方登录（QQ）
+        // 已将 QqAbstractAuthenticationProcessingFilter 注册为 Bean，可忽略本行代码
+        http.addFilterAt(qqAbstractAuthenticationProcessingFilter(), UsernamePasswordAuthenticationFilter.class);
 
         // 指定支持基于表单的身份验证。
         http.formLogin()
