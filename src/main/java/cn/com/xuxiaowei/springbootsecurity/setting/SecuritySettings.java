@@ -97,4 +97,9 @@ public class SecuritySettings {
      */
     public String weChatWebPageUrl;
 
+    /**
+     * 微信扫码 授权 URL
+     */
+    public String weChatWebsiteUrl;
+
 }
