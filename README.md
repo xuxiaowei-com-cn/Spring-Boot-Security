@@ -33,6 +33,10 @@ Spring Boot 整合 Security。
     
     - 获取 QQ UnionId
 
+### 微信网页（微信内部） 登录
+
+- 设置保持登录 3 天（或自定义）
+
 # 依赖
 
 ## Spring Boot 依赖（创建项目时选择）
