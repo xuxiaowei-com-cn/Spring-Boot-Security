@@ -35,7 +35,11 @@ public class OpenID extends QQConnect {
 
     private String getUserOpenID(String accessToken) throws QQConnectException {
         String openid = "";
-        String jsonp = this.client.get(QQConnectConfig.getValue("getOpenIDURL"), new PostParameter[]{new PostParameter("access_token", accessToken)}).asString();
+
+        PostParameter[] accessTokens = {new PostParameter("access_token", accessToken)};
+
+        String jsonp = this.client.get(QQConnectConfig.getValue("getOpenIDURL"), accessTokens).asString();
+
         Matcher m = compile.matcher(jsonp);
         if (m.find()) {
             openid = m.group(1);
