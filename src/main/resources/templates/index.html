@@ -35,8 +35,13 @@
             <div class="layui-card-header">已登录</div>
             <div class="layui-card-body">
 
-                <div class="layui-card-header">手机号</div>
-                <div class="layui-card-body">[[${username}]]</div>
+                <!-- ROLE_USER -->
+                <div class="layui-card-header" sec:authorize="hasRole('ROLE_USER')">手机号</div>
+                <div class="layui-card-body" sec:authorize="hasRole('ROLE_USER')">[[${username}]]</div>
+
+                <!-- ROLE_QQ -->
+                <div class="layui-card-header" sec:authorize="hasRole('ROLE_QQ')">QQ openId</div>
+                <div class="layui-card-body XXW-p-l-0" sec:authorize="hasRole('ROLE_QQ')">[[${username}]]</div>
 
                 <hr>
 

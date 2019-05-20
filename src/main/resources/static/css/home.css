@@ -20,6 +20,10 @@ html {
     line-height: 38px;
 }
 
+.XXW-p-l-0 {
+    padding-left: 0;
+}
+
 .XXW-container {
     margin-top: 60px;
 }
