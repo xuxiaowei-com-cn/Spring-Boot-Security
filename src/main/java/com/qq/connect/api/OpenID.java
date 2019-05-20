@@ -14,7 +14,10 @@ import java.util.regex.Pattern;
 public class OpenID extends QQConnect {
     private static final long serialVersionUID = 6913005509508673584L;
 
-    private Pattern compile = Pattern.compile("\"openid\"\\s*:\\s*\"(\\w+)\"");
+    /**
+     * 正则表达式 增加 unionid
+     */
+    private Pattern compile = Pattern.compile("\"openid\"\\s*:\\s*\"(\\w+)\",\"unionid\"\\s*:\\s*\"(\\w+)\"");
 
     /**
      * 是否获取 UnionId
