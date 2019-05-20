@@ -131,10 +131,22 @@ public class QqAbstractAuthenticationProcessingFilter extends AbstractAuthentica
             // 使用的 接口URL：https://graph.qq.com/oauth2.0/me
             // 官方文档：http://wiki.connect.qq.com/%E8%8E%B7%E5%8F%96%E7%94%A8%E6%88%B7openid_oauth2-0
             // 获取用户OpenID_OAuth2.0
-            OpenID openID = new OpenID(accessToken);
+            /**
+             * 当 getUnionId 为 true，获取 UnionId（需要申请 [开发者反馈](http://wiki.connect.qq.com/%E5%BC%80%E5%8F%91%E8%80%85%E5%8F%8D%E9%A6%88) 中的 应用打通）
+             */
+            OpenID openID = new OpenID(accessToken, false);
 
             // 获取 QQ OpenID
             String userOpenID = openID.getUserOpenID();
+
+            /**
+             * 该方法调用需要满足以下条件：
+             * <p>
+             * 1、申请 应用打通 成功后，操作说明参见：[开发者反馈](http://wiki.connect.qq.com/%E5%BC%80%E5%8F%91%E8%80%85%E5%8F%8D%E9%A6%88) 中的 应用打通
+             * 2、getUnionId = true
+             * 3、在调用 getUserOpenID(String accessToken) 之后再调用
+             */
+            String unionId = openID.getUnionId();
 
             // 根据 openId，查询 QQ
             Qq qq = qqService.getOpenId(userOpenID);
@@ -171,6 +183,9 @@ public class QqAbstractAuthenticationProcessingFilter extends AbstractAuthentica
 
                 // 强制类型转换 org.springframework.beans.BeanUtils
                 BeanUtils.copyProperties(userInfoBean, qq);
+
+                // 放入 QQ UnionId
+                qq.setUnionId(unionId);
 
                 // 放入 QQ OpenID
                 qq.setOpenId(userOpenID);
