@@ -43,6 +43,14 @@
                 <div class="layui-card-header" sec:authorize="hasRole('ROLE_QQ')">QQ openId</div>
                 <div class="layui-card-body XXW-p-l-0 XXW-p-r-0" sec:authorize="hasRole('ROLE_QQ')">[[${username}]]</div>
 
+                <!-- ROLE_WECHATWEBSITE -->
+                <div class="layui-card-header" sec:authorize="hasRole('ROLE_WECHATWEBSITE')">QQ openId</div>
+                <div class="layui-card-body" sec:authorize="hasRole('ROLE_WECHATWEBSITE')">[[${username}]]</div>
+
+                <!-- ROLE_WECHATWEBPAGE -->
+                <div class="layui-card-header" sec:authorize="hasRole('ROLE_WECHATWEBPAGE')">QQ openId</div>
+                <div class="layui-card-body" sec:authorize="hasRole('ROLE_WECHATWEBPAGE')">[[${username}]]</div>
+
                 <hr>
 
                 <div class="layui-card-header">登录IP</div>
