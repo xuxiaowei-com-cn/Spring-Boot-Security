@@ -76,7 +76,7 @@ public class SecuritySettings {
     /**
      * QQ 登录 Cookie 有效时间
      *
-     * 60 * 60 * 24 * 2 为 ‭172800‬ 秒，即 2 天
+     * 60 * 60 * 24 为 86400 秒，即 1 天
      */
     public int qqTokenValiditySeconds;
 
