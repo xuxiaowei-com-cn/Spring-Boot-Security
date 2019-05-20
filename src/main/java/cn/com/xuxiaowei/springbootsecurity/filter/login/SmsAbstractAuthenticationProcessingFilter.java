@@ -2,6 +2,7 @@ package cn.com.xuxiaowei.springbootsecurity.filter.login;
 
 import cn.com.xuxiaowei.springbootsecurity.entity.User;
 import cn.com.xuxiaowei.springbootsecurity.service.IUserService;
+import cn.com.xuxiaowei.springbootsecurity.util.security.SecurityUtils;
 import com.alibaba.fastjson.JSON;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +11,6 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.AbstractAuthenticationProcessingFilter;
 import org.springframework.security.web.authentication.WebAuthenticationDetails;
 
@@ -152,18 +152,13 @@ public class SmsAbstractAuthenticationProcessingFilter extends AbstractAuthentic
         // 注意此时的类型 org.springframework.security.core.userdetails.User
         org.springframework.security.core.userdetails.User user = new org.springframework.security.core.userdetails.User(username, password, authorities);
 
-        Object details = SecurityContextHolder.getContext().getAuthentication().getDetails();
-
-        WebAuthenticationDetails webAuthenticationDetails = null;
-
-        if (details instanceof WebAuthenticationDetails) {
-            webAuthenticationDetails = (WebAuthenticationDetails) details;
-        }
+        // 记录远程地址，如果会话已存在（也不会创建会话），还会设置会话ID。
+        WebAuthenticationDetails details = SecurityUtils.getDetails();
 
         // principal    用户 org.springframework.security.core.userdetails.User
         // credentials  自定义信息、如：WebAuthenticationDetails
         // authorities  权限
-        UsernamePasswordAuthenticationToken authRequest = new UsernamePasswordAuthenticationToken(user, webAuthenticationDetails, authorities);
+        UsernamePasswordAuthenticationToken authRequest = new UsernamePasswordAuthenticationToken(user, details, authorities);
 
         // 短信验证码登录成功后，自动重定向到主页页面
         // 由于 短信验证码登录 时，前端需要接收登录结果的数据，所以将 短信验证码登录 状态放入 Session 中
