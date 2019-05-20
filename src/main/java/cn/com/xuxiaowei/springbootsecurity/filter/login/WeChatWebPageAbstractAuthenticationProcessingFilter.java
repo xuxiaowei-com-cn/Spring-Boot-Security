@@ -135,10 +135,10 @@ public class WeChatWebPageAbstractAuthenticationProcessingFilter extends Abstrac
 
                 // 保存成功
                 if (save) {
-                    log.debug("微信 数据保存成功：" + weChat);
+                    log.debug("微信网页（微信内部） 数据保存成功：" + weChat);
                 } else {
                     // 保存失败
-                    log.debug("微信 数据保存失败：" + weChat);
+                    log.debug("微信网页（微信内部） 数据保存失败：" + weChat);
                 }
 
             }
@@ -168,7 +168,7 @@ public class WeChatWebPageAbstractAuthenticationProcessingFilter extends Abstrac
             UsernamePasswordAuthenticationToken authRequest = new UsernamePasswordAuthenticationToken(user, details, authorities);
 
             // 保持登录 3 天
-            CookieUtils.setSessionCookieTime(request, response, securitySettings.weChatTokenValiditySeconds);
+            CookieUtils.setSessionCookieTime(request, response, securitySettings.weChatPageTokenValiditySeconds);
 
             // 返回验证结果
             return this.getAuthenticationManager().authenticate(authRequest);
