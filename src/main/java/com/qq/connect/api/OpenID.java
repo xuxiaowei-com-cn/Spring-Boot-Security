@@ -9,6 +9,10 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
+ * 重写后，新增获取 unionId 的方法
+ * <p>
+ * 前提是成功申请 [开发者反馈](http://wiki.connect.qq.com/%E5%BC%80%E5%8F%91%E8%80%85%E5%8F%8D%E9%A6%88) 中的 应用打通
+ *
  * @author xuxiaowei
  */
 public class OpenID extends QQConnect {
