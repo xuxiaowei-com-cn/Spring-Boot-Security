@@ -16,8 +16,21 @@ public class OpenID extends QQConnect {
 
     private Pattern compile = Pattern.compile("\"openid\"\\s*:\\s*\"(\\w+)\"");
 
+    /**
+     * 是否获取 UnionId
+     */
+    private boolean getUnionId;
+
     public OpenID(String token) {
         this.client.setToken(token);
+    }
+
+    /**
+     * 带有控制是否获取 UnionId 的构造器
+     */
+    public OpenID(String token, String openID, boolean getUnionId) {
+        super(token, openID);
+        this.getUnionId = getUnionId;
     }
 
     private String getUserOpenID(String accessToken) throws QQConnectException {
