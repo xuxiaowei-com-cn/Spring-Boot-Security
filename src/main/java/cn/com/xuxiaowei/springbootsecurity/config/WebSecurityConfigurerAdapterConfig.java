@@ -1,12 +1,6 @@
 package cn.com.xuxiaowei.springbootsecurity.config;
 
-import cn.com.xuxiaowei.springbootsecurity.authentication.QqAuthenticationManager;
-import cn.com.xuxiaowei.springbootsecurity.authentication.WeChatWebPageAuthenticationManager;
-import cn.com.xuxiaowei.springbootsecurity.authentication.WeChatWebsiteAuthenticationManager;
 import cn.com.xuxiaowei.springbootsecurity.filter.login.BeforeLoginPatchcaHttpFilter;
-import cn.com.xuxiaowei.springbootsecurity.filter.login.QqAbstractAuthenticationProcessingFilter;
-import cn.com.xuxiaowei.springbootsecurity.filter.login.WeChatWebPageAbstractAuthenticationProcessingFilter;
-import cn.com.xuxiaowei.springbootsecurity.filter.login.WeChatWebsiteAbstractAuthenticationProcessingFilter;
 import cn.com.xuxiaowei.springbootsecurity.service.IUserService;
 import cn.com.xuxiaowei.springbootsecurity.service.impl.UserDetailsServiceImpl;
 import cn.com.xuxiaowei.springbootsecurity.setting.SecuritySettings;
@@ -47,59 +41,12 @@ public class WebSecurityConfigurerAdapterConfig extends WebSecurityConfigurerAda
         return new BeforeLoginPatchcaHttpFilter();
     }
 
-    /**
-     * 第三方登录（QQ）登录 注册为 Bean
-     *
-     * @return 使用 Autowired 的 Filter
-     */
-    @Bean
-    QqAbstractAuthenticationProcessingFilter qqAbstractAuthenticationProcessingFilter() {
-        QqAbstractAuthenticationProcessingFilter qqFilter = new QqAbstractAuthenticationProcessingFilter(securitySettings.qqUrl);
-        qqFilter.setAuthenticationManager(new QqAuthenticationManager());
-        return qqFilter;
-    }
-
-    /**
-     * 第三方登录（微信网页（微信内部）） 注册为 Bean
-     *
-     * @return 使用 Autowired 的 Filter
-     */
-    @Bean
-    WeChatWebPageAbstractAuthenticationProcessingFilter weChatWebPageAbstractAuthenticationProcessingFilter() {
-        WeChatWebPageAbstractAuthenticationProcessingFilter weChatWebPageFilter = new WeChatWebPageAbstractAuthenticationProcessingFilter(securitySettings.weChatWebPageUrl);
-        weChatWebPageFilter.setAuthenticationManager(new WeChatWebPageAuthenticationManager());
-        return weChatWebPageFilter;
-    }
-
-    /**
-     * 第三方（微信扫码） 注册为 Bean
-     *
-     * @return 使用 Autowired 的 Filter
-     */
-    @Bean
-    WeChatWebsiteAbstractAuthenticationProcessingFilter weChatWebsiteAbstractAuthenticationProcessingFilter() {
-        WeChatWebsiteAbstractAuthenticationProcessingFilter weChatWebsiteFilter = new WeChatWebsiteAbstractAuthenticationProcessingFilter(securitySettings.weChatWebsiteUrl);
-        weChatWebsiteFilter.setAuthenticationManager(new WeChatWebsiteAuthenticationManager());
-        return weChatWebsiteFilter;
-    }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
 
         // 授权登录（用户名密码登录）前 验证图片验证码
         http.addFilterBefore(beforeLoginPatchcaHttpFilter(), UsernamePasswordAuthenticationFilter.class);
-
-        // 第三方登录（QQ）
-        // 已将 QqAbstractAuthenticationProcessingFilter 注册为 Bean，可忽略本行代码
-        http.addFilterAt(qqAbstractAuthenticationProcessingFilter(), UsernamePasswordAuthenticationFilter.class);
-
-        // 第三方登录（微信网页（微信内部））
-        // 已将 WeChatWebPageAbstractAuthenticationProcessingFilter 注册为 Bean，可忽略本行代码
-        http.addFilterAt(weChatWebPageAbstractAuthenticationProcessingFilter(), UsernamePasswordAuthenticationFilter.class);
-
-        // 第三方登录（微信扫码）
-        // 已将 WeChatWebPageAbstractAuthenticationProcessingFilter 注册为 Bean，可忽略本行代码
-        http.addFilterAt(weChatWebsiteAbstractAuthenticationProcessingFilter(), UsernamePasswordAuthenticationFilter.class);
 
         // 指定支持基于表单的身份验证。
         http.formLogin()
