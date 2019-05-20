@@ -14,6 +14,8 @@ import java.util.regex.Pattern;
 public class OpenID extends QQConnect {
     private static final long serialVersionUID = 6913005509508673584L;
 
+    private Pattern compile = Pattern.compile("\"openid\"\\s*:\\s*\"(\\w+)\"");
+
     public OpenID(String token) {
         this.client.setToken(token);
     }
@@ -21,7 +23,7 @@ public class OpenID extends QQConnect {
     private String getUserOpenID(String accessToken) throws QQConnectException {
         String openid = "";
         String jsonp = this.client.get(QQConnectConfig.getValue("getOpenIDURL"), new PostParameter[]{new PostParameter("access_token", accessToken)}).asString();
-        Matcher m = Pattern.compile("\"openid\"\\s*:\\s*\"(\\w+)\"").matcher(jsonp);
+        Matcher m = compile.matcher(jsonp);
         if (m.find()) {
             openid = m.group(1);
             return openid;
