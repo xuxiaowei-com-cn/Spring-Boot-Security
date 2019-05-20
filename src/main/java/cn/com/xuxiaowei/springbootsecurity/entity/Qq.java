@@ -32,6 +32,9 @@ public class Qq implements Serializable {
     @TableField("open_id")
     private String openId;
 
+    @TableField("union_id")
+    private String unionId;
+
     @TableField("nickname")
     private String nickname;
 
@@ -97,6 +100,8 @@ public class Qq implements Serializable {
     public static final String QQ_ID = "qq_id";
 
     public static final String OPEN_ID = "open_id";
+
+    public static final String UNION_ID = "union_id";
 
     public static final String NICKNAME = "nickname";
 
