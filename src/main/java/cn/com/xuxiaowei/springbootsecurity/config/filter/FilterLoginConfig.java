@@ -1,4 +1,4 @@
-package cn.com.xuxiaowei.springbootsecurity.config;
+package cn.com.xuxiaowei.springbootsecurity.config.filter;
 
 import cn.com.xuxiaowei.springbootsecurity.authentication.QqAuthenticationManager;
 import cn.com.xuxiaowei.springbootsecurity.authentication.WeChatWebPageAuthenticationManager;

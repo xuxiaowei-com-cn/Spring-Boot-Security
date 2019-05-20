@@ -1,5 +1,6 @@
-package cn.com.xuxiaowei.springbootsecurity.config;
+package cn.com.xuxiaowei.springbootsecurity.config.security;
 
+import cn.com.xuxiaowei.springbootsecurity.config.LoginUrlAuthenticationEntryPointConfig;
 import cn.com.xuxiaowei.springbootsecurity.filter.login.BeforeLoginPatchcaHttpFilter;
 import cn.com.xuxiaowei.springbootsecurity.service.IUserService;
 import cn.com.xuxiaowei.springbootsecurity.service.impl.UserDetailsServiceImpl;

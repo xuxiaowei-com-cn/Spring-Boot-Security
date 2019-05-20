@@ -1,4 +1,4 @@
-package cn.com.xuxiaowei.springbootsecurity.config;
+package cn.com.xuxiaowei.springbootsecurity.config.servlet;
 
 import cn.com.xuxiaowei.springbootsecurity.servlet.login.AlipayHttpServlet;
 import cn.com.xuxiaowei.springbootsecurity.servlet.login.QqHttpServlet;

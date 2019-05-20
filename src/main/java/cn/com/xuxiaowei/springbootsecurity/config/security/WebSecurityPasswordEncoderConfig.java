@@ -1,4 +1,4 @@
-package cn.com.xuxiaowei.springbootsecurity.config;
+package cn.com.xuxiaowei.springbootsecurity.config.security;
 
 import cn.com.xuxiaowei.springbootsecurity.util.md5.Md5Utils;
 import cn.com.xuxiaowei.springbootsecurity.util.rsa.RsaUtils;
