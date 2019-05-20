@@ -60,11 +60,18 @@ public class SecuritySettings {
     public String key;
 
     /**
-     * 指定 Cookie 有效时间
+     * 指定 Cookie 有效时间（使用用户名和密码）
      * <p>
      * 60 * 60 * 24 * 14 为 1209600 秒，即 2 个星期
      */
     public int tokenValiditySeconds;
+
+    /**
+     * 短信登录 Cookie 有效时间
+     *
+     * 60 * 60 * 24 * 2 为 ‭172800‬ 秒，即 2 天
+     */
+    public int smsTokenValiditySeconds;
 
     /**
      * QQ 登录 URL
