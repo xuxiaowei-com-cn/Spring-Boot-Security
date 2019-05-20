@@ -98,6 +98,30 @@ weixin:
     # 第三方 网页授权开发 URL
     authorize-url: https://open.weixin.qq.com/connect/qrconnect
 #
+# 支付宝 配置
+alipay:
+  # 支付宝网关（固定）
+  url: https://openapi.alipay.com/gateway.do
+  # APPID 即创建应用后生成
+  app-id:
+  # 开发者私钥，由开发者自己生成（rsa_private_key_pkcs8.pem）
+  app-private-key:
+  # 参数返回格式，只支持json，json（固定）
+  format: json
+  # 编码集，支持GBK/UTF-8
+  charset: UTF-8
+  # 支付宝公钥，由支付宝生成（RSA(SHA256)密钥(推荐)）
+  alipay-public-key:
+  # 商户生成签名字符串所使用的签名算法类型，目前支持RSA2和RSA，推荐使用RSA2
+  sign-type: RSA2
+  # 授权 URL（获取 code）
+  # auth_user（获取用户信息、网站支付宝登录）、
+  # auth_base（用户信息授权）、
+  # auth_ecard（商户会员卡）、
+  # auth_invoice_info（支付宝闪电开票）、
+  # auth_puc_charge（生活缴费）
+  public-app-authorize: https://openauth.alipay.com/oauth2/publicAppAuthorize.htm?app_id=APPID&scope=SCOPE&redirect_uri=ENCODED_URL
+#
 # 日志 配置
 logging:
   level:
