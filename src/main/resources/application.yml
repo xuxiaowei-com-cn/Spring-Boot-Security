@@ -78,6 +78,22 @@ security:
   # 微信内部 授权 URL
   we-chat-web-page-url: /app/wechat/webpage
 #
+# 微信开放平台 配置
+# 资料：
+# 网站应用微信登录开发指南：https://open.weixin.qq.com/cgi-bin/showdocument?action=dir_list&t=resource/res_list&verify=1&id=open1419316505&token=&lang=zh_CN
+# 授权后接口调用（UnionID）：https://open.weixin.qq.com/cgi-bin/showdocument?action=dir_list&t=resource/res_list&verify=1&id=open1419316518&token=&lang=zh_CN
+#
+weixin:
+  open:
+    # AppID
+    app-id:
+    # AppSecret
+    app-secret:
+    # REDIRECT_URI
+    redirect-uri:
+    # 第三方 网页授权开发 URL
+    authorize-url: https://open.weixin.qq.com/connect/qrconnect
+#
 # 日志 配置
 logging:
   level:
