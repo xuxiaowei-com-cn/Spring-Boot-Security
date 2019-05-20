@@ -6,17 +6,19 @@
 
     - qqconnectconfig.properties
     
-    - 获取配置文件中需要修改的信息
+        - 获取配置文件 qqconnectconfig.properties 中需要修改信息的网址：
+        
+            - [QQ互联](https://connect.qq.com/manage.html)
     
-        - https://connect.qq.com/manage.html
-    
-    - 需要修改的信息
-        
-        - app_ID
-        
-        - app_KEY
-        
-        - redirect_URI
+        - 需要修改的信息
+            
+            - app_ID
+            
+            - app_KEY
+            
+            - redirect_URI
+            
+                - redirect_URI 去掉域名时，要与 application.yml 中的 security.qq-url 相同
         
 ## 微信登录
 
