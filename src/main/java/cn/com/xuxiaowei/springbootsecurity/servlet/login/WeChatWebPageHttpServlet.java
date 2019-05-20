@@ -1,5 +1,7 @@
 package cn.com.xuxiaowei.springbootsecurity.servlet.login;
 
+import cn.com.xuxiaowei.springbootsecurity.setting.SecuritySettings;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.weixin4j.Weixin;
 import org.weixin4j.component.SnsComponent;
 
@@ -18,6 +20,14 @@ import java.util.UUID;
  */
 public class WeChatWebPageHttpServlet extends HttpServlet {
 
+    @Autowired
+    private SecuritySettings securitySettings;
+
+    /**
+     * 域名
+     */
+    private String domain = "http://127.0.0.1";
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
@@ -35,7 +45,8 @@ public class WeChatWebPageHttpServlet extends HttpServlet {
         session.setAttribute("wechat_webpage_connect_state", state);
 
         // 网页安全授权获取用户信息（获取 Code 页面）
-        String oAuth2CodeUserInfoUrl = snsComponent.getOAuth2CodeUrl("http://127.0.0.1/app/wechat/webpage", "snsapi_userinfo", state);
+
+        String oAuth2CodeUserInfoUrl = snsComponent.getOAuth2CodeUrl(domain + securitySettings.weChatWebPageUrl, "snsapi_userinfo", state);
 
         // 用户同意授权，获取 code ，重定向到微信 URL
         resp.sendRedirect(oAuth2CodeUserInfoUrl);
