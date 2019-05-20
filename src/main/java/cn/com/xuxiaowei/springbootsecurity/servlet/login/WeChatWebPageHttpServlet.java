@@ -46,6 +46,10 @@ public class WeChatWebPageHttpServlet extends HttpServlet {
 
         // 网页安全授权获取用户信息（获取 Code 页面）
 
+        // 获取 Authorization Code URL
+        // 使用的 接口URL：https://open.weixin.qq.com/connect/oauth2/authorize
+        // 官方文档：https://mp.weixin.qq.com/wiki?t=resource/res_main&id=mp1421140842
+        // 第一步：用户同意授权，获取code
         String oAuth2CodeUserInfoUrl = snsComponent.getOAuth2CodeUrl(domain + securitySettings.weChatWebPageUrl, "snsapi_userinfo", state);
 
         // 用户同意授权，获取 code ，重定向到微信 URL
