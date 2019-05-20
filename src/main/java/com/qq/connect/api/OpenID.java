@@ -24,6 +24,11 @@ public class OpenID extends QQConnect {
      */
     private boolean getUnionId;
 
+    /**
+     * UnionId
+     */
+    private String unionId;
+
     public OpenID(String token) {
         this.client.setToken(token);
     }
@@ -56,4 +61,16 @@ public class OpenID extends QQConnect {
         String accessToken = this.client.getToken();
         return this.getUserOpenID(accessToken);
     }
+
+    /**
+     * 该方法调用需要满足以下条件：
+     * <p>
+     * 1、申请 应用打通 成功后，操作说明参见：[开发者反馈](http://wiki.connect.qq.com/%E5%BC%80%E5%8F%91%E8%80%85%E5%8F%8D%E9%A6%88) 中的 应用打通
+     * 2、getUnionId = true
+     * 3、在调用 getUserOpenID(String accessToken) 之后再调用
+     */
+    public String getUnionId() {
+        return unionId;
+    }
+
 }
