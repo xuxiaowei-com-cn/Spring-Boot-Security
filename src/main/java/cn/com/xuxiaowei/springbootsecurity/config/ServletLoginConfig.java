@@ -1,5 +1,6 @@
 package cn.com.xuxiaowei.springbootsecurity.config;
 
+import cn.com.xuxiaowei.springbootsecurity.servlet.login.AlipayHttpServlet;
 import cn.com.xuxiaowei.springbootsecurity.servlet.login.QqHttpServlet;
 import cn.com.xuxiaowei.springbootsecurity.servlet.login.WeChatWebPageHttpServlet;
 import cn.com.xuxiaowei.springbootsecurity.servlet.login.WeChatWebsiteHttpServlet;
@@ -57,6 +58,24 @@ public class ServletLoginConfig {
     @Bean
     ServletRegistrationBean weChatWebsiteHttpServlet() {
         return new ServletRegistrationBean<>(weChatWebsiteHttpServletBean(), "/wechat/website");
+    }
+
+    /**
+     * 第三方登录（支付宝）URL 注册为 Bean
+     *
+     * @return 可使用 Autowired 的 第三方登录（支付宝）URL
+     */
+    @Bean
+    AlipayHttpServlet alipayHttpServletBean() {
+        return new AlipayHttpServlet();
+    }
+
+    /**
+     * 第三方登录（支付宝）URL
+     */
+    @Bean
+    ServletRegistrationBean alipayHttpServlet() {
+        return new ServletRegistrationBean<>(alipayHttpServletBean(), "/alipay");
     }
 
 }
