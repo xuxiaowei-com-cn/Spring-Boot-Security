@@ -1,8 +1,10 @@
 package cn.com.xuxiaowei.springbootsecurity.config;
 
 import cn.com.xuxiaowei.springbootsecurity.authentication.QqAuthenticationManager;
+import cn.com.xuxiaowei.springbootsecurity.authentication.WeChatWebPageAuthenticationManager;
 import cn.com.xuxiaowei.springbootsecurity.filter.login.BeforeLoginPatchcaHttpFilter;
 import cn.com.xuxiaowei.springbootsecurity.filter.login.QqAbstractAuthenticationProcessingFilter;
+import cn.com.xuxiaowei.springbootsecurity.filter.login.WeChatWebPageAbstractAuthenticationProcessingFilter;
 import cn.com.xuxiaowei.springbootsecurity.service.IUserService;
 import cn.com.xuxiaowei.springbootsecurity.service.impl.UserDetailsServiceImpl;
 import cn.com.xuxiaowei.springbootsecurity.setting.SecuritySettings;
@@ -55,6 +57,18 @@ public class WebSecurityConfigurerAdapterConfig extends WebSecurityConfigurerAda
         return qqFilter;
     }
 
+    /**
+     * 第三方登录（微信网页（微信内部）） 注册为 Bean
+     *
+     * @return 使用 Autowired 的 Filter
+     */
+    @Bean
+    WeChatWebPageAbstractAuthenticationProcessingFilter weChatWebPageAbstractAuthenticationProcessingFilter() {
+        WeChatWebPageAbstractAuthenticationProcessingFilter weChatWebPageFilter = new WeChatWebPageAbstractAuthenticationProcessingFilter(securitySettings.weChatWebPageUrl);
+        weChatWebPageFilter.setAuthenticationManager(new WeChatWebPageAuthenticationManager());
+        return weChatWebPageFilter;
+    }
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
 
@@ -64,6 +78,10 @@ public class WebSecurityConfigurerAdapterConfig extends WebSecurityConfigurerAda
         // 第三方登录（QQ）
         // 已将 QqAbstractAuthenticationProcessingFilter 注册为 Bean，可忽略本行代码
         http.addFilterAt(qqAbstractAuthenticationProcessingFilter(), UsernamePasswordAuthenticationFilter.class);
+
+        // 第三方登录（微信网页（微信内部））
+        // 已将 WeChatWebPageAbstractAuthenticationProcessingFilter 注册为 Bean，可忽略本行代码
+        http.addFilterAt(weChatWebPageAbstractAuthenticationProcessingFilter(), UsernamePasswordAuthenticationFilter.class);
 
         // 指定支持基于表单的身份验证。
         http.formLogin()
