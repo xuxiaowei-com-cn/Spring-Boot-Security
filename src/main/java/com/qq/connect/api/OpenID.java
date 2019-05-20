@@ -19,9 +19,14 @@ public class OpenID extends QQConnect {
     private static final long serialVersionUID = 6913005509508673584L;
 
     /**
-     * 正则表达式 增加 unionid
+     * 正则表达式（匹配 openid）
      */
-    private Pattern compile = Pattern.compile("\"openid\"\\s*:\\s*\"(\\w+)\",\"unionid\"\\s*:\\s*\"(\\w+)\"");
+    private Pattern compile = Pattern.compile("\"openid\"\\s*:\\s*\"(\\w+)\"");
+
+    /**
+     * 正则表达式（匹配 openid、unionid） 增加 unionid
+     */
+    private Pattern compileUnionId = Pattern.compile("\"openid\"\\s*:\\s*\"(\\w+)\",\"unionid\"\\s*:\\s*\"(\\w+)\"");
 
     /**
      * 是否获取 UnionId
@@ -61,7 +66,10 @@ public class OpenID extends QQConnect {
             openid = m.group(1);
 
             if (getUnionId) {
-                unionId = m.group(2);
+                Matcher mUnionId = compileUnionId.matcher(jsonp);
+                if(mUnionId.find()){
+                    unionId = mUnionId.group(2);
+                }
             }
 
             return openid;
