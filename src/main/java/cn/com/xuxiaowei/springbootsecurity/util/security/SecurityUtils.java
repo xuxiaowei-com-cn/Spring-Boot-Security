@@ -97,9 +97,16 @@ public class SecurityUtils {
      * 与Web身份验证请求相关的所选HTTP详细信息的持有者（Object 对象）。
      * <p>
      * 使用用户名与密码登录时，有值，否则为空
+     * <p>
+     * 由于第三方登录（QQ）是从其他网址跳转到本网站，故不会有授权（Authentication）相关的信息
      */
     public static Object getDetailsObj() {
-        return getAuthentication().getDetails();
+        Authentication authentication = getAuthentication();
+        if (authentication != null) {
+            return getAuthentication().getDetails();
+        } else {
+            return null;
+        }
     }
 
     /**
