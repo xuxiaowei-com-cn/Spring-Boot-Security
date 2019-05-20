@@ -2,8 +2,8 @@ package cn.com.xuxiaowei.springbootsecurity.filter.login;
 
 import cn.com.xuxiaowei.springbootsecurity.entity.Qq;
 import cn.com.xuxiaowei.springbootsecurity.service.IQqService;
+import cn.com.xuxiaowei.springbootsecurity.util.response.ResponseUtils;
 import cn.com.xuxiaowei.springbootsecurity.util.security.SecurityUtils;
-import com.alibaba.fastjson.JSON;
 import com.qq.connect.QQConnectException;
 import com.qq.connect.api.OpenID;
 import com.qq.connect.api.qzone.UserInfo;
@@ -74,7 +74,7 @@ public class QqAbstractAuthenticationProcessingFilter extends AbstractAuthentica
             map.put("msg", "QQ登录受到攻击！");
             data.put("details", "Session 中不存在 QQ 登录的状态码！");
             log.debug(map.toString());
-            response(response, map);
+            ResponseUtils.response(response, map);
             return null;
         }
 
@@ -82,7 +82,7 @@ public class QqAbstractAuthenticationProcessingFilter extends AbstractAuthentica
             map.put("msg", "QQ登录受到攻击！");
             data.put("details", "未收到 QQ 登录的状态码！");
             log.debug(map.toString());
-            response(response, map);
+            ResponseUtils.response(response, map);
             return null;
         }
 
@@ -90,7 +90,7 @@ public class QqAbstractAuthenticationProcessingFilter extends AbstractAuthentica
             map.put("msg", "QQ登录受到攻击！");
             data.put("details", "Session 中的 QQ 登录的状态码与接收的不同！");
             log.debug(map.toString());
-            response(response, map);
+            ResponseUtils.response(response, map);
             return null;
         }
 
@@ -117,7 +117,7 @@ public class QqAbstractAuthenticationProcessingFilter extends AbstractAuthentica
                 map.put("msg", "QQ登录的code已过期，请重新登录！");
                 data.put("details", "QQ登录的code只能使用一次，重复使用时，调用接口失败！");
                 log.debug(map.toString());
-                response(response, map);
+                ResponseUtils.response(response, map);
                 return null;
             }
 
@@ -241,21 +241,6 @@ public class QqAbstractAuthenticationProcessingFilter extends AbstractAuthentica
         }
 
         return null;
-    }
-
-    /**
-     * 响应 JSON 数据
-     */
-    private void response(HttpServletResponse response, Map map) throws IOException {
-
-        Object o = JSON.toJSON(map);
-
-        response.setContentType("text/json;charset=UTF-8");
-
-        response.getWriter().println(o);
-        response.setStatus(HttpServletResponse.SC_OK);
-        response.flushBuffer();
-
     }
 
 }
