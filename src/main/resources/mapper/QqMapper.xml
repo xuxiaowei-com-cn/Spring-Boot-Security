@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.com.xuxiaowei.springbootsecurity.mapper.QqMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="cn.com.xuxiaowei.springbootsecurity.entity.Qq">
+        <id column="qq_id" property="qqId" />
+        <result column="open_id" property="openId" />
+        <result column="nickname" property="nickname" />
+        <result column="figureurl30" property="figureurl30" />
+        <result column="figureurl50" property="figureurl50" />
+        <result column="figureurl100" property="figureurl100" />
+        <result column="gender" property="gender" />
+        <result column="vip" property="vip" />
+        <result column="level" property="level" />
+        <result column="yellow_year_vip" property="yellowYearVip" />
+        <result column="create_date" property="createDate" />
+        <result column="update_date" property="updateDate" />
+        <result column="deleted" property="deleted" />
+        <result column="remarks" property="remarks" />
+    </resultMap>
+
+</mapper>
