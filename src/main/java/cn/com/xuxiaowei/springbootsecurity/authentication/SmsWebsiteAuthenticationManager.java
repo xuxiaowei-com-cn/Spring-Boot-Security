@@ -24,7 +24,7 @@ public class SmsWebsiteAuthenticationManager implements AuthenticationManager {
         // 自定义信息、如：WebAuthenticationDetails
         Object credentials = authentication.getCredentials();
 
-        // 权限
+        // 权限/角色
         Collection<? extends GrantedAuthority> authorities = authentication.getAuthorities();
 
         return new UsernamePasswordAuthenticationToken(principal, credentials, authorities);
