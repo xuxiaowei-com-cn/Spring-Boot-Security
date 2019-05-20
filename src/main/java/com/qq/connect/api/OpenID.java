@@ -35,6 +35,10 @@ public class OpenID extends QQConnect {
 
     /**
      * 带有控制是否获取 UnionId 的构造器
+     *
+     * @param token      AccessToken
+     * @param getUnionId 为 true，获取 UnionId（需要申请 [开发者反馈](http://wiki.connect.qq.com/%E5%BC%80%E5%8F%91%E8%80%85%E5%8F%8D%E9%A6%88) 中的 应用打通）
+     *                   为 false，不获取 UnionId
      */
     public OpenID(String token, boolean getUnionId) {
         this.client.setToken(token);
