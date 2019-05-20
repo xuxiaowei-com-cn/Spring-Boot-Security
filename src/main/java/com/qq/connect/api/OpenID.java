@@ -33,10 +33,6 @@ public class OpenID extends QQConnect {
      */
     private String unionId;
 
-    public OpenID(String token) {
-        this.client.setToken(token);
-    }
-
     /**
      * 带有控制是否获取 UnionId 的构造器
      */
