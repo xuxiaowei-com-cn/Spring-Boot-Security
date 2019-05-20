@@ -66,4 +66,9 @@ public class SecuritySettings {
      */
     public int tokenValiditySeconds;
 
+    /**
+     * QQ 登录 URL
+     */
+    public String qqUrl;
+
 }

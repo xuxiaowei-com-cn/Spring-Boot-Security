@@ -67,6 +67,8 @@ security:
   key: NsadFDGs-KRya+
   # 指定 Cookie 有效时间
   token-validity-seconds: 1209600
+  # QQ 登录 URL
+  qq-url: /app/qq
 #
 # 日志 配置
 logging:
