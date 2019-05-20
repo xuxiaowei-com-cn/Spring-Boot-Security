@@ -94,7 +94,7 @@ public class QqAbstractAuthenticationProcessingFilter extends AbstractAuthentica
             return null;
         }
 
-        if (!state.equals(code)) {
+        if (StringUtils.isEmpty(code)) {
             map.put("msg", "QQ登录受到攻击！");
             data.put("details", "未收到 QQ 登录的 code！");
             log.debug(map.toString());
