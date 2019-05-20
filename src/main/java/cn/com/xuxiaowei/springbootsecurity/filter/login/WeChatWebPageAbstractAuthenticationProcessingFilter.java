@@ -1,11 +1,16 @@
 package cn.com.xuxiaowei.springbootsecurity.filter.login;
 
 import cn.com.xuxiaowei.springbootsecurity.util.response.ResponseUtils;
+import com.alibaba.fastjson.JSON;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.authentication.AbstractAuthenticationProcessingFilter;
+import org.weixin4j.Weixin;
+import org.weixin4j.WeixinException;
+import org.weixin4j.component.SnsComponent;
+import org.weixin4j.model.sns.SnsUser;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -74,6 +79,27 @@ public class WeChatWebPageAbstractAuthenticationProcessingFilter extends Abstrac
             return null;
         }
 
+        // 微信平台基础支持对象
+        Weixin weixin = new Weixin();
+
+        // 网页授权基础支持
+        SnsComponent snsComponent = new SnsComponent(weixin);
+
+        try {
+
+            // 拉取用户信息
+            SnsUser snsUser = snsComponent.getSnsUserByCode(code);
+
+            // 由于 org.weixin4j.model.sns.SnsUser 没有重写 toString ,所以将其转化为 JSON 放入 Session
+            Object snsUserJson = JSON.toJSON(snsUser);
+
+            log.debug("");
+            log.debug(snsUserJson.toString());
+            log.debug("");
+
+        } catch (WeixinException e) {
+            e.printStackTrace();
+        }
 
         return null;
     }
