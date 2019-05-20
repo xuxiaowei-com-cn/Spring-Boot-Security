@@ -16,9 +16,9 @@ public class ResponseUtils {
     /**
      * 响应数据
      */
-    public static void response(HttpServletResponse response, Map map) {
+    public static void response(HttpServletResponse response, Map map) throws IOException {
         Object o = JSON.toJSON(map);
-        response(response, map);
+        response(response, o);
     }
 
     /**
