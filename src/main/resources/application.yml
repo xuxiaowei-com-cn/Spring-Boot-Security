@@ -71,6 +71,8 @@ security:
   sms-token-validity-seconds: 172800
   # QQ 登录 Cookie 有效时间
   qq-token-validity-seconds: 86400
+  # 微信 登录 Cookie 有效时间
+  weChatTokenValiditySeconds: ‭259200‬
   # QQ 授权 URL
   qq-url: /app/qq
   # 微信内部 授权 URL

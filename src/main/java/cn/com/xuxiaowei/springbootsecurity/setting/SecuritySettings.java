@@ -81,6 +81,13 @@ public class SecuritySettings {
     public int qqTokenValiditySeconds;
 
     /**
+     * 微信 登录 Cookie 有效时间
+     *
+     * 60 * 60 * 24 * 3 为 ‭259200‬ 秒，即 3 天
+     */
+    public int weChatTokenValiditySeconds;
+
+    /**
      * QQ 授权 URL
      */
     public String qqUrl;
