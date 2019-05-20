@@ -40,8 +40,8 @@ public class OpenID extends QQConnect {
     /**
      * 带有控制是否获取 UnionId 的构造器
      */
-    public OpenID(String token, String openID, boolean getUnionId) {
-        super(token, openID);
+    public OpenID(String token, boolean getUnionId) {
+        this.client.setToken(token);
         this.getUnionId = getUnionId;
     }
 
