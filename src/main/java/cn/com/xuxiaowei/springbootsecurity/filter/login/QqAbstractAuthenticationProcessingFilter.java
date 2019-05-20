@@ -1,6 +1,7 @@
 package cn.com.xuxiaowei.springbootsecurity.filter.login;
 
 import cn.com.xuxiaowei.springbootsecurity.entity.Qq;
+import cn.com.xuxiaowei.springbootsecurity.service.IQqService;
 import cn.com.xuxiaowei.springbootsecurity.util.security.SecurityUtils;
 import com.alibaba.fastjson.JSON;
 import com.qq.connect.QQConnectException;
@@ -13,6 +14,7 @@ import com.qq.connect.oauth.Oauth;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.BeanUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
@@ -26,6 +28,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -38,6 +42,9 @@ import java.util.Map;
  */
 @Slf4j
 public class QqAbstractAuthenticationProcessingFilter extends AbstractAuthenticationProcessingFilter {
+
+    @Autowired
+    private IQqService qqService;
 
     public QqAbstractAuthenticationProcessingFilter(String defaultFilterProcessesUrl) {
         super(defaultFilterProcessesUrl);
@@ -119,40 +126,91 @@ public class QqAbstractAuthenticationProcessingFilter extends AbstractAuthentica
             // 获取 QQ OpenID
             String userOpenID = openID.getUserOpenID();
 
-            // 获取 用户 userInfo（com.qq.connect.api.qzone.UserInfo）
-            // 使用的 配置文件名：getUserInfoURL
-            // 使用的 接口URL：https://graph.qq.com/user/get_user_info
-            // 官方文档：http://wiki.connect.qq.com/openapi%E8%B0%83%E7%94%A8%E8%AF%B4%E6%98%8E_oauth2-0
-            // OpenAPI调用说明_OAuth2.0
-            UserInfo userInfo = new UserInfo(accessToken, userOpenID);
+            // 根据 openId，查询 QQ
+            Qq qq = qqService.getOpenId(userOpenID);
 
-            // 获取 用户 userInfoBean（com.qq.connect.javabeans.qzone.UserInfoBean） QQ 详细信息
-            UserInfoBean userInfoBean = userInfo.getUserInfo();
+            // 获取现在的时间
+            LocalDateTime now = LocalDateTime.now();
 
-            log.debug("");
-            log.debug(userInfoBean.toString());
-            log.debug("");
+            // 获取 Access Token 有效时间（秒）
+            long expireIn = accessTokenObj.getExpireIn();
 
-            // 创建 QQ 实体类，用于 强制类型转换
-            Qq qq = new Qq();
+            // 获取 Access Token 过期时间
+            LocalDateTime accessTokenExpiredDate = now.plus(expireIn, ChronoUnit.SECONDS);
 
-            // 强制类型转换 org.springframework.beans.BeanUtils
-            BeanUtils.copyProperties(userInfoBean, qq);
+            // 该 QQ 从未登录过
+            if (qq == null) {
 
-            // 放入 QQ OpenID
-            qq.setOpenId(userOpenID);
+                // 获取 用户 userInfo（com.qq.connect.api.qzone.UserInfo）
+                // 使用的 配置文件名：getUserInfoURL
+                // 使用的 接口URL：https://graph.qq.com/user/get_user_info
+                // 官方文档：http://wiki.connect.qq.com/openapi%E8%B0%83%E7%94%A8%E8%AF%B4%E6%98%8E_oauth2-0
+                // OpenAPI调用说明_OAuth2.0
+                UserInfo userInfo = new UserInfo(accessToken, userOpenID);
 
-            // 头像 对象
-            Avatar avatar = userInfoBean.getAvatar();
+                // 获取 用户 userInfoBean（com.qq.connect.javabeans.qzone.UserInfoBean） QQ 详细信息
+                UserInfoBean userInfoBean = userInfo.getUserInfo();
 
-            // 头像需要手动放入 QQ 中
-            qq.setFigureurl30(avatar.getAvatarURL30());
-            qq.setFigureurl50(avatar.getAvatarURL50());
-            qq.setFigureurl100(avatar.getAvatarURL50());
+                log.debug("");
+                log.debug(userInfoBean.toString());
+                log.debug("");
 
-            log.debug("");
-            log.debug(qq.toString());
-            log.debug("");
+                // 创建 QQ 实体类，用于 强制类型转换
+                // 强制类型转换为空时，会出现异常
+                qq = new Qq();
+
+                // 强制类型转换 org.springframework.beans.BeanUtils
+                BeanUtils.copyProperties(userInfoBean, qq);
+
+                // 放入 QQ OpenID
+                qq.setOpenId(userOpenID);
+
+                // 头像 对象
+                Avatar avatar = userInfoBean.getAvatar();
+
+                // 头像需要手动放入 QQ 中
+                qq.setFigureurl30(avatar.getAvatarURL30());
+                qq.setFigureurl50(avatar.getAvatarURL50());
+                qq.setFigureurl100(avatar.getAvatarURL50());
+
+                // 设置 Access Token
+                qq.setAccessToken(accessToken);
+
+                // 设置 Access Token 过期时间
+                qq.setAccessTokenExpiredDate(accessTokenExpiredDate);
+
+                log.debug("");
+                log.debug(qq.toString());
+                log.debug("");
+
+                // 保存 QQ 数据
+                boolean save = qqService.save(qq);
+
+                // 保存成功
+                if (save) {
+                    log.debug("QQ 数据保存成功：" + qq);
+                } else {
+                    // 保存失败
+                    log.debug("QQ 数据保存失败：" + qq);
+                }
+
+            } else {
+
+                // 数据库中的 QQ 数据，设置新的 Access Token
+                qq.setAccessToken(accessToken);
+                // 数据库中的 QQ 数据，设置新的 Access Token 过期时间
+                qq.setAccessTokenExpiredDate(accessTokenExpiredDate);
+
+                boolean updateById = qqService.updateById(qq);
+
+                if (updateById) {
+                    log.debug("QQ 数据更新 Access Token 及过期时间成功：" + qq);
+                } else {
+                    log.debug("QQ 数据更新 Access Token 及过期时间失败：" + qq);
+                }
+
+            }
+
 
             List<GrantedAuthority> authorities = new ArrayList<>();
 
