@@ -15,6 +15,11 @@ import org.springframework.stereotype.Component;
 public class AlipaySettings {
 
     /**
+     * 域名
+     */
+    private String domain;
+
+    /**
      * 支付宝网关（固定）
      * <p>
      * https://openapi.alipay.com/gateway.do
