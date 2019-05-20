@@ -34,6 +34,15 @@ public class SecurityUtils {
     //////////////////////////////////////////////////////////////////////
 
     /**
+     * 名字
+     */
+    public static String getName() {
+        return getAuthentication().getName();
+    }
+
+    //////////////////////////////////////////////////////////////////////
+
+    /**
      * 获取用户权限
      */
     public static Collection<? extends GrantedAuthority> getAuthorities() {
