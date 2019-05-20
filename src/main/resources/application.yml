@@ -81,6 +81,8 @@ security:
   we-chat-web-page-url: /app/wechat/webpage
   # 微信扫码 授权 URL
   we-chat-website-url: /app/wechat/website
+  # 支付宝 授权 URL
+  alipay-url: /app/alipay
 #
 # 微信开放平台 配置
 # 资料：

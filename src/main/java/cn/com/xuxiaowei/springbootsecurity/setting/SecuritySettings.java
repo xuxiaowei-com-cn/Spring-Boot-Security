@@ -68,28 +68,28 @@ public class SecuritySettings {
 
     /**
      * 短信登录 Cookie 有效时间
-     *
+     * <p>
      * 60 * 60 * 24 * 2 为 ‭172800‬ 秒，即 2 天
      */
     public int smsTokenValiditySeconds;
 
     /**
      * QQ 登录 Cookie 有效时间
-     *
+     * <p>
      * 60 * 60 * 24 为 86400 秒，即 1 天
      */
     public int qqTokenValiditySeconds;
 
     /**
      * 微信网页（微信内部） 登录 Cookie 有效时间
-     *
+     * <p>
      * 60 * 60 * 24 * 3 为 ‭259200‬ 秒，即 3 天
      */
     public int weChatPageTokenValiditySeconds;
 
     /**
      * 微信扫码 登录 Cookie 有效时间
-     *
+     * <p>
      * 60 * 60 * 24 * 4 为 345600  秒，即 4 天
      */
     public int weChatSiteTokenValiditySeconds;
@@ -108,5 +108,10 @@ public class SecuritySettings {
      * 微信扫码 授权 URL
      */
     public String weChatWebsiteUrl;
+
+    /**
+     * 支付宝 授权 URL
+     */
+    public String alipayUrl;
 
 }
