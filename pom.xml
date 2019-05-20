@@ -56,6 +56,11 @@
         <!-- 2014年9月20日 -->
         <Sdk4J.version>2.0</Sdk4J.version>
 
+        <!-- 微信 组件 weixin4j -->
+        <!-- https://mvnrepository.com/artifact/org.weixin4j.spring.boot/weixin4j-spring-boot -->
+        <!-- 2018年9月5日 -->
+        <weixin4j-spring-boot.version>1.0.0</weixin4j-spring-boot.version>
+
     </properties>
 
     <dependencies>
@@ -112,6 +117,20 @@
             <groupId>net.gplatform</groupId>
             <artifactId>Sdk4J</artifactId>
             <version>${Sdk4J.version}</version>
+        </dependency>
+
+        <!-- 微信 组件 weixin4j -->
+        <dependency>
+            <groupId>org.weixin4j.spring.boot</groupId>
+            <artifactId>weixin4j-spring-boot-starter</artifactId>
+            <version>${weixin4j-spring-boot.version}</version>
+            <!-- 与Spring Boot（Spring Boot 自带 Tomcat 冲突，jar 形式）的servlet-api冲突 -->
+            <exclusions>
+                <exclusion>
+                    <groupId>javax.servlet</groupId>
+                    <artifactId>servlet-api</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
 
 

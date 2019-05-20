@@ -72,6 +72,10 @@ Spring Boot 整合 Security。
     
     - patchca                           GitHub 图片验证码
     
-- QQ 组件 依赖
+- QQ 组件
 
     - Sdk4J                             
+    
+- WeiXin4J
+
+    - Weixin4j Spring Boot Starter
