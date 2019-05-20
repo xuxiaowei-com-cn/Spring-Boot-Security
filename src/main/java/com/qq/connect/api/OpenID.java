@@ -46,11 +46,20 @@ public class OpenID extends QQConnect {
 
         PostParameter[] accessTokens = {new PostParameter("access_token", accessToken)};
 
+        if (getUnionId) {
+            accessTokens = new PostParameter[]{new PostParameter("access_token", accessToken), new PostParameter("unionid", 1)};
+        }
+
         String jsonp = this.client.get(QQConnectConfig.getValue("getOpenIDURL"), accessTokens).asString();
 
         Matcher m = compile.matcher(jsonp);
         if (m.find()) {
             openid = m.group(1);
+
+            if (getUnionId) {
+                unionId = m.group(2);
+            }
+
             return openid;
         } else {
             throw new QQConnectException("server error!");
