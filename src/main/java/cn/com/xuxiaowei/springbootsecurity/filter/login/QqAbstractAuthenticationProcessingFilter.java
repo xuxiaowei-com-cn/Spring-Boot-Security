@@ -2,6 +2,8 @@ package cn.com.xuxiaowei.springbootsecurity.filter.login;
 
 import cn.com.xuxiaowei.springbootsecurity.entity.Qq;
 import cn.com.xuxiaowei.springbootsecurity.service.IQqService;
+import cn.com.xuxiaowei.springbootsecurity.setting.SecuritySettings;
+import cn.com.xuxiaowei.springbootsecurity.util.cookie.CookieUtils;
 import cn.com.xuxiaowei.springbootsecurity.util.response.ResponseUtils;
 import cn.com.xuxiaowei.springbootsecurity.util.security.SecurityUtils;
 import com.qq.connect.QQConnectException;
@@ -47,6 +49,9 @@ import java.util.Map;
  */
 @Slf4j
 public class QqAbstractAuthenticationProcessingFilter extends AbstractAuthenticationProcessingFilter {
+
+    @Autowired
+    private SecuritySettings securitySettings;
 
     @Autowired
     private IQqService qqService;
@@ -232,6 +237,9 @@ public class QqAbstractAuthenticationProcessingFilter extends AbstractAuthentica
             // credentials  自定义信息、如：WebAuthenticationDetails
             // authorities  权限
             UsernamePasswordAuthenticationToken authRequest = new UsernamePasswordAuthenticationToken(user, details, authorities);
+
+            // 保持登录 2 天
+            CookieUtils.setSessionCookieTime(request, response, securitySettings.qqTokenValiditySeconds);
 
             // 返回验证结果
             return this.getAuthenticationManager().authenticate(authRequest);
