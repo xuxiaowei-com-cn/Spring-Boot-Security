@@ -160,8 +160,8 @@ public class SmsAbstractAuthenticationProcessingFilter extends AbstractAuthentic
             webAuthenticationDetails = (WebAuthenticationDetails) details;
         }
 
-        // principal    用户名
-        // credentials  密码
+        // principal    用户 org.springframework.security.core.userdetails.User
+        // credentials  自定义信息、如：WebAuthenticationDetails
         // authorities  权限
         UsernamePasswordAuthenticationToken authRequest = new UsernamePasswordAuthenticationToken(user, webAuthenticationDetails, authorities);
 

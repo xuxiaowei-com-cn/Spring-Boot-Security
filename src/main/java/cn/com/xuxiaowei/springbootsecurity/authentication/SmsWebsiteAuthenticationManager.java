@@ -18,10 +18,10 @@ public class SmsWebsiteAuthenticationManager implements AuthenticationManager {
     @Override
     public Authentication authenticate(Authentication authentication) throws AuthenticationException {
 
-        // 用户名
+        // 用户 org.springframework.security.core.userdetails.User
         Object principal = authentication.getPrincipal();
 
-        // 密码
+        // 自定义信息、如：WebAuthenticationDetails
         Object credentials = authentication.getCredentials();
 
         // 权限
