@@ -61,6 +61,12 @@
         <!-- 2018年9月5日 -->
         <weixin4j-spring-boot.version>1.0.0</weixin4j-spring-boot.version>
 
+        <!-- 支付宝开放 API -->
+        <!-- https://mvnrepository.com/artifact/com.alipay.sdk/alipay-sdk-java -->
+        <!-- 2019年4月11日 -->
+        <alipay-sdk-java.version>3.7.26.ALL</alipay-sdk-java.version>
+
+
     </properties>
 
     <dependencies>
@@ -131,6 +137,13 @@
                     <artifactId>servlet-api</artifactId>
                 </exclusion>
             </exclusions>
+        </dependency>
+
+        <!-- 支付宝开放 API -->
+        <dependency>
+            <groupId>com.alipay.sdk</groupId>
+            <artifactId>alipay-sdk-java</artifactId>
+            <version>${alipay-sdk-java.version}</version>
         </dependency>
 
 

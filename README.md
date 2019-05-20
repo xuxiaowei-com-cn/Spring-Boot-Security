@@ -87,3 +87,7 @@ Spring Boot 整合 Security。
 - WeiXin4J
 
     - Weixin4j Spring Boot Starter
+    
+- 支付宝开放 API
+
+    - alipay-sdk-java
