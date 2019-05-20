@@ -246,7 +246,14 @@ public class QqAbstractAuthenticationProcessingFilter extends AbstractAuthentica
             org.springframework.security.core.userdetails.User user = new org.springframework.security.core.userdetails.User(userOpenID, accessToken, authorities);
 
             // 记录远程地址，如果会话已存在（也不会创建会话），还会设置会话ID。
-            WebAuthenticationDetails details = SecurityUtils.getDetails();
+            // 由于 第三方登录（QQ）授权时，是从第三方页面跳转的进入本站的，故授权时，没有 getDetails()
+            // 第三方登录（QQ）授权时，必须进入 QqHttpServlet
+            // detailsQQ 是在 QqHttpServlet 中创建的，并放入 Session 中
+            Object detailsQQ = session.getAttribute("detailsQQ");
+            WebAuthenticationDetails details = null;
+            if (detailsQQ instanceof WebAuthenticationDetails) {
+                details = (WebAuthenticationDetails) detailsQQ;
+            }
 
             // principal    用户 org.springframework.security.core.userdetails.User
             // credentials  自定义信息、如：WebAuthenticationDetails
