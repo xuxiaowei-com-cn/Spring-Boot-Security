@@ -31,6 +31,7 @@ public class QqHttpServlet extends HttpServlet {
             // 使用的 配置文件名：authorizeURL
             // 使用的 接口URL：https://graph.qq.com/oauth2.0/authorize
             // 官方文档：http://wiki.connect.qq.com/%E4%BD%BF%E7%94%A8authorization_code%E8%8E%B7%E5%8F%96access_token
+            // Step1：获取Authorization Code
             String authorizeURL = oauth.getAuthorizeURL(req);
 
             HttpSession session = req.getSession();
