@@ -10,7 +10,7 @@ alipay:
   domain:
   # 支付宝网关（固定）
   url: https://openapi.alipay.com/gateway.do
-  # APPID 即创建应用后生成
+  # 请修改此处（APPID 即创建应用后生成）
   app-id:
   # 请修改此处（开发配置 --> 加签方式 --> 应用公钥）
   # RSA私钥及公钥生成 文档：https://docs.open.alipay.com/58/103242
