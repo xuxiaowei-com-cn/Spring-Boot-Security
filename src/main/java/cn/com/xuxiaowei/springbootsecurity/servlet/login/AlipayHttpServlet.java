@@ -2,7 +2,9 @@ package cn.com.xuxiaowei.springbootsecurity.servlet.login;
 
 import cn.com.xuxiaowei.springbootsecurity.setting.AlipaySettings;
 import cn.com.xuxiaowei.springbootsecurity.setting.SecuritySettings;
+import cn.com.xuxiaowei.springbootsecurity.util.security.SecurityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.web.authentication.WebAuthenticationDetails;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -48,6 +50,15 @@ public class AlipayHttpServlet extends HttpServlet {
         session.setAttribute("alipay_connect_state", state);
 
         authorizeURL += "&state=" + state;
+
+        // 记录远程地址，如果会话已存在（也不会创建会话），还会设置会话ID。
+        // 由于 第三方登录（支付宝）授权时，是从第三方页面跳转的进入本站的，故授权时，没有 getDetails()
+        // 第三方登录（支付宝）授权时，必须进入此方法
+        WebAuthenticationDetails details = SecurityUtils.getDetails();
+
+        // 在此方法中，将 getDetails() 放入 Session
+        // 授权时，从 Session 中获取
+        session.setAttribute("detailsAlipay", details);
 
         resp.sendRedirect(authorizeURL);
 
