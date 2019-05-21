@@ -102,9 +102,9 @@ public class WeChatWebsiteAbstractAuthenticationProcessingFilter extends Abstrac
         }
 
         // AppID、appSecret
-        String appId = weChatOpenSettings.getAppId();
-        String appSecret = weChatOpenSettings.getAppSecret();
-        String authorizeUrl = weChatOpenSettings.getAuthorizeUrl();
+        String appId = weChatOpenSettings.appId;
+        String appSecret = weChatOpenSettings.appSecret;
+        String authorizeUrl = weChatOpenSettings.authorizeUrl;
 
         // 微信平台基础支持对象
         Weixin weixin = new Weixin(appId, appSecret);
