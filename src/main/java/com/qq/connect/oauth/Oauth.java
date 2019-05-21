@@ -18,6 +18,8 @@ import javax.servlet.http.HttpServletRequest;
 public class Oauth extends QQConnect {
     private static final long serialVersionUID = -7860508274941797293L;
 
+    private Pattern compile = Pattern.compile("code=(\\w+)&state=(\\w+)&?");
+
     public Oauth() {
     }
 
@@ -25,7 +27,9 @@ public class Oauth extends QQConnect {
         if (url == null) {
             throw new QQConnectException("you pass a null String object");
         } else {
-            Matcher m = Pattern.compile("code=(\\w+)&state=(\\w+)&?").matcher(url);
+
+            Matcher m = compile.matcher(url);
+
             String authCode = "";
             String state = "";
             if (m.find()) {
