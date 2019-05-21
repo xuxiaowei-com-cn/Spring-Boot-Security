@@ -20,8 +20,9 @@ spring:
   # 配置文件 配置
   profiles:
     # 激活 配置
-    # dev-sql：MyBatis Plus中性能及SQL打印等配置
-    active: dev-sql
+    # dev-sql：MyBatis Plus 中性能及SQL打印等配置
+    # security：Security 配置文件
+    active: dev-sql,security
   #
   # Thymeleaf 配置
   thymeleaf:
@@ -45,46 +46,6 @@ mybatis-plus:
       logic-delete-value: 1
       # 逻辑未删除值,(逻辑删除下有效，默认值：0)
       logic-not-delete-value: 0
-#
-# Security 自定义配置
-security:
-  # 定制登录页面的访问 URL
-  login-page: /login
-  # 定制登录请求的访问 URL
-  login-processing-url: /login.do
-  # 定制登录成功后转向的 URL
-  default-success-url: /success.do
-  # 定制注销 URL（行为）
-  logout-url: /logout.do
-  # 定制登录失败后转向的 URL
-  failure-forward-url: /fail.do
-  # 登录时图片验证码验证失败 URL
-  failure-patchca-url: /fail/patchca.do
-  # 注销成功后跳转的URL
-  logout-success-url: /logout/success.do
-  # remember-me
-  remember-me-parameter: remember-me
-  key: NsadFDGs-KRya+
-  # 指定 Cookie 有效时间（使用用户名和密码）
-  token-validity-seconds: 1209600
-  # 短信登录 Cookie 有效时间
-  sms-token-validity-seconds: 172800
-  # QQ 登录 Cookie 有效时间
-  qq-token-validity-seconds: 86400
-  # 微信网页（微信内部） 登录 Cookie 有效时间
-  we-chat-page-token-validity-seconds: 259200
-  # 微信扫码 登录 Cookie 有效时间
-  we-chat-site-token-validity-seconds: 345600
-  # 支付宝 登录 Cookie 有效时间
-  alipay-token-validity-seconds: 432000
-  # QQ 授权 URL
-  qq-url: /app/qq
-  # 微信内部 授权 URL
-  we-chat-web-page-url: /app/wechat/webpage
-  # 微信扫码 授权 URL
-  we-chat-website-url: /app/wechat/website
-  # 支付宝 授权 URL
-  alipay-url: /app/alipay
 #
 # 微信开放平台 配置
 # 资料：
