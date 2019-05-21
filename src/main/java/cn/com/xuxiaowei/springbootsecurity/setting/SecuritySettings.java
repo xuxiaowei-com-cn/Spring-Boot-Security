@@ -102,6 +102,13 @@ public class SecuritySettings {
     public int alipayTokenValiditySeconds;
 
     /**
+     * 微博 登录 Cookie 有效时间
+     * <p>
+     * 60 * 60 * 24 * 6 为 518400  秒，即 6 天
+     */
+    public int weiBoTokenValiditySeconds;
+
+    /**
      * QQ 授权 URL
      */
     public String qqUrl;
