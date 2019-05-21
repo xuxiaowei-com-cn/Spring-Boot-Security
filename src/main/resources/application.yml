@@ -105,8 +105,14 @@ weixin:
     authorize-url: https://open.weixin.qq.com/connect/qrconnect
 #
 # 支付宝 配置
+# 蚂蚁金服开放平台：https://openhome.alipay.com/platform/home.htm
+# -->
+# 选择应用（本次使用 网页移动应用：https://openhome.alipay.com/platform/isvAppPage.htm）
+# -->
+# 应用信息
 alipay:
   # 域名
+  # 请修改此处（开发配置 --> 应用网关）
   domain:
   # 支付宝网关（固定）
   url: https://openapi.alipay.com/gateway.do
