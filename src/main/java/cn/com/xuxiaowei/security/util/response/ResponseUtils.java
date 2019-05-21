@@ -1,4 +1,4 @@
-package cn.com.xuxiaowei.springbootsecurity.util.response;
+package cn.com.xuxiaowei.security.util.response;
 
 import com.alibaba.fastjson.JSON;
 
