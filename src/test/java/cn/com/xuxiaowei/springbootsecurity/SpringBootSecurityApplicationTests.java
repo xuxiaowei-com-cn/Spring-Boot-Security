@@ -1,11 +1,19 @@
 package cn.com.xuxiaowei.springbootsecurity;
 
+import cn.com.xuxiaowei.springbootsecurity.setting.AlipaySettings;
+import com.alipay.api.AlipayApiException;
+import com.alipay.api.AlipayClient;
+import com.alipay.api.DefaultAlipayClient;
+import com.alipay.api.request.AlipayUserInfoShareRequest;
+import com.alipay.api.response.AlipayUserInfoShareResponse;
 import com.qq.connect.QQConnectException;
 import com.qq.connect.api.qzone.UserInfo;
 import com.qq.connect.javabeans.qzone.UserInfoBean;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang.builder.ReflectionToStringBuilder;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
@@ -13,6 +21,9 @@ import org.springframework.test.context.junit4.SpringRunner;
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class SpringBootSecurityApplicationTests {
+
+    @Autowired
+    private AlipaySettings alipaySettings;
 
     @Test
     public void contextLoads() {
@@ -43,6 +54,37 @@ public class SpringBootSecurityApplicationTests {
         } catch (QQConnectException e) {
             e.printStackTrace();
         }
+
+    }
+
+    /**
+     * 根据 AccessToken 获取 支付宝 信息
+     */
+    @Test
+    public void getAlipayInfoByAuthToken() throws AlipayApiException {
+
+        String appId = alipaySettings.getAppId();
+        String appPrivateKey = alipaySettings.getAppPrivateKey().replace(" ", "");
+        String alipayPublicKey = alipaySettings.getAlipayPublicKey();
+        String charset = alipaySettings.getCharset();
+        String url = alipaySettings.getUrl();
+        String format = alipaySettings.getFormat();
+        String signType = alipaySettings.getSignType();
+
+
+        // 蚂蚁金服 授权基础类
+        AlipayClient alipayClient = new DefaultAlipayClient(url, appId, appPrivateKey, format, charset, alipayPublicKey, signType);
+
+        // 蚂蚁金服 用户信息 分享 请求 Object
+        AlipayUserInfoShareRequest alipayUserInfoShareRequest = new AlipayUserInfoShareRequest();
+
+        // 蚂蚁金服 用户信息 分享 响应 Object
+        AlipayUserInfoShareResponse alipayUserInfoShareResponse = alipayClient.execute(alipayUserInfoShareRequest, "支付宝 登录时保存的 AccessToken");
+
+        // 转化为 StringBuilder，AlipayUserInfoShareResponse 中未重写 toString()
+        String alipayUserInfoShareResponseStringBuilder = ReflectionToStringBuilder.toString(alipayUserInfoShareResponse);
+
+        log.debug(alipayUserInfoShareResponseStringBuilder);
 
     }
 
