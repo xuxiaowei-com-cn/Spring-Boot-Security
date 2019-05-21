@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.com.xuxiaowei.springbootsecurity.mapper.WeiBoMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="cn.com.xuxiaowei.springbootsecurity.entity.WeiBo">
+        <id column="wei_bo_id" property="weiBoId" />
+        <result column="id" property="id" />
+        <result column="screen_name" property="screenName" />
+        <result column="name" property="name" />
+        <result column="province" property="province" />
+        <result column="city" property="city" />
+        <result column="location" property="location" />
+        <result column="description" property="description" />
+        <result column="url" property="url" />
+        <result column="profile_image_url" property="profileImageUrl" />
+        <result column="user_domain" property="userDomain" />
+        <result column="gender" property="gender" />
+        <result column="followers_count" property="followersCount" />
+        <result column="friends_count" property="friendsCount" />
+        <result column="statuses_count" property="statusesCount" />
+        <result column="favourites_count" property="favouritesCount" />
+        <result column="created_at" property="createdAt" />
+        <result column="following" property="following" />
+        <result column="verified" property="verified" />
+        <result column="verified_type" property="verifiedType" />
+        <result column="allow_all_act_msg" property="allowAllActMsg" />
+        <result column="allow_all_comment" property="allowAllComment" />
+        <result column="follow_me" property="followMe" />
+        <result column="avatarLarge" property="avatarLarge" />
+        <result column="online_status" property="onlineStatus" />
+        <result column="status" property="status" />
+        <result column="bi_followers_count" property="biFollowersCount" />
+        <result column="remark" property="remark" />
+        <result column="lang" property="lang" />
+        <result column="verified_reason" property="verifiedReason" />
+        <result column="weihao" property="weihao" />
+        <result column="statusId" property="statusId" />
+        <result column="access_token" property="accessToken" />
+        <result column="access_token_expired_date" property="accessTokenExpiredDate" />
+        <result column="refresh_token" property="refreshToken" />
+        <result column="create_date" property="createDate" />
+        <result column="update_date" property="updateDate" />
+        <result column="deleted" property="deleted" />
+        <result column="remarks" property="remarks" />
+    </resultMap>
+
+</mapper>
