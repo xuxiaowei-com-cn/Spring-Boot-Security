@@ -108,3 +108,15 @@ Spring Boot 整合 Security。
     
 - 微博 组件 weibo4j
     - weibo4j-oauth2        
+    
+# 欢迎捐助
+
+- 如果您觉得本项目对您有帮助，请捐助，谢谢。
+
+- 您的捐助就是我最大的动力。
+
+<p align=center>
+  <a href="https://xuxiaowei.com.cn">
+    <img src="https://cdn.xuxiaowei.com.cn/img/QRCode.png/xuxiaowei.com.cn" alt="徐晓伟工作室" width="360">
+  </a>
+</p>
