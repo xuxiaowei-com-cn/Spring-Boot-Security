@@ -37,3 +37,5 @@ security:
   we-chat-website-url: /app/wechat/website
   # 支付宝 授权 URL
   alipay-url: /app/alipay
+  # 微博 授权 URL
+  weibo-url: /app/weibo

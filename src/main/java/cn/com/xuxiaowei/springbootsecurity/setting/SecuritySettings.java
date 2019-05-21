@@ -121,4 +121,9 @@ public class SecuritySettings {
      */
     public String alipayUrl;
 
+    /**
+     * 微博 授权 URL
+     */
+    public String weiboUrl;
+
 }
