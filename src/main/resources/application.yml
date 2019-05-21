@@ -22,7 +22,8 @@ spring:
     # 激活 配置
     # dev-sql：MyBatis Plus 中性能及SQL打印等配置
     # security：Security 配置文件
-    active: dev-sql,security
+    # weixin-open：微信开放平台 配置文件
+    active: dev-sql,security,weixin-open
   #
   # Thymeleaf 配置
   thymeleaf:
@@ -46,24 +47,6 @@ mybatis-plus:
       logic-delete-value: 1
       # 逻辑未删除值,(逻辑删除下有效，默认值：0)
       logic-not-delete-value: 0
-#
-# 微信开放平台 配置
-# 资料：
-# 网站应用微信登录开发指南：https://open.weixin.qq.com/cgi-bin/showdocument?action=dir_list&t=resource/res_list&verify=1&id=open1419316505&token=&lang=zh_CN
-# 授权后接口调用（UnionID）：https://open.weixin.qq.com/cgi-bin/showdocument?action=dir_list&t=resource/res_list&verify=1&id=open1419316518&token=&lang=zh_CN
-weixin:
-  open:
-    # AppID
-    # 请修改此处（微信开放平台：https://open.weixin.qq.com/ --> 网站应用）
-    app-id:
-    # AppSecret
-    # 请修改此处（微信开放平台：https://open.weixin.qq.com/ --> 网站应用）
-    app-secret:
-    # REDIRECT_URI
-    # 请修改此处（微信开放平台：https://open.weixin.qq.com/ 中的 网站应用 --> 开发信息 --> 授权回调域，必须是该域名下的网址）
-    redirect-uri:
-    # 第三方 网页授权开发 URL（固定）
-    authorize-url: https://open.weixin.qq.com/connect/qrconnect
 #
 # 支付宝 配置
 # 蚂蚁金服开放平台：https://openhome.alipay.com/platform/home.htm
