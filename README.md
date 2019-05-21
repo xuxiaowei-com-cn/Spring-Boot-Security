@@ -17,6 +17,8 @@ Spring Boot 整合 Security。
 
 ### Spring Boot Security 登录
 
+- 用户名、密码登录
+
 - 登录前验证图片验证码
 
 ### 短信验证码 登录
