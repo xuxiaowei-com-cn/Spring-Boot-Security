@@ -1,5 +1,6 @@
 package cn.com.xuxiaowei.springbootsecurity.entity;
 
+import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableLogic;
@@ -25,7 +26,7 @@ public class Alipay implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    @TableId("alipay_id")
+    @TableId(value = "alipay_id", type = IdType.AUTO)
     private Integer alipayId;
 
     /**
