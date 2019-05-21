@@ -69,7 +69,8 @@
         <!-- 微博 组件 weibo4j -->
         <!-- GitHub下载页面：https://github.com/sunxiaowei2014/weibo4j-oauth2-beta3.1.1 -->
         <!-- 官方下载页面：https://open.weibo.com/wiki/SDK -->
-        <weibo4j-oauth2.version>2.1.1-beta3.1.1</weibo4j-oauth2.version>
+        <!-- 使用 sources 中的 2.1.1-beta3.1.2 -->
+        <weibo4j-oauth2.version>2.1.1-beta3.1.2</weibo4j-oauth2.version>
 
 
     </properties>
