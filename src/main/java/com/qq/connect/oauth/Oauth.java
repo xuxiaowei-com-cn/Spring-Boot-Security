@@ -41,6 +41,34 @@ public class Oauth extends QQConnect {
         }
     }
 
+    /**
+     * 刷新 AccessToken
+     * <p>
+     * 新增方法
+     * <p>
+     * 刷新（使用本方法）后，原 AccessToken 失效
+     */
+    public AccessToken refreshAccessToken(String refreshToken) throws QQConnectException {
+
+        String accessTokenURL = QQConnectConfig.getValue("accessTokenURL");
+
+        // 授权类型，在本步骤中，此值为“refresh_token”。
+        PostParameter grantType = new PostParameter("grant_type", "refresh_token");
+
+        // 申请QQ登录成功后，分配给网站的appid。
+        PostParameter clientId = new PostParameter("client_id", QQConnectConfig.getValue("app_ID"));
+
+        // 申请QQ登录成功后，分配给网站的appkey。
+        PostParameter clientSecret = new PostParameter("client_secret", QQConnectConfig.getValue("app_KEY"));
+
+        // 在 Step2（http://wiki.connect.qq.com/%E4%BD%BF%E7%94%A8authorization_code%E8%8E%B7%E5%8F%96access_token） 中，返回的refres_token。
+        PostParameter refreshTokenParameter = new PostParameter("refresh_token", refreshToken);
+
+        PostParameter[] postParameters = {clientId, clientSecret, grantType, refreshTokenParameter};
+
+        return new AccessToken(this.client.post(accessTokenURL, postParameters, false));
+    }
+
     public AccessToken getAccessTokenByRequest(ServletRequest request) throws QQConnectException {
         String queryString = ((HttpServletRequest) request).getQueryString();
         if (queryString == null) {
