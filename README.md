@@ -117,6 +117,6 @@ Spring Boot 整合 Security。
 
 <p align=center>
   <a href="https://xuxiaowei.com.cn">
-    <img src="https://cdn.xuxiaowei.com.cn/img/QRCode.png/xuxiaowei.com.cn" alt="徐晓伟工作室" width="360">
+    <img src="http://cdn2.xuxiaowei.com.cn/img/QRCode.png/xuxiaowei.com.cn" alt="徐晓伟工作室" width="360">
   </a>
 </p>
