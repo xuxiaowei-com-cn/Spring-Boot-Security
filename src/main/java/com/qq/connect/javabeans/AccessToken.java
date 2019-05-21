@@ -73,15 +73,17 @@ public class AccessToken extends QQConnectResponse implements Serializable {
         return Long.valueOf(this.expireIn);
     }
 
+    @Override
     public int hashCode() {
-        int prime = true;
+        // int prime = true;
         int result = 1;
-        int result = 31 * result + (this.accessToken == null ? 0 : this.accessToken.hashCode());
+        result = 31 * result + (this.accessToken == null ? 0 : this.accessToken.hashCode());
         result = 31 * result + (this.expireIn == null ? 0 : this.expireIn.hashCode());
         result = 31 * result + (this.refreshToken == null ? 0 : this.refreshToken.hashCode());
         return result;
     }
 
+    @Override
     public boolean equals(Object obj) {
         if (this == obj) {
             return true;
@@ -119,7 +121,21 @@ public class AccessToken extends QQConnectResponse implements Serializable {
         }
     }
 
-    public String toString() {
-        return "AccessToken [accessToken=" + this.accessToken + ", expireIn=" + this.expireIn + "]";
+    /**
+     * 新增 获取 refreshToken
+     */
+    public String getRefreshToken() {
+        return refreshToken;
     }
+
+    @Override
+    public String toString() {
+        return "AccessToken{" +
+                "accessToken='" + accessToken + '\'' +
+                ", expireIn='" + expireIn + '\'' +
+                ", refreshToken='" + refreshToken + '\'' +
+                ", openid='" + openid + '\'' +
+                '}';
+    }
+
 }
