@@ -1,8 +1,10 @@
 package cn.com.xuxiaowei.springbootsecurity.config.filter;
 
+import cn.com.xuxiaowei.springbootsecurity.authentication.AlipayAuthenticationManager;
 import cn.com.xuxiaowei.springbootsecurity.authentication.QqAuthenticationManager;
 import cn.com.xuxiaowei.springbootsecurity.authentication.WeChatWebPageAuthenticationManager;
 import cn.com.xuxiaowei.springbootsecurity.authentication.WeChatWebsiteAuthenticationManager;
+import cn.com.xuxiaowei.springbootsecurity.filter.login.AlipayAbstractAuthenticationProcessingFilter;
 import cn.com.xuxiaowei.springbootsecurity.filter.login.QqAbstractAuthenticationProcessingFilter;
 import cn.com.xuxiaowei.springbootsecurity.filter.login.WeChatWebPageAbstractAuthenticationProcessingFilter;
 import cn.com.xuxiaowei.springbootsecurity.filter.login.WeChatWebsiteAbstractAuthenticationProcessingFilter;
@@ -27,7 +29,7 @@ public class FilterLoginConfig {
     }
 
     /**
-     * 第三方登录（QQ）登录 注册为 Bean
+     * 第三方登录（QQ） 注册为 Bean
      *
      * @return 使用 Autowired 的 Filter
      */
@@ -51,7 +53,7 @@ public class FilterLoginConfig {
     }
 
     /**
-     * 第三方（微信扫码） 注册为 Bean
+     * 第三方登录（微信扫码） 注册为 Bean
      *
      * @return 使用 Autowired 的 Filter
      */
@@ -60,6 +62,18 @@ public class FilterLoginConfig {
         WeChatWebsiteAbstractAuthenticationProcessingFilter weChatWebsiteFilter = new WeChatWebsiteAbstractAuthenticationProcessingFilter(securitySettings.weChatWebsiteUrl);
         weChatWebsiteFilter.setAuthenticationManager(new WeChatWebsiteAuthenticationManager());
         return weChatWebsiteFilter;
+    }
+
+    /**
+     * 第三方登录（支付宝） 注册为 Bean
+     *
+     * @return 使用 Autowired 的 Filter
+     */
+    @Bean
+    AlipayAbstractAuthenticationProcessingFilter alipayAbstractAuthenticationProcessingFilter() {
+        AlipayAbstractAuthenticationProcessingFilter alipayFilter = new AlipayAbstractAuthenticationProcessingFilter(securitySettings.alipayUrl);
+        alipayFilter.setAuthenticationManager(new AlipayAuthenticationManager());
+        return alipayFilter;
     }
 
 }
