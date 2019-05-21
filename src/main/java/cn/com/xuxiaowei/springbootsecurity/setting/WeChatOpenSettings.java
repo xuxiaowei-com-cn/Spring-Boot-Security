@@ -17,21 +17,21 @@ public class WeChatOpenSettings {
     /**
      * AppID
      */
-    private String appId;
+    public String appId;
 
     /**
      * AppSecret
      */
-    private String appSecret;
+    public String appSecret;
 
     /**
      * REDIRECT_URI
      */
-    private String redirectUri;
+    public String redirectUri;
 
     /**
      * 第三方 网页授权开发 URL
      */
-    private String authorizeUrl;
+    public String authorizeUrl;
 
 }

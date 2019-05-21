@@ -30,10 +30,10 @@ public class WeChatWebsiteHttpServlet extends HttpServlet {
 
         HttpSession session = req.getSession();
 
-        String appId = weChatOpenSettings.getAppId();
-        String appSecret = weChatOpenSettings.getAppSecret();
-        String authorizeUrl = weChatOpenSettings.getAuthorizeUrl();
-        String redirectUri = weChatOpenSettings.getRedirectUri();
+        String appId = weChatOpenSettings.appId;
+        String appSecret = weChatOpenSettings.appSecret;
+        String authorizeUrl = weChatOpenSettings.authorizeUrl;
+        String redirectUri = weChatOpenSettings.redirectUri;
 
         // 微信平台基础支持对象
         // 区别 1：
