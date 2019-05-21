@@ -48,6 +48,10 @@
         <result column="user_status" property="userStatus" />
         <result column="user_type" property="userType" />
         <result column="zip" property="zip" />
+        <result column="access_token" property="accessToken" />
+        <result column="access_token_expired_date" property="accessTokenExpiredDate" />
+        <result column="refresh_token" property="refreshToken" />
+        <result column="refresh_token_expired_date" property="refreshTokenExpiredDate" />
         <result column="create_date" property="createDate" />
         <result column="update_date" property="updateDate" />
         <result column="deleted" property="deleted" />

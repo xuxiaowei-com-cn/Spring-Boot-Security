@@ -314,6 +314,30 @@ public class Alipay implements Serializable {
     private String zip;
 
     /**
+     * 访问令牌。通过该令牌调用需要授权类接口
+     */
+    @TableField("access_token")
+    private String accessToken;
+
+    /**
+     * 访问令牌过期时间
+     */
+    @TableField("access_token_expired_date")
+    private LocalDateTime accessTokenExpiredDate;
+
+    /**
+     * 刷新令牌。通过该令牌可以刷新access_token
+     */
+    @TableField("refresh_token")
+    private String refreshToken;
+
+    /**
+     * 刷新令牌过期时间
+     */
+    @TableField("refresh_token_expired_date")
+    private LocalDateTime refreshTokenExpiredDate;
+
+    /**
      * 创建时间，自动生成，无需填写并禁止修改。
      */
     @TableField("create_date")
@@ -426,6 +450,14 @@ public class Alipay implements Serializable {
     public static final String USER_TYPE = "user_type";
 
     public static final String ZIP = "zip";
+
+    public static final String ACCESS_TOKEN = "access_token";
+
+    public static final String ACCESS_TOKEN_EXPIRED_DATE = "access_token_expired_date";
+
+    public static final String REFRESH_TOKEN = "refresh_token";
+
+    public static final String REFRESH_TOKEN_EXPIRED_DATE = "refresh_token_expired_date";
 
     public static final String CREATE_DATE = "create_date";
 

@@ -11,7 +11,7 @@
  Target Server Version : 50724
  File Encoding         : 65001
 
- Date: 21/05/2019 17:38:12
+ Date: 21/05/2019 17:49:40
 */
 
 SET NAMES utf8mb4;
@@ -66,6 +66,10 @@ CREATE TABLE `alipay`  (
   `user_status` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL COMMENT '用户状态（Q/T/B/W）。\r\nQ代表快速注册用户\r\nT代表已认证用户\r\nB代表被冻结账户\r\nW代表已注册，未激活的账户',
   `user_type` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL COMMENT '用户类型（1/2）\r\n1代表公司账户2代表个人账户',
   `zip` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL COMMENT '邮政编码。',
+  `access_token` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL COMMENT '访问令牌。通过该令牌调用需要授权类接口',
+  `access_token_expired_date` datetime(0) DEFAULT NULL COMMENT '访问令牌过期时间',
+  `refresh_token` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL COMMENT '刷新令牌。通过该令牌可以刷新access_token',
+  `refresh_token_expired_date` datetime(0) DEFAULT NULL COMMENT '刷新令牌过期时间',
   `create_date` timestamp(0) NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间，自动生成，无需填写并禁止修改。',
   `update_date` datetime(0) DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP(0) COMMENT '更新时间，自动生成，无需填写并禁止修改。',
   `deleted` int(1) NOT NULL DEFAULT 0 COMMENT '逻辑删除，0 未删除，1 删除，MySQL 默认值 0，不为 NULL，注解@TableLogic。',
