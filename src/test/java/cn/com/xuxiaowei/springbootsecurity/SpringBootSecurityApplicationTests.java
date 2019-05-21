@@ -8,7 +8,9 @@ import com.alipay.api.request.AlipayUserInfoShareRequest;
 import com.alipay.api.response.AlipayUserInfoShareResponse;
 import com.qq.connect.QQConnectException;
 import com.qq.connect.api.qzone.UserInfo;
+import com.qq.connect.javabeans.AccessToken;
 import com.qq.connect.javabeans.qzone.UserInfoBean;
+import com.qq.connect.oauth.Oauth;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang.builder.ReflectionToStringBuilder;
 import org.junit.Test;
@@ -54,6 +56,21 @@ public class SpringBootSecurityApplicationTests {
         } catch (QQConnectException e) {
             e.printStackTrace();
         }
+
+    }
+
+    /**
+     * 刷新 QQ AccessToken
+     */
+    @Test
+    public void QQRefreshAccessToken() throws QQConnectException {
+
+        Oauth oauth = new Oauth();
+
+        // 在 Step2（http://wiki.connect.qq.com/%E4%BD%BF%E7%94%A8authorization_code%E8%8E%B7%E5%8F%96access_token） 中，返回的refres_token。
+        AccessToken accessToken = oauth.refreshAccessToken("QQ 登录时的 refres_token");
+
+        System.err.println(accessToken);
 
     }
 
