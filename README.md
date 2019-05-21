@@ -64,6 +64,10 @@ Spring Boot 整合 Security。
 
 - 设置保持登录 6 天（或自定义）
 
+- 请使用 sources 文件夹中的 weibo4j-oauth2-2.1.1-beta3.1.1.jar
+    
+    - Maven 库中，只有 2.1.1-beta2-3
+
 - 重写微博组件
 
     - 修正逻辑
