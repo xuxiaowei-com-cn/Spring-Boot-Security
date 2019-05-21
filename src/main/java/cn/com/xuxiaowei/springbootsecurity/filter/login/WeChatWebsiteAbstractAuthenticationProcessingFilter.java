@@ -163,8 +163,8 @@ public class WeChatWebsiteAbstractAuthenticationProcessingFilter extends Abstrac
 
             // 记录远程地址，如果会话已存在（也不会创建会话），还会设置会话ID。
             // 由于 第三方登录（微信扫码）授权时，是从第三方页面跳转的进入本站的，故授权时，没有 getDetails()
-            // 第三方登录（微信扫码）授权时，必须进入 WeChatWebPageHttpServlet
-            // detailsWeChatWebPage 是在 WeChatWebPageHttpServlet 中创建的，并放入 Session 中
+            // 第三方登录（微信扫码）授权时，必须进入 WeChatWebsiteHttpServlet
+            // detailsWeChatWebsite 是在 WeChatWebsiteHttpServlet 中创建的，并放入 Session 中
             Object detailsWeChatWebsite = session.getAttribute("detailsWeChatWebsite");
             WebAuthenticationDetails details = null;
             if (detailsWeChatWebsite instanceof WebAuthenticationDetails) {
