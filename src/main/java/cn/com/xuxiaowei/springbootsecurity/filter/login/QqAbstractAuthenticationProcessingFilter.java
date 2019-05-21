@@ -129,6 +129,9 @@ public class QqAbstractAuthenticationProcessingFilter extends AbstractAuthentica
             // 获取 accessToken
             String accessToken = accessTokenObj.getAccessToken();
 
+            // 获取 refreshToken
+            String refreshToken = accessTokenObj.getRefreshToken();
+
             if (StringUtils.isEmpty(accessToken)) {
                 map.put("msg", "QQ登录的code已过期，请重新登录！");
                 data.put("details", "QQ登录的code只能使用一次，重复使用时，调用接口失败！");
@@ -212,6 +215,9 @@ public class QqAbstractAuthenticationProcessingFilter extends AbstractAuthentica
                 // 设置 Access Token
                 qq.setAccessToken(accessToken);
 
+                // 设置 Refresh Token
+                qq.setRefresToken(refreshToken);
+
                 // 设置 Access Token 过期时间
                 qq.setAccessTokenExpiredDate(accessTokenExpiredDate);
 
@@ -234,6 +240,10 @@ public class QqAbstractAuthenticationProcessingFilter extends AbstractAuthentica
 
                 // 数据库中的 QQ 数据，设置新的 Access Token
                 qq.setAccessToken(accessToken);
+
+                // 数据库中的 QQ 数据，设置新的 Refresh Token
+                qq.setRefresToken(refreshToken);
+
                 // 数据库中的 QQ 数据，设置新的 Access Token 过期时间
                 qq.setAccessTokenExpiredDate(accessTokenExpiredDate);
 
