@@ -51,6 +51,10 @@
                 <div class="layui-card-header" sec:authorize="hasRole('ROLE_WECHATWEBPAGE')">QQ openId</div>
                 <div class="layui-card-body" sec:authorize="hasRole('ROLE_WECHATWEBPAGE')">[[${username}]]</div>
 
+                <!-- ROLE_ALIPAY -->
+                <div class="layui-card-header" sec:authorize="hasRole('ROLE_ALIPAY')">支付宝 userId</div>
+                <div class="layui-card-body" sec:authorize="hasRole('ROLE_ALIPAY')">[[${username}]]</div>
+
                 <hr>
 
                 <div class="layui-card-header">登录IP</div>
