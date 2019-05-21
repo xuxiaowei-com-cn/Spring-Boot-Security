@@ -75,6 +75,8 @@ security:
   we-chat-page-token-validity-seconds: 259200
   # 微信扫码 登录 Cookie 有效时间
   we-chat-site-token-validity-seconds: 345600
+  # 支付宝 登录 Cookie 有效时间
+  alipay-token-validity-seconds: 432000
   # QQ 授权 URL
   qq-url: /app/qq
   # 微信内部 授权 URL

@@ -95,6 +95,13 @@ public class SecuritySettings {
     public int weChatSiteTokenValiditySeconds;
 
     /**
+     * 支付宝 登录 Cookie 有效时间
+     * <p>
+     * 60 * 60 * 24 * 5 为 432000  秒，即 5 天
+     */
+    public int alipayTokenValiditySeconds;
+
+    /**
      * QQ 授权 URL
      */
     public String qqUrl;
