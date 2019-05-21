@@ -18,6 +18,9 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
+import weibo4j.Users;
+import weibo4j.model.User;
+import weibo4j.model.WeiboException;
 
 @Slf4j
 @RunWith(SpringRunner.class)
@@ -102,6 +105,25 @@ public class SpringBootSecurityApplicationTests {
         String alipayUserInfoShareResponseStringBuilder = ReflectionToStringBuilder.toString(alipayUserInfoShareResponse);
 
         log.debug(alipayUserInfoShareResponseStringBuilder);
+
+    }
+
+    /**
+     * 根据 UID 和 AccessToken 获取 微博信息
+     */
+    @Test
+    public void getWeiBoInfoByUidAndAccessToken() throws WeiboException {
+
+        Users um = new Users("微博 登录时保存的 AccessToken");
+
+        // 根据用户ID获取用户信息
+        // 使用的 配置文件名：baseURL
+        // 使用的 接口URL：https://api.weibo.com/2/users/show.json
+        // 官方文档：https://open.weibo.com/wiki/%E8%8E%B7%E5%8F%96%E7%94%A8%E6%88%B7%E5%9F%BA%E6%9C%AC%E4%BF%A1%E6%81%AF
+        // 获取用户基本信息
+        User userInfo = um.showUserById("微博 登录时保存的 UID");
+
+        log.debug(userInfo.toString());
 
     }
 
