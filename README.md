@@ -95,3 +95,6 @@ Spring Boot 整合 Security。
 - 支付宝开放 API
 
     - alipay-sdk-java
+    
+- 微博 组件 weibo4j
+    - weibo4j-oauth2        
