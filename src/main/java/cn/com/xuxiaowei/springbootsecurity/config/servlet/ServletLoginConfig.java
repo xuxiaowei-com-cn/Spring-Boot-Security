@@ -1,9 +1,6 @@
 package cn.com.xuxiaowei.springbootsecurity.config.servlet;
 
-import cn.com.xuxiaowei.springbootsecurity.servlet.login.AlipayHttpServlet;
-import cn.com.xuxiaowei.springbootsecurity.servlet.login.QqHttpServlet;
-import cn.com.xuxiaowei.springbootsecurity.servlet.login.WeChatWebPageHttpServlet;
-import cn.com.xuxiaowei.springbootsecurity.servlet.login.WeChatWebsiteHttpServlet;
+import cn.com.xuxiaowei.springbootsecurity.servlet.login.*;
 import org.springframework.boot.web.servlet.ServletRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -76,6 +73,14 @@ public class ServletLoginConfig {
     @Bean
     ServletRegistrationBean alipayHttpServlet() {
         return new ServletRegistrationBean<>(alipayHttpServletBean(), "/alipay");
+    }
+
+    /**
+     * 第三方登录（微博）URL
+     */
+    @Bean
+    ServletRegistrationBean weiBoHttpServlet() {
+        return new ServletRegistrationBean<>(new WeiBoHttpServlet(), "/weibo");
     }
 
 }
