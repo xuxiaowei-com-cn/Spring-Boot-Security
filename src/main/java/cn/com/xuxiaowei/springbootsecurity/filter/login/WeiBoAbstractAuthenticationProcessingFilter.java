@@ -1,10 +1,13 @@
 package cn.com.xuxiaowei.springbootsecurity.filter.login;
 
+import cn.com.xuxiaowei.springbootsecurity.entity.WeiBo;
+import cn.com.xuxiaowei.springbootsecurity.service.IWeiBoService;
 import cn.com.xuxiaowei.springbootsecurity.setting.SecuritySettings;
 import cn.com.xuxiaowei.springbootsecurity.util.cookie.CookieUtils;
 import cn.com.xuxiaowei.springbootsecurity.util.response.ResponseUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang.StringUtils;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -18,13 +21,14 @@ import weibo4j.Users;
 import weibo4j.http.AccessToken;
 import weibo4j.model.User;
 import weibo4j.model.WeiboException;
-import weibo4j.util.WeiboConfig;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -40,6 +44,9 @@ public class WeiBoAbstractAuthenticationProcessingFilter extends AbstractAuthent
 
     @Autowired
     private SecuritySettings securitySettings;
+
+    @Autowired
+    private IWeiBoService weiBoService;
 
     public WeiBoAbstractAuthenticationProcessingFilter(String defaultFilterProcessesUrl) {
         super(defaultFilterProcessesUrl);
@@ -119,19 +126,79 @@ public class WeiBoAbstractAuthenticationProcessingFilter extends AbstractAuthent
             // 刷新令牌。通过该令牌可以刷新access_token
             String refreshToken = accessTokenObj.getRefreshToken();
 
-            WeiboConfig.getValue("access_token");
+            // 获取现在的时间
+            LocalDateTime now = LocalDateTime.now();
 
-            Users um = new Users(accessToken);
+            // 获取 Access Token 过期时间
+            LocalDateTime accessTokenExpiredDate = now.plus(expireIn, ChronoUnit.SECONDS);
 
-            // 根据用户ID获取用户信息
-            // 使用的 配置文件名：baseURL
-            // 使用的 接口URL：https://api.weibo.com/2/users/show.json
-            // 官方文档：https://open.weibo.com/wiki/%E8%8E%B7%E5%8F%96%E7%94%A8%E6%88%B7%E5%9F%BA%E6%9C%AC%E4%BF%A1%E6%81%AF
-            // 获取用户基本信息
-            User userInfo = um.showUserById(uid);
+            WeiBo weiBo = weiBoService.getId(uid);
 
-            log.debug(userInfo.toString());
+            if (weiBo == null) {
 
+                Users um = new Users(accessToken);
+
+                // 根据用户ID获取用户信息
+                // 使用的 配置文件名：baseURL
+                // 使用的 接口URL：https://api.weibo.com/2/users/show.json
+                // 官方文档：https://open.weibo.com/wiki/%E8%8E%B7%E5%8F%96%E7%94%A8%E6%88%B7%E5%9F%BA%E6%9C%AC%E4%BF%A1%E6%81%AF
+                // 获取用户基本信息
+                User userInfo = um.showUserById(uid);
+
+                log.debug("");
+                log.debug(userInfo.toString());
+                log.debug("");
+
+                // 创建 QQ 实体类，用于 强制类型转换
+                // 强制类型转换为空时，会出现异常
+                weiBo = new WeiBo();
+
+                // 强制类型转换 org.springframework.beans.BeanUtils
+                BeanUtils.copyProperties(userInfo, weiBo);
+
+                // 设置 访问令牌。通过该令牌调用需要授权类接口
+                weiBo.setAccessToken(accessToken);
+
+                // 设置 访问令牌过期时间
+                weiBo.setAccessTokenExpiredDate(accessTokenExpiredDate);
+
+                // 设置 刷新令牌。通过该令牌可以刷新access_token
+                weiBo.setRefreshToken(refreshToken);
+
+                log.debug("");
+                log.debug(weiBo.toString());
+                log.debug("");
+
+                boolean save = weiBoService.save(weiBo);
+
+                // 保存成功
+                if (save) {
+                    log.debug("微博 数据保存成功：" + weiBo);
+                } else {
+                    // 保存失败
+                    log.debug("微博 数据保存失败：" + weiBo);
+                }
+
+            } else {
+
+                // 设置 访问令牌。通过该令牌调用需要授权类接口
+                weiBo.setAccessToken(accessToken);
+
+                // 设置 访问令牌过期时间
+                weiBo.setAccessTokenExpiredDate(accessTokenExpiredDate);
+
+                // 设置 刷新令牌。通过该令牌可以刷新access_token
+                weiBo.setRefreshToken(refreshToken);
+
+                boolean updateById = weiBoService.updateById(weiBo);
+
+                if (updateById) {
+                    log.debug("微博 数据更新 Access Token 及过期时间成功：" + weiBo);
+                } else {
+                    log.debug("微博 数据更新 Access Token 及过期时间失败：" + weiBo);
+                }
+
+            }
 
             List<GrantedAuthority> authorities = new ArrayList<>();
 
