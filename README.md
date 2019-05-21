@@ -42,11 +42,18 @@ Spring Boot 整合 Security。
 
 - 设置保持登录 1 天（或自定义）
 
-- 重写 QQ 组件依赖
+
+- 请使用 sources/qq 文件夹中的 Sdk4J-2.0.1.jar
     
-    - 申请 QQ 应用打通（UnionId）
-    
-    - 获取 QQ UnionId
+    - sources 文件夹中的 Sdk4J-2.0.1.jar，新增了一些方法，包括源码
+        
+        - 获取 QQ UnionId
+        
+            - 需要申请 QQ 应用打通（UnionId）
+            
+        - 刷新 AccessToken
+        
+        - 获取 refreshToken
 
 ### 微信网页（微信内部） 登录
 
@@ -64,17 +71,13 @@ Spring Boot 整合 Security。
 
 - 设置保持登录 6 天（或自定义）
 
-- 请使用 sources 文件夹中的 weibo4j-oauth2-2.1.1-beta3.1.2.jar
+- 请使用 sources/weibo4j 文件夹中的 weibo4j-oauth2-2.1.1-beta3.1.2.jar
     
     - Maven 库中，只有 [weibo4j-oauth2-2.1.1-beta2-3](https://mvnrepository.com/artifact/com.belerweb/weibo4j-oauth2)
     
     - GitHub 中有 [weibo4j-oauth2-beta3.1.1](https://github.com/sunxiaowei2014/weibo4j-oauth2-beta3.1.1)，不过是源码
     
     - sources 文件夹中的 weibo4j-oauth2-2.1.1-beta3.1.2.jar，是修正以后构建的，包括源码
-
-- 重写微博组件
-
-    - 修正逻辑
 
 # 依赖
 
