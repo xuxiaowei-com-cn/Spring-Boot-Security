@@ -1,6 +1,5 @@
 package cn.com.xuxiaowei.springbootsecurity.service.impl;
 
-import cn.com.xuxiaowei.springbootsecurity.entity.Qq;
 import cn.com.xuxiaowei.springbootsecurity.entity.WeiBo;
 import cn.com.xuxiaowei.springbootsecurity.mapper.WeiBoMapper;
 import cn.com.xuxiaowei.springbootsecurity.service.IWeiBoService;
