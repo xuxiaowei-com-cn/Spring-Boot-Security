@@ -120,7 +120,7 @@ public class WeChatWebsiteAbstractAuthenticationProcessingFilter extends Abstrac
             // OpenID
             String openid = snsUser.getOpenid();
 
-            // 由于 org.weixin4j.model.sns.SnsUser 没有重写 toString ,所以将其转化为 JSON 放入 Session
+            // 由于 org.weixin4j.model.sns.SnsUser 没有重写 toString ,所以将其转化为 JSON
             Object snsUserJson = JSON.toJSON(snsUser);
 
             log.debug("");
