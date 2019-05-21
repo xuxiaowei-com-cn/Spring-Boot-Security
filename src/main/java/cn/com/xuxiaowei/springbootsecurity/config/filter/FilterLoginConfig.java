@@ -1,13 +1,7 @@
 package cn.com.xuxiaowei.springbootsecurity.config.filter;
 
-import cn.com.xuxiaowei.springbootsecurity.authentication.AlipayAuthenticationManager;
-import cn.com.xuxiaowei.springbootsecurity.authentication.QqAuthenticationManager;
-import cn.com.xuxiaowei.springbootsecurity.authentication.WeChatWebPageAuthenticationManager;
-import cn.com.xuxiaowei.springbootsecurity.authentication.WeChatWebsiteAuthenticationManager;
-import cn.com.xuxiaowei.springbootsecurity.filter.login.AlipayAbstractAuthenticationProcessingFilter;
-import cn.com.xuxiaowei.springbootsecurity.filter.login.QqAbstractAuthenticationProcessingFilter;
-import cn.com.xuxiaowei.springbootsecurity.filter.login.WeChatWebPageAbstractAuthenticationProcessingFilter;
-import cn.com.xuxiaowei.springbootsecurity.filter.login.WeChatWebsiteAbstractAuthenticationProcessingFilter;
+import cn.com.xuxiaowei.springbootsecurity.authentication.*;
+import cn.com.xuxiaowei.springbootsecurity.filter.login.*;
 import cn.com.xuxiaowei.springbootsecurity.setting.SecuritySettings;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -74,6 +68,18 @@ public class FilterLoginConfig {
         AlipayAbstractAuthenticationProcessingFilter alipayFilter = new AlipayAbstractAuthenticationProcessingFilter(securitySettings.alipayUrl);
         alipayFilter.setAuthenticationManager(new AlipayAuthenticationManager());
         return alipayFilter;
+    }
+
+    /**
+     * 第三方登录（微博） 注册为 Bean
+     *
+     * @return 使用 Autowired 的 Filter
+     */
+    @Bean
+    WeiBoAbstractAuthenticationProcessingFilter weiBoAbstractAuthenticationProcessingFilter() {
+        WeiBoAbstractAuthenticationProcessingFilter weibofilter = new WeiBoAbstractAuthenticationProcessingFilter(securitySettings.weiboUrl);
+        weibofilter.setAuthenticationManager(new WeiBoAuthenticationManager());
+        return weibofilter;
     }
 
 }
