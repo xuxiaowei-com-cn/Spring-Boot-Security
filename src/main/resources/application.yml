@@ -118,12 +118,21 @@ alipay:
   url: https://openapi.alipay.com/gateway.do
   # APPID 即创建应用后生成
   app-id:
+  # 请修改此处（开发配置 --> 加签方式 --> 应用公钥）
+  # RSA私钥及公钥生成 文档：https://docs.open.alipay.com/58/103242
   # 开发者私钥，由开发者自己生成（rsa_private_key_pkcs8.pem）
+  # 下载：支付宝密钥生成器
+  # 密钥生成器 Windows 版：https://os.alipayobjects.com/download/secret_key_tools_RSA256_win.zip
+  # 密钥生成器 MAC OSX 版：https://os.alipayobjects.com/download/secret_key_tools_RSA_macosx.zip
+  # 将 rsa_private_key_pkcs8.pem 中的内容复制到这里即可
+  # 注意一：内容不包括 -----BEGIN PRIVATE KEY----- 和 -----END PRIVATE KEY-----
+  # 注意二：如果直接复制，会有换行符（大概会有26行），使用时，对此变量使用 replace(" ", "")，去掉空格
   app-private-key:
   # 参数返回格式，只支持json，json（固定）
   format: json
   # 编码集，支持GBK/UTF-8
   charset: UTF-8
+  # 请修改此处（开发配置 --> 加签方式 --> 支付宝公钥）
   # 支付宝公钥，由支付宝生成（RSA(SHA256)密钥(推荐)）
   alipay-public-key:
   # 商户生成签名字符串所使用的签名算法类型，目前支持RSA2和RSA，推荐使用RSA2
