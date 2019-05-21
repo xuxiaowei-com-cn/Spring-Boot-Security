@@ -206,7 +206,7 @@
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
-        <!-- - Spring Security 测试依赖，任何项目都包含 -->
+        <!-- - Spring Security 测试依赖，任何含有 Security 项目都包含 -->
         <dependency>
             <groupId>org.springframework.security</groupId>
             <artifactId>spring-security-test</artifactId>
