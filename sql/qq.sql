@@ -11,7 +11,7 @@
  Target Server Version : 50724
  File Encoding         : 65001
 
- Date: 20/05/2019 22:29:02
+ Date: 21/05/2019 16:55:33
 */
 
 SET NAMES utf8mb4;
@@ -35,6 +35,7 @@ CREATE TABLE `qq`  (
   `yellow_year_vip` tinyint(1) DEFAULT NULL,
   `access_token` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL COMMENT 'Access Token',
   `access_token_expired_date` datetime(0) DEFAULT NULL COMMENT 'Access Token 过期时间',
+  `refres_token` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL COMMENT '在授权自动续期步骤中，获取新的Access_Token时需要提供的参数。',
   `create_date` timestamp(0) NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间，自动生成，无需填写并禁止修改。',
   `update_date` datetime(0) DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP(0) COMMENT '更新时间，自动生成，无需填写并禁止修改。',
   `deleted` int(1) NOT NULL DEFAULT 0 COMMENT '逻辑删除，0 未删除，1 删除，MySQL 默认值 0，不为 NULL，注解@TableLogic。',

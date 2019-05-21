@@ -17,7 +17,7 @@ import java.time.LocalDateTime;
  * </p>
  *
  * @author 徐晓伟
- * @since 2019-05-20
+ * @since 2019-05-21
  */
 @Data
 @EqualsAndHashCode(callSuper = false)
@@ -72,6 +72,12 @@ public class Qq implements Serializable {
     private LocalDateTime accessTokenExpiredDate;
 
     /**
+     * 在授权自动续期步骤中，获取新的Access_Token时需要提供的参数。
+     */
+    @TableField("refres_token")
+    private String refresToken;
+
+    /**
      * 创建时间，自动生成，无需填写并禁止修改。
      */
     @TableField("create_date")
@@ -122,6 +128,8 @@ public class Qq implements Serializable {
     public static final String ACCESS_TOKEN = "access_token";
 
     public static final String ACCESS_TOKEN_EXPIRED_DATE = "access_token_expired_date";
+
+    public static final String REFRES_TOKEN = "refres_token";
 
     public static final String CREATE_DATE = "create_date";
 
