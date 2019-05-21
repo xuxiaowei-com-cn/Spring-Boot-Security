@@ -34,9 +34,9 @@ public class AlipayHttpServlet extends HttpServlet {
 
         String alipayUrl = securitySettings.alipayUrl;
 
-        String domain = alipaySettings.getDomain();
-        String appId = alipaySettings.getAppId();
-        String publicAppAuthorize = alipaySettings.getPublicAppAuthorize();
+        String domain = alipaySettings.domain;
+        String appId = alipaySettings.appId;
+        String publicAppAuthorize = alipaySettings.publicAppAuthorize;
 
         String replacement = domain + alipayUrl;
 
