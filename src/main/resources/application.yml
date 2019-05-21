@@ -23,7 +23,8 @@ spring:
     # dev-sql：MyBatis Plus 中性能及SQL打印等配置
     # security：Security 配置文件
     # weixin-open：微信开放平台 配置文件
-    active: dev-sql,security,weixin-open
+    # alipay：支付宝 配置文件
+    active: dev-sql,security,weixin-open,alipay
   #
   # Thymeleaf 配置
   thymeleaf:
@@ -47,47 +48,6 @@ mybatis-plus:
       logic-delete-value: 1
       # 逻辑未删除值,(逻辑删除下有效，默认值：0)
       logic-not-delete-value: 0
-#
-# 支付宝 配置
-# 蚂蚁金服开放平台：https://openhome.alipay.com/platform/home.htm
-# -->
-# 选择应用（本次使用 网页移动应用：https://openhome.alipay.com/platform/isvAppPage.htm）
-# -->
-# 应用信息
-alipay:
-  # 域名
-  # 请修改此处（开发配置 --> 授权回调地址）
-  domain:
-  # 支付宝网关（固定）
-  url: https://openapi.alipay.com/gateway.do
-  # APPID 即创建应用后生成
-  app-id:
-  # 请修改此处（开发配置 --> 加签方式 --> 应用公钥）
-  # RSA私钥及公钥生成 文档：https://docs.open.alipay.com/58/103242
-  # 开发者私钥，由开发者自己生成（rsa_private_key_pkcs8.pem）
-  # 下载：支付宝密钥生成器
-  # 密钥生成器 Windows 版：https://os.alipayobjects.com/download/secret_key_tools_RSA256_win.zip
-  # 密钥生成器 MAC OSX 版：https://os.alipayobjects.com/download/secret_key_tools_RSA_macosx.zip
-  # 将 rsa_private_key_pkcs8.pem 中的内容复制到这里即可
-  # 注意一：内容不包括 -----BEGIN PRIVATE KEY----- 和 -----END PRIVATE KEY-----
-  # 注意二：如果直接复制，会有换行符（大概会有26行），使用时，对此变量使用 replace(" ", "")，去掉空格
-  app-private-key:
-  # 参数返回格式，只支持json，json（固定）
-  format: json
-  # 编码集，支持GBK/UTF-8
-  charset: UTF-8
-  # 请修改此处（开发配置 --> 加签方式 --> 支付宝公钥）
-  # 支付宝公钥，由支付宝生成（RSA(SHA256)密钥(推荐)）
-  alipay-public-key:
-  # 商户生成签名字符串所使用的签名算法类型，目前支持RSA2和RSA，推荐使用RSA2
-  sign-type: RSA2
-  # 授权 URL（获取 code）
-  # auth_user（获取用户信息、网站支付宝登录）、
-  # auth_base（用户信息授权）、
-  # auth_ecard（商户会员卡）、
-  # auth_invoice_info（支付宝闪电开票）、
-  # auth_puc_charge（生活缴费）
-  public-app-authorize: https://openauth.alipay.com/oauth2/publicAppAuthorize.htm?app_id=APPID&scope=SCOPE&redirect_uri=ENCODED_URL
 #
 # 日志 配置
 logging:
