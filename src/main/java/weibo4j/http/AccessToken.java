@@ -111,5 +111,13 @@ public class AccessToken extends WeiboResponse implements Serializable {
                 "]";
     }
 
+    /**
+     * 获取微博 UID
+     * <p>
+     * 新增方法
+     */
+    public String getUid() {
+        return uid;
+    }
 
 }
