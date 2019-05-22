@@ -131,6 +131,10 @@ public class ForgetRestController {
             // 只能用一次
             session.setAttribute("resetPassProof", resetPassProof);
 
+            // 重置密码的手机号放入 Session
+            session.setAttribute("resetPassPhone", username);
+
+            // 重置密码凭证 返回到页面
             data.put("resetPassProof", resetPassProof);
 
             map.put("msg", "短信验证成功");
