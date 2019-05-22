@@ -73,6 +73,10 @@ public class HandlerInterceptorConfig implements WebMvcConfigurer {
         jsEncryptAdd.add("/reg");
         jsEncryptAdd.add("/reg/");
 
+        // 重置密码页面 URL
+        jsEncryptAdd.add("/resetPass");
+        jsEncryptAdd.add("/resetPass/");
+
         registry.addInterceptor(new JsEncryptHandlerInterceptor())
                 .addPathPatterns(jsEncryptAdd)
                 .excludePathPatterns(jsEncryptExclude);
