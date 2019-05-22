@@ -68,10 +68,15 @@
 
         <div class="layui-form-item XXW-form-item XXW-ThirdParty-login XXW-l-h-38">
             <label class="XXW-ThirdParty-login-label">社交登入</label>
-            <a th:href="@{/}"><i class="layui-icon iconfont icon-haipaikeicon-"></i></a>
-            <a th:href="@{/}"><i class="layui-icon layui-icon-login-qq"></i></a>
-            <a th:href="@{/}"><i class="layui-icon layui-icon-login-wechat"></i></a>
-            <a th:href="@{/}"><i class="layui-icon layui-icon-login-weibo"></i></a>
+            <a th:href="@{/alipay}"><i class="layui-icon iconfont icon-haipaikeicon-"></i></a>
+            <a th:href="@{/qq}"><i class="layui-icon layui-icon-login-qq"></i></a>
+            <a th:href="@{/wechat/webpage}" class="layui-hide XXW-wechat-webpage">
+                <i class="layui-icon layui-icon-login-wechat"></i>
+            </a>
+            <a th:href="@{/wechat/website}" class="XXW-wechat-website">
+                <i class="layui-icon layui-icon-login-wechat"></i>
+            </a>
+            <a th:href="@{/weibo}"><i class="layui-icon layui-icon-login-weibo"></i></a>
             <a th:href="@{/reg}" class="XXW-a XXW-f-r XXW-l-h-38" id="reg">注册账户&nbsp;&nbsp;</a>
         </div>
 
@@ -94,6 +99,9 @@
 
 <script type="text/javascript" th:src="@{/layui/layui.js}"></script>
 <script type="text/javascript" th:src="@{/js/jsencrypt/jsencrypt.min.js}"></script>
+
+<!-- 微信 JS -->
+<script type="text/javascript" src="https://res.wx.qq.com/open/js/jweixin-1.4.0.js"></script>
 
 <script th:inline="javascript" type="text/javascript">
     layui.extend({
