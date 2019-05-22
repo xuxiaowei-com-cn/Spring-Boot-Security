@@ -85,7 +85,7 @@ public class SmsRestController {
             log.debug("");
 
             map.put("code", 0);
-            map.put("msg", "发送短信验证码成功");
+            map.put("msg", "发送短信验证码成功，在控制台查看");
         } else {
             map.put("msg", "发送短信验证码失败，图片验证码错误！");
         }
