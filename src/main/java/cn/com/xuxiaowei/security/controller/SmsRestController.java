@@ -42,6 +42,8 @@ public class SmsRestController {
         // 默认返回状态为错误
         map.put("code", 1);
 
+        //////////////////// 检查用户发送的数据 ////////////////////
+
         if (StringUtils.isEmpty(phone)) {
             map.put("msg", "手机号不为空！");
             return map;
@@ -54,6 +56,8 @@ public class SmsRestController {
             patchca = patchca.toUpperCase();
         }
 
+        //////////////////// 检查Session中的数据 ////////////////////
+
         HttpSession session = request.getSession();
 
         String patchcaSession = ((String) session.getAttribute("patchca")).toUpperCase();
@@ -63,6 +67,8 @@ public class SmsRestController {
             data.put("patchca", "Session 中不存在图片验证码！");
             return map;
         }
+
+        //////////////////// 验证数据 ////////////////////
 
         if (patchca.equals(patchcaSession)) {
 
