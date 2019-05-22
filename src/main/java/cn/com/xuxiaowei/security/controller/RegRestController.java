@@ -57,6 +57,8 @@ public class RegRestController {
         // 默认返回状态为错误
         map.put("code", 1);
 
+        //////////////////// 检查用户发送的数据 ////////////////////
+
         if (StringUtils.isEmpty(password)) {
             map.put("msg", "密码不为空！");
             return map;
@@ -72,9 +74,15 @@ public class RegRestController {
             return map;
         }
 
+        //////////////////// 检查Session中的数据 ////////////////////
+
         HttpSession session = request.getSession();
 
         String smsPhoneSession = (String) session.getAttribute("smsPhone");
+
+        LocalDateTime smsCodeTimeSession = (LocalDateTime) session.getAttribute("smsCodeTime");
+
+        String smsCodeSession = (String) session.getAttribute("smsCode");
 
         if (StringUtils.isEmpty(smsPhoneSession)) {
             map.put("msg", "用户注册受到攻击！");
@@ -82,12 +90,11 @@ public class RegRestController {
             return map;
         }
 
-        if (!username.equals(smsPhoneSession)) {
-            map.put("msg", "手机号验证失败！");
+        if (StringUtils.isEmpty(smsCodeSession)) {
+            map.put("msg", "用户注册受到攻击！");
+            data.put("smsCode", "Session 中不存在发送给" + username + "的短信验证码");
             return map;
         }
-
-        LocalDateTime smsCodeTimeSession = (LocalDateTime) session.getAttribute("smsCodeTime");
 
         if (smsCodeTimeSession == null) {
             map.put("msg", "用户注册受到攻击！");
@@ -98,20 +105,21 @@ public class RegRestController {
         LocalDateTime now = LocalDateTime.now();
 
         // 短信验证码的有效时间为 5 分钟
+        // 在 检查 smsCodeTimeSession 不为空后
         LocalDateTime plus = smsCodeTimeSession.plus(5, ChronoUnit.MINUTES);
+
+        //////////////////// 验证数据 ////////////////////
+
+        if (!username.equals(smsPhoneSession)) {
+            map.put("msg", "手机号验证失败！");
+            return map;
+        }
 
         if (plus.isBefore(now)) {
             map.put("msg", "短信验证码过期，请重新获取！");
             return map;
         }
 
-        String smsCodeSession = (String) session.getAttribute("smsCode");
-
-        if (StringUtils.isEmpty(smsCodeSession)) {
-            map.put("msg", "用户注册受到攻击！");
-            data.put("smsCode", "Session 中不存在发送给" + username + "的短信验证码");
-            return map;
-        }
 
         if (!smsCode.equals(smsCodeSession)) {
             map.put("msg", "短信验证码错误！");
