@@ -93,18 +93,11 @@
             <button class="layui-btn layui-btn-fluid XXW-active" data-type="logout">退出登录</button>
         </div>
 
-        <div class="XXW-t-a-c XXW-jz">
 
-            <h1>欢迎捐助</h1>
+        <!-- 引入公共元素 -->
+        <!-- 捐助 -->
+        <div th:replace="~{common:: QRCode()}"></div>
 
-            <ul class="XXW-t-a-l">
-                <li>如果您觉得本项目对您有帮助，请捐助，谢谢。</li>
-                <li>您的捐助就是我最大的动力。</li>
-            </ul>
-
-            <img src="" th:src="@{/img/QRCode.png}" alt="徐晓伟工作室">
-
-        </div>
 
     </div>
 
