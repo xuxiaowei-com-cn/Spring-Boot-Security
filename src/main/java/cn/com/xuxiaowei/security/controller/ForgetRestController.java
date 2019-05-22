@@ -2,6 +2,8 @@ package cn.com.xuxiaowei.security.controller;
 
 import cn.com.xuxiaowei.security.entity.User;
 import cn.com.xuxiaowei.security.service.IUserService;
+import cn.com.xuxiaowei.security.util.md5.Md5Utils;
+import cn.com.xuxiaowei.security.util.rsa.RsaUtils;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -10,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.security.GeneralSecurityException;
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 import java.util.HashMap;
@@ -78,13 +81,13 @@ public class ForgetRestController {
         }
 
         if (StringUtils.isEmpty(smsCodeSession)) {
-            map.put("msg", "用户注册受到攻击！");
+            map.put("msg", "用户找回密码受到攻击！");
             data.put("smsCode", "Session 中不存在发送给" + username + "的短信验证码");
             return map;
         }
 
         if (smsCodeTimeSession == null) {
-            map.put("msg", "用户注册受到攻击！");
+            map.put("msg", "用户找回密码受到攻击！");
             data.put("smsCodeTime", "Session 中不存在短信验证码的创建时间");
             return map;
         }
@@ -145,6 +148,100 @@ public class ForgetRestController {
             session.setAttribute("smsCode", null);
 
             return map;
+        }
+
+    }
+
+
+    /**
+     * 重置密码请求
+     *
+     * @param password       密码
+     * @param repassPassword 确认密码
+     */
+    @RequestMapping("/resetPass.do")
+    public Map<String, Object> resetPass(HttpServletRequest request, HttpServletResponse response,
+                                         String password, String repassPassword) {
+
+        HttpSession session = request.getSession();
+
+        Map<String, Object> map = new HashMap<>(4);
+        Map<String, Object> data = new HashMap<>(4);
+        map.put("data", data);
+
+        // 默认返回状态为错误
+        map.put("code", 1);
+
+        String resetPassPhone = (String) session.getAttribute("resetPassPhone");
+
+        //////////////////// 检查Session中的数据 ////////////////////
+
+        if (StringUtils.isEmpty(resetPassPhone)) {
+            map.put("msg", "用户重置密码受到攻击！");
+            data.put("smsCode", "Session 中不存在重置密码的手机号！");
+            return map;
+        }
+
+        //////////////////// 检查用户发送的数据 ////////////////////
+
+        if (StringUtils.isEmpty(repassPassword)) {
+            map.put("msg", "密码不为空！");
+            return map;
+        }
+
+        if (StringUtils.isEmpty(password)) {
+            map.put("msg", "密码不为空！");
+            return map;
+        }
+
+        User user = userService.getPhone(resetPassPhone);
+
+        if (user == null) {
+
+            map.put("msg", "重置密码失败！");
+            data.put("user", "用户不存在！");
+
+            return map;
+
+        } else {
+
+            //////////////////// RSA解密密码 ////////////////////
+
+            try {
+                String rsaPrivateKey = (String) session.getAttribute("RsaPrivateKey");
+                password = new String(RsaUtils.decryptByPrivateKey(password, rsaPrivateKey));
+            } catch (GeneralSecurityException e) {
+
+                // <code>e.printStackTrace();</code>
+
+                map.put("msg", "非法操作，刷新后再试！");
+                data.put("RSA", "非对称性解密失败！");
+                return map;
+
+            }
+
+            // 密码使用 MD5 加密后，储存在数据库中
+            password = Md5Utils.getMD5(password);
+
+            user.setPassword(password);
+
+            boolean updateById = userService.updateById(user);
+
+            if (updateById) {
+
+                map.put("code", 0);
+                map.put("msg", "重置密码成功");
+
+                return map;
+
+            } else {
+
+                map.put("msg", "重置密码失败！");
+                data.put("updateById", "更新数据失败！");
+
+                return map;
+            }
+
         }
 
     }
