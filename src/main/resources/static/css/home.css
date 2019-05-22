@@ -8,6 +8,10 @@ html {
     text-align: center;
 }
 
+.XXW-t-a-l {
+    text-align: left;
+}
+
 .XXW-a {
     color: #029789 !important;
 }
@@ -99,4 +103,17 @@ html {
 
 .icon-haipaikeicon- {
     font-size: 28px !important;
+}
+
+.XXW-jz img {
+    width: 100%;
+}
+
+.XXW-jz ul {
+    padding: 15px;
+}
+
+.XXW-jz ul li {
+    padding: 5px;
+    list-style: inherit;
 }
