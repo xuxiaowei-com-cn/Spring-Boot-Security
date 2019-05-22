@@ -33,7 +33,7 @@ public class HandlerInterceptorConfig implements WebMvcConfigurer {
      * @return 可使用 Autowired 的 短信登录成功 拦截器
      */
     @Bean
-    SmsLoginSuccessHandlerInterceptor smsLoginSuccessHandlerInterceptorBean(){
+    SmsLoginSuccessHandlerInterceptor smsLoginSuccessHandlerInterceptorBean() {
         return new SmsLoginSuccessHandlerInterceptor();
     }
 
