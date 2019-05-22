@@ -134,6 +134,12 @@ public class ForgetRestController {
             data.put("resetPassProof", resetPassProof);
 
             map.put("msg", "短信验证成功");
+
+            // 验证成功后，清空 Session 中相关数据
+            session.setAttribute("smsPhone", null);
+            session.setAttribute("smsCodeTime", null);
+            session.setAttribute("smsCode", null);
+
             return map;
         }
 
