@@ -140,9 +140,7 @@
 
                             if (resetPassProof == null || resetPassProof === "") {
 
-                                msg += "\n但重置密码凭证为空！";
-
-                                layer.msg(msg, {icon: 0})
+                                layer.msg("但重置密码凭证为空！", {icon: 0})
 
                             } else {
                                 location.href = "/resetPass?resetPassProof=" + resetPassProof;
