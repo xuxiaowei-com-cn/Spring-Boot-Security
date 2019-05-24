@@ -4,9 +4,27 @@
 
 # 包的作用
 
+- authentication
+
+    - 认证管理程序包
+
 - config
 
     - 项目配置
+    
+    - config.filter
+    
+        - 过滤器 配置
+        
+            - 第三方登录过滤器 配置
+        
+    - config.security
+    
+        - Security 配置
+    
+    - config.servlet
+    
+        - Servlet 配置
     
 - controller
 
@@ -15,6 +33,14 @@
 - entity
 
     - 实体类
+
+- filter
+
+    - 过滤器
+    
+    - filter.login
+    
+        - 登录过滤器
     
 - generator
 
@@ -40,6 +66,10 @@
 
     - Servlet 包
     
+    - servlet.login
+        
+        - 登录 Servlet
+    
 - setting
 
     - 配置文件（读取）
@@ -48,10 +78,22 @@
 
     - 工具类
     
+    - cookie
+    
+        - Cookie 工具类
+    
     - md5
         
-        - MD5 加密工具类
+        - MD5 加密 工具类
         
-    - REA
+    - response
         
-        - 非对称性加密
+        - 响应 工具类
+        
+    - ras
+        
+        - 非对称性加密 工具类
+        
+    - security 
+    
+        - Security 工具类
