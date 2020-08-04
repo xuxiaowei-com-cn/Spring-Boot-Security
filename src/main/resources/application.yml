@@ -9,9 +9,10 @@ spring:
   # 数据库 配置
   datasource:
     # 数据库 驱动名称（包括包名）
-    driver-class-name: com.mysql.cj.jdbc.Driver
+    # driver-class-name: com.mysql.cj.jdbc.Driver
+    driver-class-name: com.p6spy.engine.spy.P6SpyDriver
     # 数据库 URL
-    url: jdbc:mysql://127.0.0.1:3306/demo?useSSL=false&serverTimezone=GMT%2B8
+    url: jdbc:p6spy:mysql://127.0.0.1:3306/demo?useSSL=false&serverTimezone=GMT%2B8
     # 数据库 用户名
     username: root
     # 数据库 密码
@@ -20,11 +21,10 @@ spring:
   # 配置文件 配置
   profiles:
     # 激活 配置
-    # dev-sql：MyBatis Plus 中性能及SQL打印等配置
     # security：Security 配置文件
     # weixin-open：微信开放平台 配置文件
     # alipay：支付宝 配置文件
-    active: dev-sql,security,weixin-open,alipay
+    active: security,weixin-open,alipay
   #
   # Thymeleaf 配置
   thymeleaf:
