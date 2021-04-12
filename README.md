@@ -119,17 +119,17 @@ Spring Boot 整合 Security。
     - patchca                           GitHub 图片验证码
     
 - QQ 组件
-
-    - Sdk4J                             
+    - Sdk4J       
+    - 参见 sources 文件夹                      
     
 - WeiXin4J
 
     - Weixin4j Spring Boot Starter
     
 - 支付宝开放 API
-
     - alipay-sdk-java
     
 - 微博 组件 weibo4j
     - weibo4j-oauth2        
+    - 参见 sources 文件夹
     
