@@ -20,7 +20,7 @@
         <!-- Fastjson -->
         <!-- https://mvnrepository.com/artifact/com.alibaba/fastjson -->
         <!-- 2019年5月3日 -->
-        <fastjson.version>1.2.73</fastjson.version>
+        <fastjson.version>1.2.83</fastjson.version>
 
         <!-- Thymeleaf Extras Spring Security 5 -->
         <!-- 在页面中使用 Thymeleaf 进行权限控制 -->
